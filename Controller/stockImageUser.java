@@ -38,7 +38,7 @@ public class stockImageUser {
                 if(photoName.contains("/")){
                     photoName = x.getPath().substring(x.getPath().lastIndexOf("/")+1);
                 }
-                Stock_Image.add(x.getPath().substring(x.getPath().lastIndexOf('\\')+1,x.getPath().lastIndexOf(".")));
+                Stock_Image.add(photoName);
             }
         }
 
