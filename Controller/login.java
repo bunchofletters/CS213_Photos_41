@@ -1,14 +1,16 @@
 package Controller;
 
-import java.io.IOException;
+import java.util.ArrayList;
 
+import app.photo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class login {
-
+    private static admin admin;
+    private static ArrayList<String> users = new ArrayList<>();
     @FXML
     private Button LoginButton;
 
@@ -16,13 +18,19 @@ public class login {
     private TextField Username;
 
     @FXML
-    void userLogin(ActionEvent event) throws IOException {
-        loginIn();
+    void userLogin(ActionEvent event) {
+        if(Username.getText().toLowerCase().equals("admin")){
+            photo x = new photo();
+            if(admin == null){
+                admin y = new admin();
+                y.setLogin(this);
+            }
+            x.changeScene("/view/admin.fxml");
+        }
     }
 
-    private void loginIn() {
-        
+    public ArrayList<String> getArrayList(){
+        return users;
     }
-
-
+    
 }
