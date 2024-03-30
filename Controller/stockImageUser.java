@@ -59,7 +59,8 @@ public class stockImageUser {
         int photoPos = stockPhotoList.getSelectionModel().getSelectedIndex();
         String filepath = images[photoPos].getPath();
         filepath = "." + filepath;
-        filepath.replace('\\', '/');
+        if(filepath.contains("\\"))
+            filepath.replace('\\', '/');
         Image imageview = new Image(getClass().getResourceAsStream(filepath));
         ImageViewer.setImage(imageview);
     }
