@@ -2,13 +2,13 @@ package app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class photo extends Application{
 
-    Stage mainStage;
+    static Stage mainStage;
 
     @Override
     public void start(Stage primStage) throws Exception{
@@ -16,7 +16,7 @@ public class photo extends Application{
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/login.fxml"));
-            Pane root = loader.load();
+            Parent root = loader.load();
             Scene scene = new Scene(root);
 
             mainStage.setScene(scene);
@@ -26,6 +26,18 @@ public class photo extends Application{
         } catch(Exception e){
             e.printStackTrace();
         }
+    }
+    public void changeScene(String resource){
+        try{
+            Parent x = FXMLLoader.load(getClass().getResource(resource));
+            Scene change = new Scene(x);
+
+            mainStage.setScene(change);
+            mainStage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
     public static void main(String[] args) {
         launch(args);
