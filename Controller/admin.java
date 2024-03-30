@@ -17,7 +17,10 @@ public class admin {
     private ListView<String> userList;
 
     @FXML
-    void backToLogin(ActionEvent event) {
+    /**
+     * Return back to the login screen
+     */
+    void backToLogin() {
         photo x = new photo();
         x.changeScene("/view/login.fxml");
     }
@@ -41,7 +44,7 @@ public class admin {
 
     @FXML
     /**
-     * This method will remove a user profile
+     * This method will remove a user profile from typing in the user's name
      */
     void deleteUser() {
         for(int i =0; i<login.getList().size(); i++){
@@ -54,6 +57,9 @@ public class admin {
     }
 
     @FXML
+    /**
+     * This method will remove a user profile by selecting the user from the list
+     */
     void deleteUser2() {
         login.getList().remove(userList.getSelectionModel().getSelectedIndex());
         listUser();
