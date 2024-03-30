@@ -9,6 +9,13 @@
             "name": "photo",
             "request": "launch",
             "mainClass": "app.photo",
+            "projectName": "CS213_Photos_41-3_7136cf3e"
+        },
+        {
+            "type": "java",
+            "name": "photo",
+            "request": "launch",
+            "mainClass": "app.photo",
             "vmArgs": "--module-path /Users/dannylin/javafx-sdk-21.0.2/lib --add-modules javafx.controls,javafx.fxml",
             "projectName": "CS213_Photos_41-2_7136cf3d"
         },

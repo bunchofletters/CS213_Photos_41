@@ -23,7 +23,11 @@ public class admin {
     void backToLogin(ActionEvent event) {
         photo x = new photo();
         x.changeScene("/view/login.fxml");
-    }   
+    }
+
+    public void initialize(){
+        listUser();
+    }
 
     @FXML
     /**
@@ -32,7 +36,7 @@ public class admin {
      * Each user are require to make a unqiue username
      */
     void createUser() {
-        if(!login.getList().contains(Createuser.getText().toLowerCase())){
+        if(!login.getList().contains(Createuser.getText().toLowerCase()) && !Createuser.getText().toLowerCase().equals("admin") && !Createuser.getText().toLowerCase().equals("") && !Createuser.getText().toLowerCase().substring(0,1).equals(" ")){
             login.getList().add(Createuser.getText().toLowerCase());
         }
         listUser();
