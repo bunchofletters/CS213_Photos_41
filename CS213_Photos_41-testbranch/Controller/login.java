@@ -1,6 +1,5 @@
 package Controller;
 
-import java.util.ArrayList;
 import app.photo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,4 +49,3 @@ public class login {
     }
     
 }
-
