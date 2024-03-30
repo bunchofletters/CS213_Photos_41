@@ -12,9 +12,6 @@ public class admin {
 
     @FXML
     private TextField Createuser;
-
-    @FXML
-    private TextField Deleteuser;
     
     @FXML
     private ListView<String> userList;
@@ -36,7 +33,7 @@ public class admin {
      * Each user are require to make a unqiue username
      */
     void createUser() {
-        if(!login.getList().contains(Createuser.getText().toLowerCase()) && !Createuser.getText().toLowerCase().equals("admin") && !Createuser.getText().toLowerCase().equals("") && !Createuser.getText().toLowerCase().substring(0,1).equals(" ")){
+        if(!login.getList().contains(Createuser.getText().toLowerCase()) && !Createuser.getText().toLowerCase().equals("admin") && !Createuser.getText().toLowerCase().equals("stock") && !Createuser.getText().toLowerCase().equals("") && !Createuser.getText().toLowerCase().substring(0,1).equals(" ")){
             login.getList().add(Createuser.getText().toLowerCase());
         }
         listUser();
@@ -48,12 +45,18 @@ public class admin {
      */
     void deleteUser() {
         for(int i =0; i<login.getList().size(); i++){
-            if(login.getList().get(i).equals(Deleteuser.getText().toLowerCase())){
+            if(login.getList().get(i).equals(Createuser.getText().toLowerCase())){
                 login.getList().remove(i);
             }
         }
         listUser();
 
+    }
+
+    @FXML
+    void deleteUser2() {
+        login.getList().remove(userList.getSelectionModel().getSelectedIndex());
+        listUser();
     }
 
     @FXML
