@@ -21,7 +21,10 @@ public class stockImageUser {
 
     @FXML
     private ListView<String> stockPhotoList;
-
+    /**
+     * This will populate the list with the name of each stock photo 
+     * and will automatically display the first stock photo
+     */
     public void initialize(){
         if(Stock_Image.size() == 0 || images.length > Stock_Image.size()){
             images = dir.listFiles(new FilenameFilter() {
@@ -55,6 +58,10 @@ public class stockImageUser {
     }
 
     @FXML
+    /**
+     * This method changes the stock photo display depending on which image the user
+     * selected on the list
+     */
     void setThisImage() {
         int photoPos = stockPhotoList.getSelectionModel().getSelectedIndex();
         String filepath = images[photoPos].getPath();
@@ -66,6 +73,9 @@ public class stockImageUser {
     }
 
     @FXML
+    /**
+     * return back to the login page
+     */
     void backToLogin() {
         photo x = new photo();
         x.changeScene("/view/login.fxml");
