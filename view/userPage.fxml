@@ -1,9 +1,9 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 
@@ -14,6 +14,14 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <ListView fx:id="PhotoAlbumList" layoutX="335.0" layoutY="67.0" prefHeight="467.0" prefWidth="573.0" />
+      <VBox layoutX="327.0" layoutY="59.0" prefHeight="423.0" prefWidth="582.0">
+         <children>
+            <ListView fx:id="PhotoAlbumList" prefHeight="423.0" prefWidth="582.0" />
+         </children>
+      </VBox>
+      <Button fx:id="CreateAlbumButton" alignment="CENTER" layoutX="328.0" layoutY="495.0" mnemonicParsing="false" onAction="#createAlbum" text="Create New Album" />
+      <Button fx:id="DelAlbumButton" alignment="CENTER" layoutX="517.0" layoutY="496.0" mnemonicParsing="false" onAction="#delButton" text="Delete Album" />
+      <Button fx:id="RenameAlbumButton" alignment="CENTER" layoutX="654.0" layoutY="495.0" mnemonicParsing="false" onAction="#renameAlbum" text="Rename Album" />
+      <Button fx:id="OpenAlbumButton" alignment="CENTER" layoutX="820.0" layoutY="496.0" mnemonicParsing="false" onAction="#openAlbum" text="Open Album" />
    </children>
 </Pane>
