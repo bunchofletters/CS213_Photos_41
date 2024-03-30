@@ -2,6 +2,8 @@ package Controller;
 
 import java.util.ArrayList;
 import app.photo;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,7 +12,7 @@ import javafx.scene.control.TextField;
 
 public class login {
     private static admin admin;
-    private static ArrayList<String> users = new ArrayList<>();
+    private static ObservableList<String> users = FXCollections.observableArrayList();
 
 
     @FXML
@@ -43,7 +45,7 @@ public class login {
     }  
 
 
-    public ArrayList<String> getArrayList(){
+    public ObservableList<String> getList(){
         return users;
     }
     
