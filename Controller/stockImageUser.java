@@ -34,6 +34,10 @@ public class stockImageUser {
             });
         
             for (File x : images){
+                String photoName = x.getPath().substring(x.getPath().lastIndexOf('\\')+1,x.getPath().lastIndexOf("."));
+                if(photoName.contains("/")){
+                    photoName = x.getPath().substring(x.getPath().lastIndexOf("/")+1);
+                }
                 Stock_Image.add(x.getPath().substring(x.getPath().lastIndexOf('\\')+1,x.getPath().lastIndexOf(".")));
             }
         }
@@ -43,7 +47,9 @@ public class stockImageUser {
 
         String filepath = images[0].getPath();
         filepath = "." + filepath;
-        filepath.replace('\\', '/');
+        if(filepath.contains("\\")){
+            filepath.replace('\\', '/');
+        }
         Image imageview = new Image(getClass().getResourceAsStream(filepath));
         ImageViewer.setImage(imageview);
     }
