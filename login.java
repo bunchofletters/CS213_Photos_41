@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:Controller/login.java
 package Controller;
 
@@ -6,6 +7,10 @@ import app.photo;
 
 
 >>>>>>> 70651fe (Reorder to comply with assignment):login.java
+=======
+
+
+>>>>>>> 70651fe (Reorder to comply with assignment)
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +22,7 @@ import javafx.scene.control.TextField;
 public class login{
     private static admin admin;
     private static ObservableList<String> users = FXCollections.observableArrayList();
+<<<<<<< HEAD
 <<<<<<< HEAD:Controller/login.java
     private photo x = new photo();
 
@@ -25,6 +31,11 @@ public class login{
     private static String userLogined;
     private dataHolder data;
 >>>>>>> 70651fe (Reorder to comply with assignment):login.java
+=======
+    private Photo x = new Photo();
+    private static String userLogined;
+    private dataHolder data;
+>>>>>>> 70651fe (Reorder to comply with assignment)
     @FXML
     private Button LoginButton;
 
@@ -34,8 +45,11 @@ public class login{
     @FXML
     private Label wrongPassword;
 
+<<<<<<< HEAD
 <<<<<<< HEAD:Controller/login.java
 =======
+=======
+>>>>>>> 70651fe (Reorder to comply with assignment)
     void initialize(){
         data = new dataHolder();
         if(data.getUsers() != null){
@@ -43,7 +57,10 @@ public class login{
         }
     }
 
+<<<<<<< HEAD
 >>>>>>> 70651fe (Reorder to comply with assignment):login.java
+=======
+>>>>>>> 70651fe (Reorder to comply with assignment)
     @FXML
     void userLogin(ActionEvent event) {
         if(Username.getText().toLowerCase().equals("admin")){
@@ -51,6 +68,7 @@ public class login{
                 admin y = new admin();
                 y.setLogin(this);
             }
+<<<<<<< HEAD
 <<<<<<< HEAD:Controller/login.java
             x.changeScene("/view/admin.fxml");
         } 
@@ -68,6 +86,8 @@ public class login{
     }  
 
 =======
+=======
+>>>>>>> 70651fe (Reorder to comply with assignment)
             x.changeScene("admin.fxml");
         } 
         else if(Username.getText().toLowerCase().equals("stock")){
@@ -89,7 +109,10 @@ public class login{
     public String getUser(){
         return userLogined;
     }
+<<<<<<< HEAD
 >>>>>>> 70651fe (Reorder to comply with assignment):login.java
+=======
+>>>>>>> 70651fe (Reorder to comply with assignment)
 
     public ObservableList<String> getList(){
         return users;
