@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import app.photo;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,30 +37,26 @@ public class userPage implements Initializable {
     @FXML
     private Button OpenAlbumButton;
 
-    @FXML
-    private TableColumn<photoAlbumList, String> AlbumName;
+    @FXML private TableColumn<photoAlbumList, SimpleStringProperty> AlbumName;
 
-    @FXML
-    private TableColumn<photoAlbumList, Integer> EarliestPhotoDate;
+    @FXML private TableColumn<photoAlbumList, SimpleIntegerProperty> EarliestPhotoDate;
 
-    @FXML
-    private TableColumn<photoAlbumList, Integer> LatestPhotoDate;
+    @FXML private TableColumn<photoAlbumList, SimpleIntegerProperty> LatestPhotoDate;
 
-    @FXML
-    private TableColumn<photoAlbumList, Integer> NumberOfPhotos;
+    @FXML private TableColumn<photoAlbumList, SimpleIntegerProperty> NumberOfPhotos;
 
-    @FXML
-    private TableView<photoAlbumList> table;
+    @FXML private TableView<photoAlbumList> table;
 
-    //private static ObservableList<photoAlbumList> photoAlbum = FXCollections.observableArrayList();
+    ObservableList<photoAlbumList> photoAlbum = FXCollections.observableArrayList(
+        new photoAlbumList("mon", 0, 0, 0),
+        new photoAlbumList("smon", 0, 0, 0)
+    );
 
 
     @FXML
     void createAlbum(ActionEvent event) {
-        photoAlbumList photo = new photoAlbumList(AlbumNameInput.getText(), 0, 0, 0);
-        ObservableList<photoAlbumList> photos = table.getItems();
-        photos.add(photo);
-        table.setItems(photos);
+       // photoAlbumList newAlbum = new photoAlbumList(AlbumNameInput.getText(),0, 0, 0);
+       // table.getItems().add(newAlbum);
     }
 
     @FXML
@@ -84,13 +82,12 @@ public class userPage implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        AlbumName.setCellValueFactory(new PropertyValueFactory<photoAlbumList,String>("name"));
-        NumberOfPhotos.setCellValueFactory(new PropertyValueFactory<photoAlbumList,Integer>("photoNum"));
-        EarliestPhotoDate.setCellValueFactory(new PropertyValueFactory<photoAlbumList,Integer>("lowestDate"));
-        LatestPhotoDate.setCellValueFactory(new PropertyValueFactory<photoAlbumList,Integer>("highDate"));
-        
-        
-        
+        AlbumName.setCellValueFactory(new PropertyValueFactory<photoAlbumList,SimpleStringProperty>("AlbumName"));
+        NumberOfPhotos.setCellValueFactory(new PropertyValueFactory<photoAlbumList,SimpleIntegerProperty>("NumberOfPhotos"));
+        EarliestPhotoDate.setCellValueFactory(new PropertyValueFactory<photoAlbumList,SimpleIntegerProperty>("EarliestPhotoDate"));
+        LatestPhotoDate.setCellValueFactory(new PropertyValueFactory<photoAlbumList,SimpleIntegerProperty>("LatestPhotoDate"));
+    
+        table.setItems(photoAlbum);
     }
 
 }
