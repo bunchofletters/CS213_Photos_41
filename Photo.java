@@ -1,12 +1,10 @@
-package app;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class photo extends Application{
+public class Photo extends Application{
 
     static Stage mainStage;
 
@@ -15,12 +13,12 @@ public class photo extends Application{
         mainStage = primStage;
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/login.fxml"));
+            loader.setLocation(getClass().getResource("login.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
             mainStage.setScene(scene);
-            mainStage.setTitle("Login");
+            mainStage.setTitle("Photo Application");
             mainStage.setResizable(false);
             mainStage.show();
         } catch(Exception e){
@@ -32,7 +30,7 @@ public class photo extends Application{
             Parent x = FXMLLoader.load(getClass().getResource(resource));
             Scene change = new Scene(x);
 
-            mainStage.setScene(change);
+            mainStage.setScene(change); 
             mainStage.show();
         }catch(Exception e){
             e.printStackTrace();
