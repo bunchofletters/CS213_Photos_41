@@ -32,25 +32,11 @@ public class admin {
 
     @FXML
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD:admin.java
-=======
->>>>>>> 70651fe (Reorder to comply with assignment)
      * Scene change back to the login screen
      */
     void backToLogin() {
         Photo x = new Photo();
         x.changeScene("login.fxml");
-<<<<<<< HEAD
-=======
-     * Return back to the login screen
-     */
-    void backToLogin() {
-        photo x = new photo();
-        x.changeScene("/view/login.fxml");
->>>>>>> 3649bb4 (missed 1 javadoc update):Controller/admin.java
-=======
->>>>>>> 70651fe (Reorder to comply with assignment)
     }
     
     /**
@@ -92,15 +78,9 @@ public class admin {
 
     @FXML
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD:admin.java
      * This method will remove a user profile by selecting the user from the userList
-=======
      * This method will remove a user profile by selecting the user from the list
->>>>>>> 3649bb4 (missed 1 javadoc update):Controller/admin.java
-=======
      * This method will remove a user profile by selecting the user from the userList
->>>>>>> 70651fe (Reorder to comply with assignment)
      */
     void deleteUser2() {
         if(userList.getSelectionModel().getSelectedIndex() > -1){

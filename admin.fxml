@@ -12,28 +12,36 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin">
    <children>
-      <VBox layoutX="317.0" layoutY="1.0" prefHeight="400.0" prefWidth="284.0">
+      <VBox layoutX="14.0" layoutY="48.0" prefHeight="203.0" prefWidth="577.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="List of User" textAlignment="CENTER" wrappingWidth="259.13671875">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-            <ListView fx:id="userList" prefHeight="367.0" prefWidth="269.0" />
-            <Button mnemonicParsing="false" onAction="#deleteUser2" prefHeight="25.0" prefWidth="299.0" text="Delete_User" />
+            <ListView fx:id="userList" prefHeight="205.0" prefWidth="577.0" />
          </children>
       </VBox>
-      <Button layoutX="103.0" layoutY="270.0" mnemonicParsing="false" onAction="#backToLogin" prefHeight="25.0" prefWidth="110.0" text="Return to Login" />
-      <SplitPane orientation="VERTICAL" prefHeight="200.0" prefWidth="316.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="93.0" prefWidth="315.0">
+      <Button layoutX="485.0" layoutY="7.0" mnemonicParsing="false" onAction="#backToLogin" prefHeight="35.0" prefWidth="105.0" text="Return to Login">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
+      <SplitPane layoutX="14.0" layoutY="260.0" orientation="VERTICAL" prefHeight="130.0" prefWidth="577.0">
+         <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="132.0" prefWidth="575.0">
                <children>
-                  <TextField fx:id="Createuser" alignment="CENTER" layoutX="9.0" layoutY="26.0" prefHeight="59.0" prefWidth="296.0" />
-                  <Button layoutX="14.0" layoutY="107.0" mnemonicParsing="false" onAction="#createUser" prefHeight="59.0" prefWidth="131.0" text="Create User" />
-                  <Button layoutX="173.0" layoutY="107.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="59.0" prefWidth="131.0" text="Delete_User" />
+                  <Button layoutX="297.0" layoutY="64.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="48.0" prefWidth="265.0" text="Delete_User" />
+                  <TextField fx:id="Createuser" alignment="CENTER" layoutX="11.0" layoutY="13.0" prefHeight="35.0" prefWidth="552.0" promptText="Enter Here" />
+                  <Button layoutX="12.0" layoutY="64.0" mnemonicParsing="false" onAction="#createUser" prefHeight="49.0" prefWidth="267.0" text="Create User" />
                </children>
             </AnchorPane>
-        </items>
+         </items>
       </SplitPane>
+      <Button layoutX="15.0" layoutY="7.0" mnemonicParsing="false" onAction="#deleteUser2" prefHeight="35.0" prefWidth="120.0" text="Delete_User">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
+      <Text layoutX="158.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of User" textAlignment="CENTER" wrappingWidth="283.75832748413086">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

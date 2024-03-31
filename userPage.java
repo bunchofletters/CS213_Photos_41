@@ -1,169 +1,78 @@
-<<<<<<< HEAD
-<<<<<<< HEAD:Controller/userPage.java
-package Controller;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import app.photo;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
-public class userPage implements Initializable {
+public class userPage {
 
-    @FXML
-    private Button RenameAlbumButton;
+    @FXML private Button RenameAlbumButton;
 
-    @FXML
-    private Button logoutButton;
+    @FXML private Button logoutButton;
 
-    @FXML
-    private TextField AlbumNameInput;
+    @FXML private TextField AlbumNameInput;
 
-    @FXML
-    private Button CreateAlbumButton;
+    @FXML private Button CreateAlbumButton;
 
-    @FXML
-    private Button DelAlbumButton;
+    @FXML private Button DelAlbumButton;
 
-    @FXML
-    private Button OpenAlbumButton;
+    @FXML private Button OpenAlbumButton;
 
-    @FXML private TableColumn<photoAlbumList, SimpleStringProperty> AlbumName;
+    @FXML private TableColumn<photoAlbumList, String> AlbumName;
 
-    @FXML private TableColumn<photoAlbumList, SimpleIntegerProperty> EarliestPhotoDate;
+    @FXML private TableColumn<photoAlbumList, Number> EarliestPhotoDate;
 
-    @FXML private TableColumn<photoAlbumList, SimpleIntegerProperty> LatestPhotoDate;
+    @FXML private TableColumn<photoAlbumList, Number> LatestPhotoDate;
 
-    @FXML private TableColumn<photoAlbumList, SimpleIntegerProperty> NumberOfPhotos;
+    @FXML private TableColumn<photoAlbumList, Number> NumberOfPhotos;
 
     @FXML private TableView<photoAlbumList> table;
 
-    ObservableList<photoAlbumList> photoAlbum = FXCollections.observableArrayList(
-        new photoAlbumList("mon", 0, 0, 0),
-        new photoAlbumList("smon", 0, 0, 0)
-    );
+    ObservableList<photoAlbumList> photoAlbum = FXCollections.observableArrayList();
 
-
+    /**
+     * Uses the "Create New Album" Button to input the names into tableview list using the TextField "AlbumNameInput"
+     * @param event
+     */
     @FXML
     void createAlbum(ActionEvent event) {
-       // photoAlbumList newAlbum = new photoAlbumList(AlbumNameInput.getText(),0, 0, 0);
-       // table.getItems().add(newAlbum);
-    }
-
-    @FXML
-    void delButton(ActionEvent event) {
-
-     }
-
-    @FXML
-    void logout(ActionEvent event) {
-        photo x = new photo();
-        x.changeScene("/view/login.fxml");
-    }
-
-    @FXML
-    void openAlbum(ActionEvent event) {
-
-    }
-
-    @FXML
-    void renameAlbum(ActionEvent event) {
-        
+    String albumName = AlbumNameInput.getText().trim();
+        if (!albumName.isEmpty()) {
+            if (!containsAlbumName(albumName)) {
+                photoAlbumList newAlbum = new photoAlbumList(albumName, 0, 0, 0);
+                table.getItems().add(newAlbum);
+                AlbumNameInput.clear();
+            }
         }
-
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        AlbumName.setCellValueFactory(new PropertyValueFactory<photoAlbumList,SimpleStringProperty>("AlbumName"));
-        NumberOfPhotos.setCellValueFactory(new PropertyValueFactory<photoAlbumList,SimpleIntegerProperty>("NumberOfPhotos"));
-        EarliestPhotoDate.setCellValueFactory(new PropertyValueFactory<photoAlbumList,SimpleIntegerProperty>("EarliestPhotoDate"));
-        LatestPhotoDate.setCellValueFactory(new PropertyValueFactory<photoAlbumList,SimpleIntegerProperty>("LatestPhotoDate"));
-    
-        table.setItems(photoAlbum);
     }
-
+    
+    private boolean containsAlbumName(String name) {
+        for (photoAlbumList album : table.getItems()) {
+            if (album.getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
 }
 
-=======
-=======
->>>>>>> 70651fe (Reorder to comply with assignment)
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-
-public class userPage implements Initializable {
-
-    @FXML
-    private Button RenameAlbumButton;
-
-    @FXML
-    private Button logoutButton;
-
-    @FXML
-    private TextField AlbumNameInput;
-
-    @FXML
-    private Button CreateAlbumButton;
-
-    @FXML
-    private Button DelAlbumButton;
-
-    @FXML
-    private Button OpenAlbumButton;
-
-    @FXML private TableColumn<photoAlbumList, SimpleStringProperty> AlbumName;
-
-    @FXML private TableColumn<photoAlbumList, SimpleIntegerProperty> EarliestPhotoDate;
-
-    @FXML private TableColumn<photoAlbumList, SimpleIntegerProperty> LatestPhotoDate;
-
-    @FXML private TableColumn<photoAlbumList, SimpleIntegerProperty> NumberOfPhotos;
-
-    @FXML private TableView<photoAlbumList> table;
-
-    ObservableList<photoAlbumList> photoAlbum = FXCollections.observableArrayList(
-        new photoAlbumList("mon", 0, 0, 0),
-        new photoAlbumList("smon", 0, 0, 0)
-    );
-
-
-    @FXML
-    void createAlbum(ActionEvent event) {
-       // photoAlbumList newAlbum = new photoAlbumList(AlbumNameInput.getText(),0, 0, 0);
-       // table.getItems().add(newAlbum);
-    }
 
     @FXML
     void delButton(ActionEvent event) {
-
-     }
+        int item = table.getSelectionModel().getSelectedIndex();
+        if(item != -1){
+        table.getItems().remove(item);
+        }
+   }
 
     @FXML
     void logout(ActionEvent event) {
         Photo x = new Photo();
-        x.changeScene("/view/login.fxml");
+        x.changeScene("login.fxml");
     }
 
     @FXML
@@ -173,22 +82,28 @@ public class userPage implements Initializable {
 
     @FXML
     void renameAlbum(ActionEvent event) {
-        
-        }
+    
+    int item = table.getSelectionModel().getSelectedIndex();
+    String newAlbumName = AlbumNameInput.getText().trim();
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        AlbumName.setCellValueFactory(new PropertyValueFactory<photoAlbumList,SimpleStringProperty>("AlbumName"));
-        NumberOfPhotos.setCellValueFactory(new PropertyValueFactory<photoAlbumList,SimpleIntegerProperty>("NumberOfPhotos"));
-        EarliestPhotoDate.setCellValueFactory(new PropertyValueFactory<photoAlbumList,SimpleIntegerProperty>("EarliestPhotoDate"));
-        LatestPhotoDate.setCellValueFactory(new PropertyValueFactory<photoAlbumList,SimpleIntegerProperty>("LatestPhotoDate"));
+    if (item >= 0 && !newAlbumName.isEmpty()) {
+        
+        photoAlbumList selectedAlbum = table.getItems().get(item);
+        selectedAlbum.setName(newAlbumName);
+            AlbumNameInput.clear();
+            table.refresh();
+        }
+        
+    }
+
+    public void initialize() {
+        AlbumName.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getName()));
+        NumberOfPhotos.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getPhotoNum()));
+        EarliestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getLowestDate()));
+        LatestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getHighestDate()));
+        table.getColumns().forEach(e -> e.setReorderable(false));
     
         table.setItems(photoAlbum);
     }
 
-<<<<<<< HEAD
 }
->>>>>>> 70651fe (Reorder to comply with assignment):userPage.java
-=======
-}
->>>>>>> 70651fe (Reorder to comply with assignment)

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+
+<ScrollPane fx:id="scrollPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="915.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="PhotoAlbumController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="595.0" prefWidth="913.0">
+         <children>
+            <TilePane fx:id="tilePane" layoutX="-15.0" layoutY="-6.0" prefHeight="609.0" prefWidth="930.0">
+               <padding>
+                  <Insets bottom="25.0" left="55.0" right="50.0" top="15.0" />
+               </padding>
+            </TilePane>
+         </children>
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></AnchorPane>
+  </content>
+</ScrollPane>
