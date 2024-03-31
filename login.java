@@ -1,6 +1,11 @@
+<<<<<<< HEAD:Controller/login.java
 package Controller;
 
 import app.photo;
+=======
+
+
+>>>>>>> 70651fe (Reorder to comply with assignment):login.java
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,8 +17,14 @@ import javafx.scene.control.TextField;
 public class login{
     private static admin admin;
     private static ObservableList<String> users = FXCollections.observableArrayList();
+<<<<<<< HEAD:Controller/login.java
     private photo x = new photo();
 
+=======
+    private Photo x = new Photo();
+    private static String userLogined;
+    private dataHolder data;
+>>>>>>> 70651fe (Reorder to comply with assignment):login.java
     @FXML
     private Button LoginButton;
 
@@ -23,6 +34,16 @@ public class login{
     @FXML
     private Label wrongPassword;
 
+<<<<<<< HEAD:Controller/login.java
+=======
+    void initialize(){
+        data = new dataHolder();
+        if(data.getUsers() != null){
+            users = data.getUsers();
+        }
+    }
+
+>>>>>>> 70651fe (Reorder to comply with assignment):login.java
     @FXML
     void userLogin(ActionEvent event) {
         if(Username.getText().toLowerCase().equals("admin")){
@@ -30,6 +51,7 @@ public class login{
                 admin y = new admin();
                 y.setLogin(this);
             }
+<<<<<<< HEAD:Controller/login.java
             x.changeScene("/view/admin.fxml");
         } 
         else if(Username.getText().toLowerCase().equals("stock")){
@@ -45,6 +67,29 @@ public class login{
         
     }  
 
+=======
+            x.changeScene("admin.fxml");
+        } 
+        else if(Username.getText().toLowerCase().equals("stock")){
+            x.changeScene("stockImageUser.fxml");
+        }
+        else if (!Username.getText().toLowerCase().equals("admin")) {
+            for(int i = 0; i < users.size(); i++){
+                if (Username.getText().toLowerCase().equals(users.get(i))){
+                    userLogined = Username.getText().toLowerCase();
+                    x.changeScene("userPage.fxml");
+                }
+            }
+            if(!Username.getText().equals("")){
+                wrongPassword.setText("Can't Find User");
+            }
+        }    
+    }  
+
+    public String getUser(){
+        return userLogined;
+    }
+>>>>>>> 70651fe (Reorder to comply with assignment):login.java
 
     public ObservableList<String> getList(){
         return users;

@@ -1,9 +1,8 @@
-package Controller;
+
 
 import java.io.File;
 import java.io.FilenameFilter;
 
-import app.photo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,7 +13,7 @@ import javafx.scene.image.ImageView;
 public class stockImageUser {
 
     private static ObservableList<String> Stock_Image = FXCollections.observableArrayList();
-    private File dir = new File("./StockPhotos");
+    private File dir = new File("./data");
     private static File[] images;
     @FXML
     private ImageView ImageViewer;
@@ -49,7 +48,6 @@ public class stockImageUser {
         stockPhotoList.getItems().addAll(Stock_Image);
 
         String filepath = images[0].getPath();
-        filepath = "." + filepath;
         if(filepath.contains("\\")){
             filepath.replace('\\', '/');
         }
@@ -65,7 +63,6 @@ public class stockImageUser {
     void setThisImage() {
         int photoPos = stockPhotoList.getSelectionModel().getSelectedIndex();
         String filepath = images[photoPos].getPath();
-        filepath = "." + filepath;
         if(filepath.contains("\\"))
             filepath.replace('\\', '/');
         Image imageview = new Image(getClass().getResourceAsStream(filepath));
@@ -77,8 +74,8 @@ public class stockImageUser {
      * return back to the login page
      */
     void backToLogin() {
-        photo x = new photo();
-        x.changeScene("/view/login.fxml");
+        Photo x = new Photo();
+        x.changeScene("login.fxml");
     }
 
 
