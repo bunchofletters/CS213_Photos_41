@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:Controller/userPage.java
 package Controller;
 
@@ -94,6 +95,8 @@ public class userPage implements Initializable {
 }
 
 =======
+=======
+>>>>>>> 70651fe (Reorder to comply with assignment)
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -183,5 +186,9 @@ public class userPage implements Initializable {
         table.setItems(photoAlbum);
     }
 
+<<<<<<< HEAD
 }
 >>>>>>> 70651fe (Reorder to comply with assignment):userPage.java
+=======
+}
+>>>>>>> 70651fe (Reorder to comply with assignment)
