@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Optional;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,7 +11,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
+import javafx.scene.control.TextInputDialog;
+/**
+ * @author Danny dl1093
+ */
 public class userPage {
 
     private Photo x = Photo.getInstance();
@@ -39,9 +43,21 @@ public class userPage {
 
     private static HashMap<String, photoAlbumList> photoAlbum = new HashMap<>();
 
+    private static String nameOfAlbum;
+
     private login Login = login.getInstance();
 
     String user = Login.getUser();
+
+    private static userPage instance;
+
+    public static userPage getInstance() {
+        if (instance == null) {
+            instance = new userPage();
+        }
+        return instance;
+    }
+
 
     /**
      * Uses the "Create New Album" Button to input the names into tableview list using the TextField "AlbumNameInput"
@@ -54,7 +70,13 @@ public class userPage {
             if (!containsAlbumName(albumName)) {
                 photoAlbumList newAlbum = new photoAlbumList(albumName, 0, 0, 0);
                 photoAlbum.get(user).getAlbumList().add(newAlbum);
-                table.getItems().add(newAlbum);
+                
+                // Making a listofphoto for each albumn
+                ObservableList<listOfPhotos> tmp = FXCollections.observableArrayList();
+                listOfPhotos list = new listOfPhotos(tmp);
+                photoAlbum.get(user).addPhotoList(albumName, list);
+                // End of making a listofphoto for each albumn
+
                 AlbumNameInput.clear();
             }
         }
@@ -86,6 +108,7 @@ public class userPage {
     @FXML
     void openAlbum(ActionEvent event) {
         int item = table.getSelectionModel().getSelectedIndex();
+        nameOfAlbum = photoAlbum.get(Login.getUser()).getAlbumList().get(item).getName();
         if(item != -1){
             x.changeScene("PhotoAlbumController.fxml");
         }
@@ -95,12 +118,19 @@ public class userPage {
     void renameAlbum(ActionEvent event) {
     
     int item = table.getSelectionModel().getSelectedIndex();
-    String newAlbumName = AlbumNameInput.getText().trim();
-    if (item >= 0 && !newAlbumName.isEmpty()) {    
-        photoAlbumList selectedAlbum = table.getItems().get(item);
-        selectedAlbum.setName(newAlbumName);
+    TextInputDialog td = new TextInputDialog();
+    td.setTitle("Rename");
+    //td.setHeaderText("dw");
+    td.setContentText("Please type a name: ");
+
+    if (item >= 0) {
+        Optional<String> result = td.showAndWait();
+        if (result.isPresent()){
+            photoAlbumList selectedAlbum = table.getItems().get(item);
+            selectedAlbum.setName(result.get());
             AlbumNameInput.clear();
             table.refresh();
+        }
         }
         
     }
@@ -120,6 +150,13 @@ public class userPage {
         table.getColumns().forEach(e -> e.setReorderable(false));
     
         table.setItems(photoAlbum.get(user).getAlbumList());
+    }
+    /**
+     * This returns the name [String] of the current album
+     * @return the name of the album current being access
+     */
+    public String getAlbumName(){
+        return nameOfAlbum;
     }
 
 }
