@@ -54,8 +54,8 @@ public class admin {
      * Each user are require to have a unique username
      */
     void createUser() {
-        if(!login.getList().contains(Createuser.getText().toLowerCase()) && !Createuser.getText().toLowerCase().equals("admin") && !Createuser.getText().toLowerCase().equals("stock") && !Createuser.getText().toLowerCase().equals("") && !Createuser.getText().toLowerCase().substring(0,1).equals(" ")){
-            login.getList().add(Createuser.getText().toLowerCase());
+        if(!Login.getList().contains(Createuser.getText().toLowerCase()) && !Createuser.getText().toLowerCase().equals("admin") && !Createuser.getText().toLowerCase().equals("stock") && !Createuser.getText().toLowerCase().equals("") && !Createuser.getText().toLowerCase().substring(0,1).equals(" ")){
+            Login.getList().add(Createuser.getText().toLowerCase());
         }
         Createuser.clear();
         listUser();
@@ -66,9 +66,9 @@ public class admin {
      * This method will remove a user profile from typing in the user's name
      */
     void deleteUser() {
-        for(int i =0; i<login.getList().size(); i++){
-            if(login.getList().get(i).equals(Createuser.getText().toLowerCase())){
-                login.getList().remove(i);
+        for(int i =0; i<Login.getList().size(); i++){
+            if(Login.getList().get(i).equals(Createuser.getText().toLowerCase())){
+                Login.getList().remove(i);
             }
         }
         Createuser.clear();
@@ -84,7 +84,7 @@ public class admin {
      */
     void deleteUser2() {
         if(userList.getSelectionModel().getSelectedIndex() > -1){
-            login.getList().remove(userList.getSelectionModel().getSelectedIndex());
+            Login.getList().remove(userList.getSelectionModel().getSelectedIndex());
         }
         listUser();
     }
@@ -95,7 +95,7 @@ public class admin {
      */
     private void listUser() {
         userList.getItems().clear();
-        userList.getItems().addAll(login.getList());
+        userList.getItems().addAll(Login.getList());
     }
 
     /**
