@@ -6,6 +6,15 @@ import javafx.stage.Stage;
 
 public class Photo extends Application{
 
+    private static Photo instance;
+
+    public static Photo getInstance() {
+        if (instance == null) {
+            instance = new Photo();
+        }
+        return instance;
+    }
+
     static Stage mainStage;
 
     @Override
