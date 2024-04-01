@@ -59,7 +59,7 @@
       <DatePicker fx:id="DatePickerBar" layoutX="120.0" layoutY="17.0" onAction="#pickDate" prefHeight="26.0" prefWidth="241.0" />
       <TextField fx:id="FilterInput" layoutX="455.0" layoutY="17.0" onAction="#filterBox" prefHeight="26.0" prefWidth="285.0" promptText="Filter" />
       <Button fx:id="SearchInput" alignment="CENTER" layoutX="379.0" layoutY="17.0" mnemonicParsing="false" onAction="#searchbox" prefHeight="26.0" prefWidth="65.0" text="Search" />
-      <Label fx:id="AlbumNameItsIn" layoutX="114.0" layoutY="535.0" onDragDetected="#albumNametext" prefHeight="19.0" prefWidth="125.0">
+      <Label fx:id="AlbumNameItsIn" layoutX="114.0" layoutY="535.0" onDragDetected="#albumNametext" prefHeight="19.0" prefWidth="125.0" text="Loading...">
          <font>
             <Font name="Avenir Black" size="15.0" />
          </font>
@@ -69,16 +69,20 @@
             <Font name="Arial Black" size="15.0" />
          </font>
       </Text>
-      <Text layoutX="204.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleted Items" wrappingWidth="115.44566345214844">
+      <Text layoutX="192.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mode:" wrappingWidth="57.50627824676667">
          <font>
             <Font name="Arial Black" size="15.0" />
          </font>
       </Text>
       <Button fx:id="CopyPhotosButton" alignment="CENTER" layoutX="382.0" layoutY="508.0" mnemonicParsing="false" onAction="#copyPhotos" text="Copy" />
-      <Button fx:id="PasteButton" alignment="CENTER" layoutX="470.0" layoutY="508.0" mnemonicParsing="false" onAction="#paste" text="Paste" />
       <Button fx:id="UploadButton" alignment="CENTER" layoutX="856.0" layoutY="508.0" mnemonicParsing="false" onAction="#upload" text="Upload" />
       <Button fx:id="RemoveButton" alignment="CENTER" layoutX="750.0" layoutY="17.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
-      <Button fx:id="EditTagButton" alignment="CENTER" layoutX="568.0" layoutY="508.0" mnemonicParsing="false" onAction="#editTag" text="Edit Tag" />
-      <Button fx:id="EditCaptionButton" alignment="CENTER" layoutX="675.0" layoutY="508.0" mnemonicParsing="false" onAction="#editCaption" text="Edit Caption / Recaption" />
+      <Button fx:id="EditTagButton" alignment="CENTER" layoutX="504.0" layoutY="508.0" mnemonicParsing="false" onAction="#editTag" text="Edit Tag" />
+      <Button fx:id="EditCaptionButton" alignment="CENTER" layoutX="636.0" layoutY="506.0" mnemonicParsing="false" onAction="#editCaption" text="Edit Caption / Recaption" />
+      <Label fx:id="ModeLabel" layoutX="245.0" layoutY="235.0" onDragDetected="#modeLabel" prefHeight="23.0" prefWidth="89.0" text="Loading...">
+         <font>
+            <Font name="Avenir Black" size="15.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
