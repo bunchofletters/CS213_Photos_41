@@ -9,9 +9,11 @@ import javafx.scene.control.TextField;
 public class login{
     private static admin admin;
     private static ObservableList<String> users = FXCollections.observableArrayList();
-    private Photo x = new Photo();
+    private Photo x = Photo.getInstance();
     private static String userLogined;
-    private dataHolder data;
+    private dataHolder data = dataHolder.getInstance();
+    private static login instance;
+
     @FXML
     private Button LoginButton;
 
@@ -22,10 +24,20 @@ public class login{
     private Label wrongPassword;
 
     void initialize(){
-        data = new dataHolder();
         if(data.getUsers() != null){
             users = data.getUsers();
         }
+    }
+
+    /**
+     * Create a single instance of login
+     * @return the single login instance
+     */
+    public static login getInstance() {
+        if (instance == null) {
+            instance = new login();
+        }
+        return instance;
     }
 
     @FXML
@@ -36,8 +48,10 @@ public class login{
                 y.setLogin(this);
             }
             x.changeScene("admin.fxml");
+            x.changeScene("admin.fxml");
         } 
         else if(Username.getText().toLowerCase().equals("stock")){
+            x.changeScene("stockImageUser.fxml");
             x.changeScene("stockImageUser.fxml");
         }
         else if (!Username.getText().toLowerCase().equals("admin")) {
@@ -46,9 +60,16 @@ public class login{
                     userLogined = Username.getText().toLowerCase();
                     x.changeScene("userPage.fxml");
                 }
+                if (Username.getText().toLowerCase().equals(users.get(i))){
+                    userLogined = Username.getText().toLowerCase();
+                    x.changeScene("userPage.fxml");
+                }
             }
             if(!Username.getText().equals("")){
+            if(!Username.getText().equals("")){
                 wrongPassword.setText("Can't Find User");
+            }
+        }    
             }
         }    
     }  
@@ -56,9 +77,13 @@ public class login{
     public String getUser(){
         return userLogined;
     }
+    public String getUser(){
+        return userLogined;
+    }
 
     public ObservableList<String> getList(){
         return users;
     }
+    
     
 }

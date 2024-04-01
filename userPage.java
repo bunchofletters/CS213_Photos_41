@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -11,23 +13,19 @@ import javafx.scene.control.TextField;
 
 public class userPage {
 
-    @FXML
-    private Button RenameAlbumButton;
+    private Photo x = Photo.getInstance();
 
-    @FXML
-    private Button logoutButton;
+    @FXML private Button RenameAlbumButton;
 
-    @FXML
-    private TextField AlbumNameInput;
+    @FXML private Button logoutButton;
 
-    @FXML
-    private Button CreateAlbumButton;
+    @FXML private TextField AlbumNameInput;
 
-    @FXML
-    private Button DelAlbumButton;
+    @FXML private Button CreateAlbumButton;
 
-    @FXML
-    private Button OpenAlbumButton;
+    @FXML private Button DelAlbumButton;
+
+    @FXML private Button OpenAlbumButton;
 
     @FXML private TableColumn<photoAlbumList, String> AlbumName;
 
@@ -39,46 +37,91 @@ public class userPage {
 
     @FXML private TableView<photoAlbumList> table;
 
-    ObservableList<photoAlbumList> photoAlbum = FXCollections.observableArrayList(
-        new photoAlbumList("mon", 0, 0, 0),
-        new photoAlbumList("smon", 0, 0, 0)
-    );
+    private static HashMap<String, photoAlbumList> photoAlbum = new HashMap<>();
 
+    private login Login = login.getInstance();
 
+    String user = Login.getUser();
+
+    /**
+     * Uses the "Create New Album" Button to input the names into tableview list using the TextField "AlbumNameInput"
+     * @param event
+     */
     @FXML
     void createAlbum(ActionEvent event) {
-       // photoAlbumList newAlbum = new photoAlbumList(AlbumNameInput.getText(),0, 0, 0);
-       // table.getItems().add(newAlbum);
+    String albumName = AlbumNameInput.getText().trim();
+        if (!albumName.isEmpty()) {
+            if (!containsAlbumName(albumName)) {
+                photoAlbumList newAlbum = new photoAlbumList(albumName, 0, 0, 0);
+                photoAlbum.get(user).getAlbumList().add(newAlbum);
+                table.getItems().add(newAlbum);
+                AlbumNameInput.clear();
+            }
+        }
     }
+    
+    private boolean containsAlbumName(String name) {
+        for (photoAlbumList album : table.getItems()) {
+            if (album.getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     @FXML
     void delButton(ActionEvent event) {
-
-     }
+        int item = table.getSelectionModel().getSelectedIndex();
+        if(item != -1){
+        table.getItems().remove(item);
+        }
+   }
 
     @FXML
     void logout(ActionEvent event) {
-        Photo x = new Photo();
         x.changeScene("login.fxml");
     }
 
     @FXML
     void openAlbum(ActionEvent event) {
-
+        int item = table.getSelectionModel().getSelectedIndex();
+        if(item != -1){
+            x.changeScene("PhotoAlbumController.fxml");
+        }
     }
 
     @FXML
     void renameAlbum(ActionEvent event) {
+    
+    int item = table.getSelectionModel().getSelectedIndex();
+    String newAlbumName = AlbumNameInput.getText().trim();
+
+    if (item >= 0 && !newAlbumName.isEmpty()) {
         
+        photoAlbumList selectedAlbum = table.getItems().get(item);
+        selectedAlbum.setName(newAlbumName);
+            AlbumNameInput.clear();
+            table.refresh();
         }
+        
+    }
 
     public void initialize() {
+        //Creates a unique photoAlbumList per user
+        if(photoAlbum.get(user) == null){
+            ObservableList<photoAlbumList> y = FXCollections.observableArrayList();
+            photoAlbumList x = new photoAlbumList(y);
+            photoAlbum.put(user, x);
+        }
+
         AlbumName.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getName()));
         NumberOfPhotos.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getPhotoNum()));
         EarliestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getLowestDate()));
         LatestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getHighestDate()));
+        table.getColumns().forEach(e -> e.setReorderable(false));
     
-        table.setItems(photoAlbum);
+        table.setItems(photoAlbum.get(user).getAlbumList());
     }
 
 }

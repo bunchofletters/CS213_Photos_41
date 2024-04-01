@@ -35,7 +35,7 @@ public class admin {
      * Scene change back to the login screen
      */
     void backToLogin() {
-        Photo x = new Photo();
+        Photo x = Photo.getInstance();
         x.changeScene("login.fxml");
     }
     
@@ -78,6 +78,8 @@ public class admin {
 
     @FXML
     /**
+     * This method will remove a user profile by selecting the user from the userList
+     * This method will remove a user profile by selecting the user from the list
      * This method will remove a user profile by selecting the user from the userList
      */
     void deleteUser2() {
