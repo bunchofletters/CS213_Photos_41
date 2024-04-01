@@ -48,8 +48,10 @@ public class login{
                 y.setLogin(this);
             }
             x.changeScene("admin.fxml");
+            x.changeScene("admin.fxml");
         } 
         else if(Username.getText().toLowerCase().equals("stock")){
+            x.changeScene("stockImageUser.fxml");
             x.changeScene("stockImageUser.fxml");
         }
         else if (!Username.getText().toLowerCase().equals("admin")) {
@@ -58,9 +60,16 @@ public class login{
                     userLogined = Username.getText().toLowerCase();
                     x.changeScene("userPage.fxml");
                 }
+                if (Username.getText().toLowerCase().equals(users.get(i))){
+                    userLogined = Username.getText().toLowerCase();
+                    x.changeScene("userPage.fxml");
+                }
             }
             if(!Username.getText().equals("")){
+            if(!Username.getText().equals("")){
                 wrongPassword.setText("Can't Find User");
+            }
+        }    
             }
         }    
     }  
@@ -68,9 +77,13 @@ public class login{
     public String getUser(){
         return userLogined;
     }
+    public String getUser(){
+        return userLogined;
+    }
 
     public ObservableList<String> getList(){
         return users;
     }
+    
     
 }
