@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -35,7 +37,11 @@ public class userPage {
 
     @FXML private TableView<photoAlbumList> table;
 
-    ObservableList<photoAlbumList> photoAlbum = FXCollections.observableArrayList();
+    private static HashMap<String, photoAlbumList> photoAlbum = new HashMap<>();
+
+    private login Login = login.getInstance();
+
+    String user = Login.getUser();
 
     /**
      * Uses the "Create New Album" Button to input the names into tableview list using the TextField "AlbumNameInput"
@@ -47,6 +53,7 @@ public class userPage {
         if (!albumName.isEmpty()) {
             if (!containsAlbumName(albumName)) {
                 photoAlbumList newAlbum = new photoAlbumList(albumName, 0, 0, 0);
+                photoAlbum.get(user).getAlbumList().add(newAlbum);
                 table.getItems().add(newAlbum);
                 AlbumNameInput.clear();
             }
@@ -60,7 +67,7 @@ public class userPage {
             }
         }
         return false;
-}
+    }
 
 
     @FXML
@@ -99,13 +106,20 @@ public class userPage {
     }
 
     public void initialize() {
+        //Creates a unique photoAlbumList per user
+        if(photoAlbum.get(user) == null){
+            ObservableList<photoAlbumList> y = FXCollections.observableArrayList();
+            photoAlbumList x = new photoAlbumList(y);
+            photoAlbum.put(user, x);
+        }
+
         AlbumName.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getName()));
         NumberOfPhotos.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getPhotoNum()));
         EarliestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getLowestDate()));
         LatestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getHighestDate()));
         table.getColumns().forEach(e -> e.setReorderable(false));
     
-        table.setItems(photoAlbum);
+        table.setItems(photoAlbum.get(user).getAlbumList());
     }
 
 }

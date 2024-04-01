@@ -6,6 +6,17 @@ import javafx.stage.Stage;
 
 public class Photo extends Application{
 
+private static Photo instance;
+
+public static Photo getInstance() {
+        if (instance == null) {
+            instance = new Photo();
+        }
+        return instance;
+}
+
+public class Photo extends Application{
+
     private static Photo instance;
 
     public static Photo getInstance() {
@@ -22,12 +33,12 @@ public class Photo extends Application{
         mainStage = primStage;
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("PhotoAlbumController.fxml"));
+            loader.setLocation(getClass().getResource("login.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
             mainStage.setScene(scene);
-            mainStage.setTitle("Photo Application");
+            mainStage.setTitle("Photo");
             mainStage.setResizable(false);
             mainStage.show();
         } catch(Exception e){
