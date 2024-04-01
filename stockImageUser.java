@@ -1,5 +1,3 @@
-
-
 import java.io.File;
 import java.io.FilenameFilter;
 
@@ -9,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 
 public class stockImageUser {
 
@@ -25,6 +24,7 @@ public class stockImageUser {
      * and will automatically display the first stock photo
      */
     public void initialize(){
+        long st = System.nanoTime();
         if(Stock_Image.size() == 0 || images.length > Stock_Image.size()){
             images = dir.listFiles(new FilenameFilter() {
                 public boolean accept(File dir, String name){
@@ -38,7 +38,7 @@ public class stockImageUser {
             for (File x : images){
                 String photoName = x.getPath().substring(x.getPath().lastIndexOf('\\')+1,x.getPath().lastIndexOf("."));
                 if(photoName.contains("/")){
-                    photoName = x.getPath().substring(x.getPath().lastIndexOf("/")+1);
+                    photoName = x.getPath().substring(x.getPath().lastIndexOf("/")+1, x.getPath().lastIndexOf("."));
                 }
                 Stock_Image.add(photoName);
             }
@@ -53,6 +53,10 @@ public class stockImageUser {
         }
         Image imageview = new Image(getClass().getResourceAsStream(filepath));
         ImageViewer.setImage(imageview);
+
+        long n = System.nanoTime();
+        double na = n-st;
+        System.out.println(na);
     }
 
     @FXML
@@ -61,12 +65,17 @@ public class stockImageUser {
      * selected on the list
      */
     void setThisImage() {
+        long st = System.nanoTime();
         int photoPos = stockPhotoList.getSelectionModel().getSelectedIndex();
         String filepath = images[photoPos].getPath();
         if(filepath.contains("\\"))
             filepath.replace('\\', '/');
         Image imageview = new Image(getClass().getResourceAsStream(filepath));
         ImageViewer.setImage(imageview);
+        long n = System.nanoTime();
+        double na = n-st;
+        System.out.println(filepath+ ": " + na);
+        
     }
 
     @FXML

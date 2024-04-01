@@ -13,7 +13,7 @@ public class admin {
      * login is accessiable
      * @see login
      */
-    private static login login;
+    private login Login = login.getInstance();
 
     @FXML
     /**
@@ -21,7 +21,7 @@ public class admin {
      * based on the input
      */
     private TextField Createuser;
-    
+
     @FXML
     /**
      * This is the list of user: This is use to display the list of user to the admin
@@ -44,6 +44,7 @@ public class admin {
      * @see #listUser
      */
     public void initialize(){
+        System.out.println(Login);
         listUser();
     }
 
@@ -54,8 +55,8 @@ public class admin {
      * Each user are require to have a unique username
      */
     void createUser() {
-        if(!login.getList().contains(Createuser.getText().toLowerCase()) && !Createuser.getText().toLowerCase().equals("admin") && !Createuser.getText().toLowerCase().equals("stock") && !Createuser.getText().toLowerCase().equals("") && !Createuser.getText().toLowerCase().substring(0,1).equals(" ")){
-            login.getList().add(Createuser.getText().toLowerCase());
+        if(!Login.getList().contains(Createuser.getText().toLowerCase()) && !Createuser.getText().toLowerCase().equals("admin") && !Createuser.getText().toLowerCase().equals("stock") && !Createuser.getText().toLowerCase().equals("") && !Createuser.getText().toLowerCase().substring(0,1).equals(" ")){
+            Login.getList().add(Createuser.getText().toLowerCase());
         }
         Createuser.clear();
         listUser();
@@ -66,9 +67,9 @@ public class admin {
      * This method will remove a user profile from typing in the user's name
      */
     void deleteUser() {
-        for(int i =0; i<login.getList().size(); i++){
-            if(login.getList().get(i).equals(Createuser.getText().toLowerCase())){
-                login.getList().remove(i);
+        for(int i =0; i<Login.getList().size(); i++){
+            if(Login.getList().get(i).equals(Createuser.getText().toLowerCase())){
+                Login.getList().remove(i);
             }
         }
         Createuser.clear();
@@ -84,7 +85,7 @@ public class admin {
      */
     void deleteUser2() {
         if(userList.getSelectionModel().getSelectedIndex() > -1){
-            login.getList().remove(userList.getSelectionModel().getSelectedIndex());
+            Login.getList().remove(userList.getSelectionModel().getSelectedIndex());
         }
         listUser();
     }
@@ -95,15 +96,7 @@ public class admin {
      */
     private void listUser() {
         userList.getItems().clear();
-        userList.getItems().addAll(login.getList());
-    }
-
-    /**
-     * For composition
-     * @param x this is the Login Controller
-     */
-    public void setLogin(login x){
-        login = x;
+        userList.getItems().addAll(Login.getList());
     }
 
 }
