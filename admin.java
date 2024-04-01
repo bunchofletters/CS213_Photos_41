@@ -13,7 +13,7 @@ public class admin {
      * login is accessiable
      * @see login
      */
-    private static login Login;
+    private login Login = login.getInstance();
 
     @FXML
     /**
@@ -21,7 +21,7 @@ public class admin {
      * based on the input
      */
     private TextField Createuser;
-    
+
     @FXML
     /**
      * This is the list of user: This is use to display the list of user to the admin
@@ -44,6 +44,7 @@ public class admin {
      * @see #listUser
      */
     public void initialize(){
+        System.out.println(Login);
         listUser();
     }
 
@@ -96,14 +97,6 @@ public class admin {
     private void listUser() {
         userList.getItems().clear();
         userList.getItems().addAll(Login.getList());
-    }
-
-    /**
-     * For composition
-     * @param x this is the Login Controller
-     */
-    public void setLogin(login x){
-        Login = x;
     }
 
 }
