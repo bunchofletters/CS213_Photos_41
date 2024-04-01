@@ -23,12 +23,10 @@ public class Photo extends Application{
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("login.fxml"));
-            loader.setLocation(getClass().getResource("login.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
             mainStage.setScene(scene);
-            mainStage.setTitle("Photo Application");
             mainStage.setTitle("Photo Application");
             mainStage.setResizable(false);
             mainStage.show();
@@ -40,8 +38,6 @@ public class Photo extends Application{
         try{
             Parent x = FXMLLoader.load(getClass().getResource(resource));
             Scene change = new Scene(x);
-
-            mainStage.setScene(change); 
             mainStage.setScene(change); 
             mainStage.show();
         }catch(Exception e){
