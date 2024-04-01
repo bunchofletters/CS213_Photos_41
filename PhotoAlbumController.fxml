@@ -74,7 +74,11 @@
             <Font name="Arial Black" size="15.0" />
          </font>
       </Text>
-      <Button fx:id="CopyPhotosButton" alignment="CENTER" layoutX="388.0" layoutY="508.0" mnemonicParsing="false" onAction="#copyPhotos" text="Copy" />
-      <Button fx:id="PasteButton" alignment="CENTER" layoutX="457.0" layoutY="508.0" mnemonicParsing="false" onAction="#paste" text="Paste" />
+      <Button fx:id="CopyPhotosButton" alignment="CENTER" layoutX="382.0" layoutY="508.0" mnemonicParsing="false" onAction="#copyPhotos" text="Copy" />
+      <Button fx:id="PasteButton" alignment="CENTER" layoutX="470.0" layoutY="508.0" mnemonicParsing="false" onAction="#paste" text="Paste" />
+      <Button fx:id="UploadButton" alignment="CENTER" layoutX="856.0" layoutY="508.0" mnemonicParsing="false" onAction="#upload" text="Upload" />
+      <Button fx:id="RemoveButton" alignment="CENTER" layoutX="750.0" layoutY="17.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
+      <Button fx:id="EditTagButton" alignment="CENTER" layoutX="568.0" layoutY="508.0" mnemonicParsing="false" onAction="#editTag" text="Edit Tag" />
+      <Button fx:id="EditCaptionButton" alignment="CENTER" layoutX="675.0" layoutY="508.0" mnemonicParsing="false" onAction="#editCaption" text="Edit Caption / Recaption" />
    </children>
 </Pane>
