@@ -13,7 +13,7 @@ public class admin {
      * login is accessiable
      * @see login
      */
-    private static login login;
+    private static login Login;
 
     @FXML
     /**
@@ -103,7 +103,7 @@ public class admin {
      * @param x this is the Login Controller
      */
     public void setLogin(login x){
-        login = x;
+        Login = x;
     }
 
 }
