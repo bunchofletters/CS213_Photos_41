@@ -96,9 +96,7 @@ public class userPage {
     
     int item = table.getSelectionModel().getSelectedIndex();
     String newAlbumName = AlbumNameInput.getText().trim();
-
-    if (item >= 0 && !newAlbumName.isEmpty()) {
-        
+    if (item >= 0 && !newAlbumName.isEmpty()) {    
         photoAlbumList selectedAlbum = table.getItems().get(item);
         selectedAlbum.setName(newAlbumName);
             AlbumNameInput.clear();
