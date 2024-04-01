@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 public class login{
     private static admin admin;
     private static ObservableList<String> users = FXCollections.observableArrayList();
-    private Photo x = new Photo();
+    private Photo x = Photo.getInstance();
     private static String userLogined;
     private dataHolder data;
 

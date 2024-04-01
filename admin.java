@@ -35,7 +35,7 @@ public class admin {
      * Scene change back to the login screen
      */
     void backToLogin() {
-        Photo x = new Photo();
+        Photo x = Photo.getInstance();
         x.changeScene("login.fxml");
     }
     

@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 
 public class userPage {
 
+    private Photo x = Photo.getInstance();
+
     @FXML private Button RenameAlbumButton;
 
     @FXML private Button logoutButton;
@@ -71,13 +73,15 @@ public class userPage {
 
     @FXML
     void logout(ActionEvent event) {
-        Photo x = new Photo();
         x.changeScene("login.fxml");
     }
 
     @FXML
     void openAlbum(ActionEvent event) {
-
+        int item = table.getSelectionModel().getSelectedIndex();
+        if(item != -1){
+            x.changeScene("PhotoAlbumController.fxml");
+        }
     }
 
     @FXML
