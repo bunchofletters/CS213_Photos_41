@@ -2,20 +2,15 @@ import java.util.HashMap;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
 public class photoAlbumList {
+
     private SimpleStringProperty AlbumName;
     private SimpleIntegerProperty NumberOfPhotos, EarliestPhotoDate, LatestPhotoDate;
-
     private ObservableList<photoAlbumList> photoAlbum;
-
-    /*
-     * <String, listOfPhotos>
-     * String = photoAlbumName
-     * listofPhotos = listofPhoto class
-     */
-    private HashMap<String, listOfPhotos> albumNPhots = new HashMap<>();
 
 
     public photoAlbumList(ObservableList<photoAlbumList> photoAlbum){
@@ -27,10 +22,6 @@ public class photoAlbumList {
         this.NumberOfPhotos = new SimpleIntegerProperty(photoNum);
         this.EarliestPhotoDate = new SimpleIntegerProperty(lowestDate);
         this.LatestPhotoDate = new SimpleIntegerProperty(highDate);
-    }
-
-    public void addPhotoList(String name, listOfPhotos list){
-        albumNPhots.put(name, list);
     }
 
     public String getName(){
@@ -57,17 +48,9 @@ public class photoAlbumList {
     public void setHighestDate(int input){
         this.LatestPhotoDate.set(input);
     }
+
+
     public ObservableList<photoAlbumList> getAlbumList(){
         return photoAlbum;
-    }
-
-    /**
-     * 
-     * @param albumName the name [String] of the album you wish to access the photo of
-     * @return the class listOfPhotos from the hashmap {@link #albumNPhots}
-     * @see listOfPhotos
-     */
-    public listOfPhotos geListOfPhotos(String albumName){
-        return albumNPhots.get(albumName);
     }
 }

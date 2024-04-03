@@ -9,7 +9,8 @@ public class dataHolder implements Serializable{
     login Login;
 
     private static dataHolder instance;
-
+    
+    // Obser ArrayList of Strings of Users
     private static ObservableList<String> users = FXCollections.observableArrayList();
 
     /**

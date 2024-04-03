@@ -1,22 +1,35 @@
+import java.util.Map;
+
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
 public class listOfPhotos {
-    Image photos;
 
-    ObservableList<listOfPhotos> photoList = FXCollections.observableArrayList();
+    private SimpleStringProperty captions;
+    private ObservableList<String> tags;
+    private ObservableList<Image> photos;
 
-    public listOfPhotos(ObservableList<listOfPhotos> photoList){
-        this.photoList = photoList;
+    public listOfPhotos(ObservableList<Image> image){
+        this.photos = image;
     }
 
-    public listOfPhotos(Image uplaod){
-        this.photos = uplaod;
+    public void addTag(String tag) {
+        tags.add(tag);
     }
 
-    public ObservableList<listOfPhotos> getPhotoList(){
-        return photoList;
+    public void setCaption(String caption) {
+        this.captions.set(caption);
+    }
+
+    public void addPhoto(Image image){
+        photos.add(image);
+    }
+    
+    public ObservableList<Image> getPhotos(){
+        return photos;
     }
 
 }
+

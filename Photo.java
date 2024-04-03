@@ -22,7 +22,7 @@ public class Photo extends Application{
         mainStage = primStage;
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("PhotoAlbumController.fxml"));
+            loader.setLocation(getClass().getResource("userPage.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 

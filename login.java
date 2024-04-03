@@ -10,7 +10,7 @@ public class login{
     private static admin admin;
     private static ObservableList<String> users = FXCollections.observableArrayList();
     private Photo x = Photo.getInstance();
-    private static String userLogined;
+    private static String userLogined = "";
     private dataHolder data = dataHolder.getInstance();
     private static login instance;
 
