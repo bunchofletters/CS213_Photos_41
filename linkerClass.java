@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,5 +64,19 @@ public class linkerClass {
     public listOfPhotos getImageList(photoAlbumList list){
         return imageList.get(list);
     }
+
+    public void removeImage(photoAlbumList albumList, Image imageToRemove) {
+    listOfPhotos photos = imageList.get(albumList);
+    if (photos != null) {
+        List<Image> photoList = photos.getPhotos();
+        for (int i = 0; i < photoList.size(); i++) {
+            Image image = photoList.get(i);
+            if (image.equals(imageToRemove)) {
+                photoList.remove(i); // Remove the image
+                break; // Exit the loop once found
+            }
+        }
+    }
+}
 
 }

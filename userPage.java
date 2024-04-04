@@ -115,12 +115,13 @@ public class userPage {
             }
         
     }
-
     public void initialize() {
+       
         //Creates a unique photoAlbumList per user
         if(link.getPhotoAlbum(user) == null){
             link.setUserAlbum(user);
         }
+
         AlbumName.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getName()));
         NumberOfPhotos.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getPhotoNum()));
         EarliestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getLowestDate()));

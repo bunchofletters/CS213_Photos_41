@@ -65,14 +65,13 @@ public class InsidePhotoAlbum{
 
     //label
     @FXML private Label AlbumNameItsIn;
+    @FXML private Label SelectedImage;
 
     static int x = 0;
 
     public void initialize() {
 
         AlbumNameItsIn.setText(user.getAlbum().getName());
-        
-
 
         if(x == 0){
         Image image = new Image("data/Frog.jpeg");
@@ -119,18 +118,43 @@ public class InsidePhotoAlbum{
     box.setPadding(new Insets(20, 30, 30, 20));
     box.setAlignment(Pos.CENTER);
     box.getChildren().addAll(imageView,photoName);
+    box.setOnMouseClicked(this::goIntoPhotoDetails); 
     return box;
 
     }
 
     // When you click on a photo image
-    @FXML
-    void goIntoPhotoDetails(MouseEvent event) {
-        if (event.getButton() == MouseButton.PRIMARY) {
-         
-    
+    private VBox selectedVBox = null;
+@FXML
+void goIntoPhotoDetails(MouseEvent event) {
+    if (event.getButton() == MouseButton.PRIMARY) {
+        // Check if the source of the event is a VBox
+        if (event.getSource() instanceof VBox) {
+            // Cast the source to VBox
+            VBox vbox = (VBox) event.getSource();
+
+            if (selectedVBox != null) {
+                selectedVBox.setStyle(""); 
+            }
+            selectedVBox = vbox;
+            selectedVBox.setStyle("-fx-border-color: red;"); 
+            ObservableList<Node> children = vbox.getChildren();
+
+            for (Node child : children) {
+                if (child instanceof ImageView) {
+                    ImageView imageView = (ImageView) child;
+                    Image image = imageView.getImage();
+
+                    SelectedImage.setText(image.getUrl());
+                    
+                    break;
+                }
+            }
         }
     }
+}
+
+
 
     // brings you to the login screen
     @FXML
@@ -213,7 +237,6 @@ public class InsidePhotoAlbum{
 
     // remoing photos with this button
     @FXML void remove(ActionEvent event) {
-
     }
 
     // cahnge caption
