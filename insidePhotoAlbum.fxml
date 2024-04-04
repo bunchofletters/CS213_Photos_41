@@ -13,7 +13,7 @@
    <children>
       <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="896.0" vbarPolicy="ALWAYS">
          <content>
-            <TilePane fx:id="tilePane" prefHeight="390.0" prefWidth="880.0" />
+            <TilePane fx:id="tilePane" onMouseClicked="#goIntoPhotoDetails" prefHeight="390.0" prefWidth="880.0" />
          </content>
       </ScrollPane>
       <Button fx:id="logoutButton" alignment="CENTER" layoutX="846.0" layoutY="16.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="69.0" text="Logout" textAlignment="CENTER">

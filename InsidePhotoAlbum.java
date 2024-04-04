@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -6,8 +8,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -18,8 +24,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -32,7 +40,10 @@ public class InsidePhotoAlbum{
     private Photo photo = Photo.getInstance();
     linkerClass link = linkerClass.getInstance();
     private userPage user = userPage.getInstance();
-    //Buttons
+    private imageTracker track = imageTracker.getInstance();
+    private listOfPhotos photoList;
+
+
     @FXML private Button ReturnButton;
     @FXML private Button logoutButton;
     @FXML private Button SearchInput;
@@ -42,8 +53,9 @@ public class InsidePhotoAlbum{
     @FXML private Button EditButton;
     @FXML private Button MoveButton;
 
+    @FXML private Button DelAlbumButton;
+
     //Pane
-    //@FXML private GridPane gridPane;
     @FXML private TilePane tilePane;
     @FXML private ScrollPane scrollPane;
 
@@ -58,8 +70,9 @@ public class InsidePhotoAlbum{
 
     public void initialize() {
 
-        AlbumNameItsIn.setText("hello");
-        //link.getAlbumName(link.getPhotoAlbum(user.getAlbum().getName()))
+        AlbumNameItsIn.setText(user.getAlbum().getName());
+        
+
 
         if(x == 0){
         Image image = new Image("data/Frog.jpeg");
@@ -84,39 +97,41 @@ public class InsidePhotoAlbum{
         scrollPane.setFitToWidth(true); // Fit content to width
 
     }
+    
     }
 
     public VBox setImages(Image image){
     // Load the image (replace with your image file path)
     // Image image = new Image("data/Beach.jpeg");
     ImageView imageView = new ImageView(image);
-    imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-        System.out.println("aaa");
-        event.consume();
-    });
+  //  tilePane.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+  //      
+  //      event.consume();
+   // });
     // userpage.getlListOfPhotos().getPhotoList().add(image);
-    imageView.setFitWidth(120); // Set image width
+    imageView.setFitWidth(150); // Set image width
     imageView.setFitHeight(100); // Set image height
 
     Label photoName = new Label("TEMP PHOTO NAME");
     photoName.setAlignment(Pos.CENTER);
 
     VBox box = new VBox();
-    box.setPadding(new Insets(20, 20, 20, 20));
+    box.setPadding(new Insets(20, 30, 30, 20));
     box.setAlignment(Pos.CENTER);
-    box.getChildren().add(imageView);
-    box.getChildren().add(photoName);
-
+    box.getChildren().addAll(imageView,photoName);
     return box;
 
     }
 
-
     // When you click on a photo image
     @FXML
     void goIntoPhotoDetails(MouseEvent event) {
-        
+        if (event.getButton() == MouseButton.PRIMARY) {
+         
+    
+        }
     }
+
     // brings you to the login screen
     @FXML
     void logout(ActionEvent event) {
@@ -148,17 +163,54 @@ public class InsidePhotoAlbum{
 
     }
 
+    
     // uplaod button goest to personal computer to uplaod
-    @FXML void upload(ActionEvent event) {
-        // FileChooser chooser = new FileChooser();
-        // chooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        // chooser.getExtensionFilters().addAll(
-        //         new FileChooser.ExtensionFilter("Image Files",
-        //                 "*.bmp", "*.png", "*.jpg", "*.gif"));
-        // File file = chooser.showOpenDialog(new Stage());
+    private Stage popupStage;
+
+    @FXML
+    void upload(ActionEvent event) {
+
+        FileChooser chooser = new FileChooser();
+        chooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        chooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files",
+                        "*.bmp", "*.png", "*.jpg", "*.gif"));
+        File file = chooser.showOpenDialog(new Stage());
+
+        try {
+            if (popupStage != null && popupStage.isShowing()) {
+                popupStage.toFront();
+                return;
+            }
+            if (file != null){
+
+                InputStream stream = new FileInputStream(file.getAbsolutePath());
+                Image image = new Image(stream);
+                track.setSelectedImage(image);
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("previewImageUpload.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+
+                popupStage = new Stage();
+                popupStage.setScene(scene);
+                popupStage.setResizable(false);
+
+                popupStage.setOnHidden(e -> {
+                    tilePane.getChildren().add(setImages(track.getSelectedImage()));
+                });
+    
+                popupStage.showAndWait();;
+                    
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }  
 
 
-    }
     // remoing photos with this button
     @FXML void remove(ActionEvent event) {
 

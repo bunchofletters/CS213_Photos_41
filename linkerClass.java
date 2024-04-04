@@ -30,7 +30,11 @@ public class linkerClass {
         //Add the photoAlbum to the user's photoAlbumlist
         photoAlbum.get(user).getAlbumList().add(photos);
     }
-
+    /**
+     * This is used to get the photoAlbumList associated with each user
+     * @param user this is the name of the user
+     * @return returns the list of photoAlbum assoicated with that user
+     */
     public photoAlbumList getPhotoAlbum(String user){
         return photoAlbum.get(user);
     }
@@ -51,14 +55,13 @@ public class linkerClass {
     public void addToImage(photoAlbumList albumnlist, Image image){
         imageList.get(albumnlist).getPhotos().add(image);
     }
-
+    /**
+     * This method is use to get hte listOfPhoto assoicated with a photoa blum from the hashmap
+     * @param list This takes in a photoAlbumList 
+     * @return returns back the listofphoto assoicated with that photoalbum
+     */
     public listOfPhotos getImageList(photoAlbumList list){
         return imageList.get(list);
     }
-
-    public String getAlbumName(photoAlbumList photos){
-        return photos.getName();
-    }
-
 
 }
