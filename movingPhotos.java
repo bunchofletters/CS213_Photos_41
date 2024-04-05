@@ -11,8 +11,7 @@ public class movingPhotos {
 
     private static photoAlbumList album;
     private static userPage instance;
-
-    private Photo x = Photo.getInstance();
+    
     private login Login = login.getInstance();
     private imageTracker track = imageTracker.getInstance();
 

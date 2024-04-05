@@ -1,9 +1,6 @@
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -23,7 +20,7 @@ public class previewImageUpload {
 // -------------------------------------------------------------------------------------
 
     @FXML
-    void save(ActionEvent event) {
+    void save() {
         track.check = true;
         photoList.addPhoto(track.getSelectedImage());
         Stage stage = (Stage) SaveButton.getScene().getWindow();

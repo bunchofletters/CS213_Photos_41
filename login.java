@@ -1,6 +1,5 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -42,7 +41,7 @@ public class login{
 
     @FXML
     void userLogin() {
-        if(Username.getText().toLowerCase.equals("admin")){
+        if(Username.getText().toLowerCase().equals("admin")){
             x.changeScene("admin.fxml");
         } 
         else if(Username.getText().toLowerCase().equals("stock")){

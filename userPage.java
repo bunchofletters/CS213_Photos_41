@@ -1,10 +1,6 @@
-import java.util.HashMap;
 import java.util.Optional;
-
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +8,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.image.Image;
 /**
  * @author Danny dl1093
  */
@@ -44,7 +39,6 @@ public class userPage {
 
     private Photo x = Photo.getInstance();
     private login Login = login.getInstance();
-    private imageTracker track = imageTracker.getInstance();
 
     public static userPage getInstance() {
     if (instance == null) {
@@ -100,8 +94,6 @@ public class userPage {
     }
 
 // -------------------------------------------------------------------------------------
-
-    //modifcatoin?TODO
     @FXML void openAlbum(ActionEvent event) {
         int item = table.getSelectionModel().getSelectedIndex();
         album = link.getPhotoAlbum(user).getAlbumList().get(item);
