@@ -41,10 +41,11 @@ public class PhotoSlideshow {
         pagination.setPageCount(images.size());
 
         pagination.setPageFactory((pageIndex) -> {
-            ImageView imageView = new ImageView(images.get(pageIndex));
-            imageView.setFitWidth(650);  
-            imageView.setPreserveRatio(true); 
-            return imageView;
+            ImageView PictureView = new ImageView(images.get(pageIndex));
+            PictureView.setFitWidth(400);  // Set the width of the ImageView
+            PictureView.setFitHeight(400);  
+            PictureView.setPreserveRatio(true); 
+            return PictureView;
         });
     }
 

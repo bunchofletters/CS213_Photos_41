@@ -51,6 +51,7 @@ public class InsidePhotoAlbum{
     @FXML private Button EditButton;
     @FXML private Button MoveButton;
     @FXML private Button PreviewButton;
+    @FXML private Button PasteButton;
 
     //Pane
     @FXML private TilePane tilePane;
