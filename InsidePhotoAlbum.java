@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -71,11 +70,11 @@ public class InsidePhotoAlbum{
     Image image = new Image("data/Frog.jpeg");
     link.addToImage(user.getAlbum(), image);
     
-    ObservableList<Image> images = link.getImageList(user.getAlbum()).getPhotos();
+    ObservableList<imageAttributes> images = link.getImageList(user.getAlbum()).getPhotos();
     user.getAlbum().setPhotoNum(images.size());
-    for (Image img : images){
+    for (imageAttributes img : images){
         if (img != null) {
-            tilePane.getChildren().add(setImages(img));
+            tilePane.getChildren().add(setImages(img.getImage()));
         }
         scrollPane.setContent(tilePane);
         scrollPane.setFitToWidth(true); // Fit content to width
@@ -211,7 +210,7 @@ public class InsidePhotoAlbum{
         chooser.setInitialDirectory(new File(System.getProperty("user.home")));
         chooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files",
-                        "*.bmp", "*.png", "*.jpg", "*.gif"));
+                        "*.bmp", "*.png", "*.jpeg", "*.gif"));
         try {
             if (popupStage != null && popupStage.isShowing()) {
                 popupStage.toFront();
@@ -262,7 +261,6 @@ public class InsidePhotoAlbum{
         catch (Exception e) {
             e.printStackTrace();
         }
-
     }  
 
 // -------------------------------------------------------------------------------------

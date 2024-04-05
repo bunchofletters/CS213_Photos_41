@@ -1,20 +1,28 @@
+import java.time.LocalDate;
+
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
 public class listOfPhotos {
 
-    private ObservableList<Image> photos;
+    private ObservableList<imageAttributes> photos;
 
-    public listOfPhotos(ObservableList<Image> image){
-        this.photos = image;
+    /**
+     * Initalizes the ArrayList of photos
+     * @param image this is a imageAttribute ObservableList 
+     */
+    public listOfPhotos(ObservableList<imageAttributes> image){
+            this.photos = image;
     }
 
 
     public void addPhoto(Image image){
-        photos.add(image);
+        LocalDate x = LocalDate.now();
+        imageAttributes newImage = new imageAttributes(image, x);
+        photos.add(newImage);
     }
     
-    public ObservableList<Image> getPhotos(){
+    public ObservableList<imageAttributes> getPhotos(){
         return photos;
     }
 

@@ -56,7 +56,7 @@ public class linkerClass {
 
     void setAlbumImages(photoAlbumList photos){
         if(imageList.get(photos) == null){
-            ObservableList<Image> x = FXCollections.observableArrayList();
+            ObservableList<imageAttributes> x = FXCollections.observableArrayList();
             listOfPhotos tmp = new listOfPhotos(x);
             imageList.put(photos, tmp);
         }
@@ -65,7 +65,7 @@ public class linkerClass {
 // -------------------------------------------------------------------------------------
 
     public void addToImage(photoAlbumList albumnlist, Image image){
-    imageList.get(albumnlist).getPhotos().add(image);
+    imageList.get(albumnlist).addPhoto(image);
     }
 
 // -------------------------------------------------------------------------------------
@@ -84,9 +84,9 @@ public class linkerClass {
     public void removeImage(photoAlbumList albumList, Image imageToRemove) {
     listOfPhotos photos = imageList.get(albumList);
         if (photos != null) {
-            List<Image> photoList = photos.getPhotos();
+            List<imageAttributes> photoList = photos.getPhotos();
             for (int i = 0; i < photoList.size(); i++) {
-                Image image = photoList.get(i);
+                Image image = photoList.get(i).getImage();
                 if (image.equals(imageToRemove)) {
                     photoList.remove(i); 
                     break; 
@@ -100,9 +100,9 @@ public class linkerClass {
     public boolean isImageInAlbum(photoAlbumList albumList, Image image) {
     listOfPhotos photos = imageList.get(albumList);
         if (photos != null) {
-            List<Image> photoList = photos.getPhotos();
-            for (Image img : photoList) {
-                if (img.getUrl().equals(image.getUrl())) {
+            List<imageAttributes> photoList = photos.getPhotos();
+            for (imageAttributes img : photoList) {
+                if (img.getImage().getUrl().equals(image.getUrl())) {
                 return true;
                 }
             }

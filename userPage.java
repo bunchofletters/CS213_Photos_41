@@ -1,5 +1,4 @@
 import java.util.Optional;
-
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -96,8 +95,6 @@ public class userPage {
     }
 
 // -------------------------------------------------------------------------------------
-
-    //modifcatoin?TODO
     @FXML void openAlbum(ActionEvent event) {
         int item = table.getSelectionModel().getSelectedIndex();
         album = link.getPhotoAlbum(user).getAlbumList().get(item);

@@ -3,7 +3,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -34,16 +33,15 @@ public class PhotoSlideshow {
 // -------------------------------------------------------------------------------------
 
     public void initialize(){
-        ObservableList<Image> images = link.getImageList(user.getAlbum()).getPhotos();
+        ObservableList<imageAttributes> images = link.getImageList(user.getAlbum()).getPhotos();
 
         pagination.setPageCount(images.size());
 
         pagination.setPageFactory((pageIndex) -> {
-            ImageView PictureView = new ImageView(images.get(pageIndex));
-            PictureView.setFitWidth(400);  // Set the width of the ImageView
-            PictureView.setFitHeight(400);  
-            PictureView.setPreserveRatio(true); 
-            return PictureView;
+            ImageView imageView = new ImageView(images.get(pageIndex).getImage());
+            imageView.setFitWidth(650);  
+            imageView.setPreserveRatio(true); 
+            return imageView;
         });
     }
 
