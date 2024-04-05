@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="933.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InsidePhotoAlbum">
+   <children>
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="896.0" vbarPolicy="ALWAYS">
+         <content>
+            <TilePane fx:id="tilePane" onMouseClicked="#goIntoPhotoDetails" prefHeight="390.0" prefWidth="880.0" />
+         </content>
+      </ScrollPane>
+      <Button fx:id="logoutButton" alignment="CENTER" layoutX="846.0" layoutY="16.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="69.0" text="Logout" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="ReturnButton" alignment="CENTER" layoutX="20.0" layoutY="16.0" mnemonicParsing="false" onAction="#returnButton" prefHeight="27.0" prefWidth="79.0" text="&lt;- Return" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="DatePickerBar" layoutX="22.0" layoutY="61.0" onAction="#pickDate" prefHeight="26.0" prefWidth="151.0" />
+      <TextField fx:id="FilterInput" layoutX="349.0" layoutY="26.0" onAction="#filterBox" prefHeight="26.0" prefWidth="285.0" promptText="Filter" />
+      <Button fx:id="SearchInput" alignment="CENTER" layoutX="267.0" layoutY="26.0" mnemonicParsing="false" onAction="#searchbox" prefHeight="26.0" prefWidth="65.0" text="Search" />
+      <Label fx:id="AlbumNameItsIn" alignment="CENTER" layoutX="412.0" layoutY="74.0" prefHeight="19.0" prefWidth="125.0" textAlignment="CENTER">
+         <font>
+            <Font name="Avenir Black" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="CopyPhotosButton" alignment="CENTER" layoutX="18.0" layoutY="507.0" mnemonicParsing="false" onAction="#copyPhotos" text="Copy" />
+      <Button fx:id="UploadButton" alignment="CENTER" layoutX="856.0" layoutY="508.0" mnemonicParsing="false" onAction="#upload" text="Upload" />
+      <Button fx:id="RemoveButton" alignment="CENTER" layoutX="750.0" layoutY="17.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
+      <Button fx:id="EditButton" alignment="CENTER" layoutX="806.0" layoutY="508.0" mnemonicParsing="false" onAction="#edit" text="Edit" />
+      <Button fx:id="MoveButton" alignment="CENTER" layoutX="76.0" layoutY="507.0" mnemonicParsing="false" onAction="#move" text="Move" />
+      <Text layoutX="320.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECTED IMAGE:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Label fx:id="SelectedImage" layoutX="430.0" layoutY="509.0" prefHeight="17.0" prefWidth="223.0" />
+      <Label fx:id="StatusLabel" layoutX="320.0" layoutY="527.0" prefHeight="17.0" prefWidth="109.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="StatusUrlLabel" layoutX="431.0" layoutY="528.0" prefHeight="17.0" prefWidth="223.0" />
+      <Button fx:id="PreviewButton" layoutX="717.0" layoutY="508.0" mnemonicParsing="false" onAction="#SlideShow" text="Slideshow" />
+      <Button fx:id="PasteButton" layoutX="136.0" layoutY="508.0" mnemonicParsing="false" onAction="#paste" text="Paste" />
+   </children>
+</Pane>

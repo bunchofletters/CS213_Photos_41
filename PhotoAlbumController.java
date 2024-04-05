@@ -27,12 +27,7 @@ public class PhotoAlbumController implements Initializable{
     @FXML private Button logoutButton;
     @FXML private Button SearchInput;
     @FXML private Button CopyPhotosButton;
-    @FXML private Button UploadButton;
-    @FXML private Button RemoveButton;
-    @FXML private Button EditTagButton;
-    @FXML private Button EditCaptionButton;
-    @FXML private Label ModeLabel;
-
+    @FXML private Button PasteButton;
 
     //Pane
     @FXML private GridPane gridPane;
@@ -121,38 +116,12 @@ public class PhotoAlbumController implements Initializable{
 
     }
 
-    // copies photos
     @FXML void copyPhotos(ActionEvent event) {
 
     }
-
-    // uplaod button goest to personal computer to uplaod
-    @FXML void upload(ActionEvent event) {
+    @FXML void paste(ActionEvent event) {
 
     }
-
-    // remoing photos with this button
-    @FXML void remove(ActionEvent event) {
-
-    }
-   
-    // edit tag to wahtever user wants
-    @FXML void editTag(ActionEvent event) {
-
-
-    }
-
-    // cahnge caption
-    @FXML
-    void editCaption(ActionEvent event) {
-
-    }
-
-    // shows mode for copying or moving
-    @FXML void modeLabel(MouseEvent event) {
-
-    }
-
-
     
+
 }

@@ -3,21 +3,23 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 
 public class photoAlbumList {
+
     private SimpleStringProperty AlbumName;
     private SimpleIntegerProperty NumberOfPhotos, EarliestPhotoDate, LatestPhotoDate;
+    private ObservableList<photoAlbumList> photoAlbum;
 
-    ObservableList<photoAlbumList> photoAlbum;
 
     public photoAlbumList(ObservableList<photoAlbumList> photoAlbum){
         this.photoAlbum = photoAlbum;
     }
-    
+
     public photoAlbumList(String name, int photoNum, int lowestDate, int highDate){
         this.AlbumName = new SimpleStringProperty(name);
         this.NumberOfPhotos = new SimpleIntegerProperty(photoNum);
         this.EarliestPhotoDate = new SimpleIntegerProperty(lowestDate);
         this.LatestPhotoDate = new SimpleIntegerProperty(highDate);
     }
+
     public String getName(){
         return AlbumName.get();
     }
@@ -42,6 +44,8 @@ public class photoAlbumList {
     public void setHighestDate(int input){
         this.LatestPhotoDate.set(input);
     }
+
+
     public ObservableList<photoAlbumList> getAlbumList(){
         return photoAlbum;
     }
