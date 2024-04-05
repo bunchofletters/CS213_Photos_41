@@ -1,5 +1,3 @@
-import java.util.List;
-
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 

@@ -22,7 +22,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="ReturnButton" alignment="CENTER" layoutX="20.0" layoutY="16.0" mnemonicParsing="false" onAction="#returnButton" prefHeight="27.0" prefWidth="79.0" text="&lt;- Return" textAlignment="CENTER">
+      <Button fx:id="ReturnButton" alignment="CENTER" layoutX="20.0" layoutY="16.0" mnemonicParsing="false" onAction="#returnButton" prefHeight="27.0" prefWidth="108.0" text="&lt;- Return" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>

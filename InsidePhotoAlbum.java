@@ -1,10 +1,7 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Optional;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,21 +14,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class InsidePhotoAlbum{
@@ -170,7 +163,7 @@ public class InsidePhotoAlbum{
 
 // -------------------------------------------------------------------------------------
     
-    // useing the box to filter
+    // using the box to filter
     @FXML void filterBox(ActionEvent event) {
 
     }
@@ -178,14 +171,16 @@ public class InsidePhotoAlbum{
 // -------------------------------------------------------------------------------------
 
     @FXML void searchbox(ActionEvent event) {
-
+        
+        ObservableList<Image> images = link.getImageList(user.getAlbum()).getPhotos();
+        for (Image img : images){
+            //search result
+        }
     }
 
 // -------------------------------------------------------------------------------------
 
     @FXML void paste(ActionEvent event) {
-        // link.addToImage(user.getAlbum(), track.getSaveCopyImage());
-        // tilePane.getChildren().add(setImages(track.getSaveCopyImage()));
         Image image = track.getSaveCopyImage();
 
         if (!link.isImageInAlbum(user.getAlbum(), image)) {
@@ -243,6 +238,7 @@ public class InsidePhotoAlbum{
 
                 // Popup Stage
                 popupStage = new Stage();
+                popupStage.initModality(Modality.APPLICATION_MODAL); 
                 popupStage.setScene(scene);
                 popupStage.setResizable(false);
 
@@ -310,6 +306,7 @@ public class InsidePhotoAlbum{
             Scene scene = new Scene(root);
 
             popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL); 
             popupStage.setScene(scene);
             popupStage.setResizable(false);
 
@@ -333,6 +330,4 @@ public class InsidePhotoAlbum{
     void SlideShow(ActionEvent event) {
         photo.changeScene("PhotoSlideshow.fxml");
     }
-
-
 }
