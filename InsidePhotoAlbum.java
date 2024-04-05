@@ -171,8 +171,8 @@ public class InsidePhotoAlbum{
 
     @FXML void searchbox(ActionEvent event) {
         
-        ObservableList<Image> images = link.getImageList(user.getAlbum()).getPhotos();
-        for (Image img : images){
+        ObservableList<imageAttribute> images = link.getImageList(user.getAlbum()).getPhotos();
+        for (imageAttribute img : images){
             //search result
         }
     }
