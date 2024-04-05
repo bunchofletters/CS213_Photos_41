@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
 /**
  * @author Danny dl1093
  */
@@ -35,7 +36,7 @@ public class userPage {
     @FXML private TableColumn<photoAlbumList, Number> NumberOfPhotos;
     @FXML private TableView<photoAlbumList> table;
 
-
+    
     // ------------------------------------------------------------------------------------
 
     private static photoAlbumList album;
@@ -142,6 +143,7 @@ public class userPage {
         LatestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getHighestDate()));
         table.getColumns().forEach(e -> e.setReorderable(false));
         table.setItems(link.getPhotoAlbum(user).getAlbumList());
+
 
     }
 

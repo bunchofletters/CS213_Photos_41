@@ -52,6 +52,6 @@
          </font>
       </Label>
       <Label fx:id="StatusUrlLabel" layoutX="431.0" layoutY="528.0" prefHeight="17.0" prefWidth="223.0" />
-      <Button fx:id="pasteButton" layoutX="136.0" layoutY="509.0" mnemonicParsing="false" onAction="#paste" text="Paste" />
+      <Button fx:id="PreviewButton" layoutX="717.0" layoutY="508.0" mnemonicParsing="false" onAction="#SlideShow" text="Slideshow" />
    </children>
 </Pane>

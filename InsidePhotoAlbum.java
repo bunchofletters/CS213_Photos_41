@@ -50,6 +50,7 @@ public class InsidePhotoAlbum{
     @FXML private Button RemoveButton;
     @FXML private Button EditButton;
     @FXML private Button MoveButton;
+    @FXML private Button PreviewButton;
 
     //Pane
     @FXML private TilePane tilePane;
@@ -71,30 +72,21 @@ public class InsidePhotoAlbum{
 
     public void initialize() {
         // SHOWS WHAT ALBUM YOURE IN, SHOWS THE NAME OF THE ALBUM IN THE MIDDLE
-        AlbumNameItsIn.setText(user.getAlbum().getName());
+    AlbumNameItsIn.setText(user.getAlbum().getName());
 
-        if(x == 0){
-            Image image = new Image("data/Frog.jpeg");
-            link.addToImage(user.getAlbum(), image);
-            link.addToImage(user.getAlbum(), image);
-            link.addToImage(user.getAlbum(), image);
-            x++;
+    Image image = new Image("data/Frog.jpeg");
+    link.addToImage(user.getAlbum(), image);
+    
+    ObservableList<Image> images = link.getImageList(user.getAlbum()).getPhotos();
+    user.getAlbum().setPhotoNum(images.size());
+    for (Image img : images){
+        if (img != null) {
+            tilePane.getChildren().add(setImages(img));
         }
-        else{
-            Image image = new Image("data/Beach.jpeg");
-            link.addToImage(user.getAlbum(), image);
-            link.addToImage(user.getAlbum(), image);
-
-        }
-        for (int i = 0; i < link.getImageList(user.getAlbum()).getPhotos().size(); i++){
-            if (link.getImageList(user.getAlbum()).getPhotos().get(i) != null){
-            tilePane.getChildren().add(setImages(link.getImageList(user.getAlbum()).getPhotos().get(i)));
-            }
         scrollPane.setContent(tilePane);
         scrollPane.setFitToWidth(true); // Fit content to width
-        }
-    
     }
+}
 // -------------------------------------------------------------------------------------
 
     public VBox setImages(Image image){
@@ -256,6 +248,8 @@ public class InsidePhotoAlbum{
                 // When the Popup Window CLoses by Any Means (X or EXIT BUTTON)
                 popupStage.setOnHidden(e -> {
                     if (track.check == true){
+                        // uses to get list size and updates to the newly added
+                        user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                         tilePane.getChildren().add(setImages(track.getSelectedImage()));
                         track.check = false;
                     }
@@ -331,5 +325,13 @@ public class InsidePhotoAlbum{
             e.printStackTrace();
         }
     }
+
+// -------------------------------------------------------------------------------------
+
+    @FXML
+    void SlideShow(ActionEvent event) {
+        photo.changeScene("PhotoSlideshow.fxml");
+    }
+
 
 }
