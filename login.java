@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class login{
+
     private static admin admin;
     private static ObservableList<String> users = FXCollections.observableArrayList();
     private Photo x = Photo.getInstance();
@@ -14,20 +15,21 @@ public class login{
     private dataHolder data = dataHolder.getInstance();
     private static login instance;
 
-    @FXML
-    private Button LoginButton;
+    @FXML private Button LoginButton;
 
-    @FXML
-    private TextField Username;
+    @FXML private TextField Username;
 
-    @FXML
-    private Label wrongPassword;
+    @FXML private Label wrongPassword;
+
+// -------------------------------------------------------------------------------------
 
     void initialize(){
         if(data.getUsers() != null){
             users = data.getUsers();
         }
     }
+
+// -------------------------------------------------------------------------------------
 
     /**
      * Create a single instance of login
@@ -40,8 +42,9 @@ public class login{
         return instance;
     }
 
-    @FXML
-    void userLogin(ActionEvent event) {
+// -------------------------------------------------------------------------------------
+
+    @FXML void userLogin(ActionEvent event) {
         if(Username.getText().toLowerCase().equals("admin")){
             if(admin == null){
                 admin y = new admin();
@@ -69,9 +72,13 @@ public class login{
         }    
     }  
 
+// -------------------------------------------------------------------------------------
+
     public String getUser(){
         return userLogined;
     }
+
+// -------------------------------------------------------------------------------------
 
     public ObservableList<String> getList(){
         return users;

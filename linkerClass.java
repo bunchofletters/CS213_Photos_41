@@ -11,6 +11,7 @@ public class linkerClass {
     private static HashMap<String, photoAlbumList> photoAlbum = new HashMap<>();
 
     private static linkerClass instance;
+    
     public static linkerClass getInstance() {
         if (instance == null) {
             instance = new linkerClass();
@@ -18,19 +19,26 @@ public class linkerClass {
         return instance;
     }
 
+// -------------------------------------------------------------------------------------
+
     void setUserAlbum(String user){
-        //If user does not have their own photoAblumList create one for them
+    //If user does not have their own photoAblumList create one for them
         if(photoAlbum.get(user) == null){
-            ObservableList<photoAlbumList> x = FXCollections.observableArrayList();
-            photoAlbumList tmp = new photoAlbumList(x);
-            photoAlbum.put(user, tmp);
+        ObservableList<photoAlbumList> x = FXCollections.observableArrayList();
+        photoAlbumList tmp = new photoAlbumList(x);
+        photoAlbum.put(user, tmp);
         }
     }
+
+// -------------------------------------------------------------------------------------
 
     public void addToAlbum(String user, photoAlbumList photos){
         //Add the photoAlbum to the user's photoAlbumlist
         photoAlbum.get(user).getAlbumList().add(photos);
     }
+
+// -------------------------------------------------------------------------------------
+
     /**
      * This is used to get the photoAlbumList associated with each user
      * @param user this is the name of the user
@@ -41,7 +49,8 @@ public class linkerClass {
     }
 
     //to do: remove
-    // -----------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------------------
 
     private static HashMap<photoAlbumList, listOfPhotos> imageList = new HashMap<>();
 
@@ -53,9 +62,14 @@ public class linkerClass {
         }
     }
 
+// -------------------------------------------------------------------------------------
+
     public void addToImage(photoAlbumList albumnlist, Image image){
-        imageList.get(albumnlist).getPhotos().add(image);
+    imageList.get(albumnlist).getPhotos().add(image);
     }
+
+// -------------------------------------------------------------------------------------
+
     /**
      * This method is use to get hte listOfPhoto assoicated with a photoa blum from the hashmap
      * @param list This takes in a photoAlbumList 
@@ -65,18 +79,36 @@ public class linkerClass {
         return imageList.get(list);
     }
 
+// -------------------------------------------------------------------------------------
+
     public void removeImage(photoAlbumList albumList, Image imageToRemove) {
     listOfPhotos photos = imageList.get(albumList);
-    if (photos != null) {
-        List<Image> photoList = photos.getPhotos();
-        for (int i = 0; i < photoList.size(); i++) {
-            Image image = photoList.get(i);
-            if (image.equals(imageToRemove)) {
-                photoList.remove(i); // Remove the image
-                break; // Exit the loop once found
+        if (photos != null) {
+            List<Image> photoList = photos.getPhotos();
+            for (int i = 0; i < photoList.size(); i++) {
+                Image image = photoList.get(i);
+                if (image.equals(imageToRemove)) {
+                    photoList.remove(i); 
+                    break; 
+                }
             }
         }
     }
-}
+
+// -------------------------------------------------------------------------------------
+
+    public boolean isImageInAlbum(photoAlbumList albumList, Image image) {
+    listOfPhotos photos = imageList.get(albumList);
+        if (photos != null) {
+            List<Image> photoList = photos.getPhotos();
+            for (Image img : photoList) {
+                if (img.getUrl().equals(image.getUrl())) {
+                return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
 }

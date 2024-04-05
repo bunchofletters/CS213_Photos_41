@@ -41,8 +41,6 @@ public class InsidePhotoAlbum{
     linkerClass link = linkerClass.getInstance();
     private userPage user = userPage.getInstance();
     private imageTracker track = imageTracker.getInstance();
-    private listOfPhotos photoList;
-
 
     @FXML private Button ReturnButton;
     @FXML private Button logoutButton;
@@ -52,8 +50,6 @@ public class InsidePhotoAlbum{
     @FXML private Button RemoveButton;
     @FXML private Button EditButton;
     @FXML private Button MoveButton;
-
-    @FXML private Button DelAlbumButton;
 
     //Pane
     @FXML private TilePane tilePane;
@@ -66,19 +62,23 @@ public class InsidePhotoAlbum{
     //label
     @FXML private Label AlbumNameItsIn;
     @FXML private Label SelectedImage;
+    @FXML private Label StatusLabel;
+    @FXML private Label StatusUrlLabel;
 
     static int x = 0;
 
-    public void initialize() {
+// -------------------------------------------------------------------------------------
 
+    public void initialize() {
+        // SHOWS WHAT ALBUM YOURE IN, SHOWS THE NAME OF THE ALBUM IN THE MIDDLE
         AlbumNameItsIn.setText(user.getAlbum().getName());
 
         if(x == 0){
-        Image image = new Image("data/Frog.jpeg");
-        link.addToImage(user.getAlbum(), image);
-        link.addToImage(user.getAlbum(), image);
-        link.addToImage(user.getAlbum(), image);
-        x++;
+            Image image = new Image("data/Frog.jpeg");
+            link.addToImage(user.getAlbum(), image);
+            link.addToImage(user.getAlbum(), image);
+            link.addToImage(user.getAlbum(), image);
+            x++;
         }
         else{
             Image image = new Image("data/Beach.jpeg");
@@ -86,34 +86,28 @@ public class InsidePhotoAlbum{
             link.addToImage(user.getAlbum(), image);
 
         }
-
-        for (int i = 0; i < link.getImageList(user.getAlbum()).getPhotos().size() ; i++){
-        if (link.getImageList(user.getAlbum()).getPhotos().get(i) != null){
-        tilePane.getChildren().add(setImages(link.getImageList(user.getAlbum()).getPhotos().get(i)));
-            
-        }
+        for (int i = 0; i < link.getImageList(user.getAlbum()).getPhotos().size(); i++){
+            if (link.getImageList(user.getAlbum()).getPhotos().get(i) != null){
+            tilePane.getChildren().add(setImages(link.getImageList(user.getAlbum()).getPhotos().get(i)));
+            }
         scrollPane.setContent(tilePane);
         scrollPane.setFitToWidth(true); // Fit content to width
-
-    }
+        }
     
     }
+// -------------------------------------------------------------------------------------
 
     public VBox setImages(Image image){
     // Load the image (replace with your image file path)
     // Image image = new Image("data/Beach.jpeg");
     ImageView imageView = new ImageView(image);
-  //  tilePane.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-  //      
-  //      event.consume();
-   // });
     // userpage.getlListOfPhotos().getPhotoList().add(image);
     imageView.setFitWidth(150); // Set image width
     imageView.setFitHeight(100); // Set image height
-
     Label photoName = new Label("TEMP PHOTO NAME");
     photoName.setAlignment(Pos.CENTER);
-
+    
+    // creates a VBOX so the Image, Name is linked together
     VBox box = new VBox();
     box.setPadding(new Insets(20, 30, 30, 20));
     box.setAlignment(Pos.CENTER);
@@ -123,130 +117,219 @@ public class InsidePhotoAlbum{
 
     }
 
+// -------------------------------------------------------------------------------------
+
     // When you click on a photo image
     private VBox selectedVBox = null;
-@FXML
-void goIntoPhotoDetails(MouseEvent event) {
-    if (event.getButton() == MouseButton.PRIMARY) {
-        // Check if the source of the event is a VBox
-        if (event.getSource() instanceof VBox) {
-            // Cast the source to VBox
-            VBox vbox = (VBox) event.getSource();
+    private Image selectImage;
 
-            if (selectedVBox != null) {
-                selectedVBox.setStyle(""); 
-            }
-            selectedVBox = vbox;
-            selectedVBox.setStyle("-fx-border-color: red;"); 
-            ObservableList<Node> children = vbox.getChildren();
+    @FXML void goIntoPhotoDetails(MouseEvent event) {
+        if (event.getButton() == MouseButton.PRIMARY) {
 
-            for (Node child : children) {
-                if (child instanceof ImageView) {
+            // Check if the source of the event is a VBox
+            if (event.getSource() instanceof VBox) {
+                VBox vbox = (VBox) event.getSource();
+                
+                if (selectedVBox != null) {
+                    selectedVBox.setStyle(""); 
+                }
+                selectedVBox = vbox;
+                selectedVBox.setStyle("-fx-border-color: blue; -fx-background-color: lightblue;"); 
+                ObservableList<Node> children = vbox.getChildren();
+
+                for (Node child : children) {
+                    if (child instanceof ImageView){
                     ImageView imageView = (ImageView) child;
-                    Image image = imageView.getImage();
-
-                    SelectedImage.setText(image.getUrl());
-                    
+                    selectImage = imageView.getImage();
+                    SelectedImage.setText(selectImage.getUrl());
                     break;
+                    }
                 }
             }
         }
     }
-}
 
 
+// -------------------------------------------------------------------------------------
 
-    // brings you to the login screen
-    @FXML
-    void logout(ActionEvent event) {
+    /**
+     * when logout button is clicked changes scene back to login page
+     */
+    @FXML void logout() {
         photo.changeScene("login.fxml");
     }
 
-    // return to userPage going backwards
-    @FXML
-    void returnButton(ActionEvent event) {
+// -------------------------------------------------------------------------------------
+
+    /**
+     * goes back to the userPage when its clieked
+     */
+    @FXML void returnButton() {
         photo.changeScene("userPage.fxml");
     }
+
+// -------------------------------------------------------------------------------------
 
     // using the date picker it filters the image browers
     @FXML void pickDate(ActionEvent event) {
 
     }
+
+// -------------------------------------------------------------------------------------
     
     // useing the box to filter
     @FXML void filterBox(ActionEvent event) {
 
     }
 
+// -------------------------------------------------------------------------------------
+
     @FXML void searchbox(ActionEvent event) {
 
     }
 
+// -------------------------------------------------------------------------------------
+
+    @FXML void paste(ActionEvent event) {
+        // link.addToImage(user.getAlbum(), track.getSaveCopyImage());
+        // tilePane.getChildren().add(setImages(track.getSaveCopyImage()));
+        Image image = track.getSaveCopyImage();
+
+        if (!link.isImageInAlbum(user.getAlbum(), image)) {
+            link.addToImage(user.getAlbum(), image);
+            tilePane.getChildren().add(setImages(image));
+        }
+    }
+    
+// -------------------------------------------------------------------------------------
+
     // copies photos
     @FXML void copyPhotos(ActionEvent event) {
-
+        if (selectedVBox != null && selectImage != null) {
+            track.setSaveCopyImage(selectImage);
+            selectedVBox.setStyle("-fx-border-color: red; -fx-background-color: LIGHTPINK;");
+            StatusLabel.setText("STATUS COPYING:");
+            StatusUrlLabel.setText(selectImage.getUrl());
+        }
     }
 
+// -------------------------------------------------------------------------------------
     
     // uplaod button goest to personal computer to uplaod
     private Stage popupStage;
 
-    @FXML
-    void upload(ActionEvent event) {
-
+    @FXML void upload(ActionEvent event) { 
         FileChooser chooser = new FileChooser();
         chooser.setInitialDirectory(new File(System.getProperty("user.home")));
         chooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files",
                         "*.bmp", "*.png", "*.jpg", "*.gif"));
-        File file = chooser.showOpenDialog(new Stage());
-
         try {
             if (popupStage != null && popupStage.isShowing()) {
                 popupStage.toFront();
                 return;
             }
+            File file = chooser.showOpenDialog(new Stage());
             if (file != null){
-
-                InputStream stream = new FileInputStream(file.getAbsolutePath());
+                String path = file.getAbsolutePath();
+                InputStream stream = new FileInputStream(path);
                 Image image = new Image(stream);
+                ImageWithPath imageWithPath = new ImageWithPath(image, path);
+
+                // set setSelectedImage() to image in imageTracker.java
                 track.setSelectedImage(image);
+
+                // testing to see what path it prints
+                System.out.println(imageWithPath.getPath());
+
+                // Loader
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("previewImageUpload.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
 
+                // Popup Stage
                 popupStage = new Stage();
                 popupStage.setScene(scene);
                 popupStage.setResizable(false);
 
+                // When the Popup Window CLoses by Any Means (X or EXIT BUTTON)
                 popupStage.setOnHidden(e -> {
-                    tilePane.getChildren().add(setImages(track.getSelectedImage()));
+                    if (track.check == true){
+                        tilePane.getChildren().add(setImages(track.getSelectedImage()));
+                        track.check = false;
+                    }
+                    
+                       
                 });
-    
+                // waits for window before it runs (popupStage.setOnHidden) ABOVE
                 popupStage.showAndWait();;
                     
             }
 
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             e.printStackTrace();
         }
 
     }  
 
+// -------------------------------------------------------------------------------------
 
     // remoing photos with this button
-    @FXML void remove(ActionEvent event) {
+    @FXML void remove() {
+        if (selectedVBox != null){
+            Parent parent = selectedVBox.getParent();
+            if (parent instanceof Pane) {
+                Pane pane = (Pane) parent;
+                pane.getChildren().remove(selectedVBox);
+                selectedVBox = null;
+            }
+        
+        if (selectImage != null){
+            link.removeImage(user.getAlbum(),selectImage);
+            SelectedImage.setText(null);
+            selectImage = null;
+            }
+        }
     }
 
+// -------------------------------------------------------------------------------------
+
     // cahnge caption
-    @FXML
-    void edit(ActionEvent event) {
+    @FXML void edit(ActionEvent event) {
         
     }
 
-    @FXML void move(ActionEvent event) {
+// -------------------------------------------------------------------------------------
 
+    @FXML void move(ActionEvent event) {
+        try {
+            if (popupStage != null && popupStage.isShowing()) {
+                popupStage.toFront();
+                return;
+            }
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("movingPhotos.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            popupStage = new Stage();
+            popupStage.setScene(scene);
+            popupStage.setResizable(false);
+
+            popupStage.setOnHidden(e -> {
+                if(track.move = true){
+                    remove();
+                    track.move = false;
+                }
+            });
+            popupStage.showAndWait();;
+                    
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

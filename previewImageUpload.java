@@ -20,13 +20,18 @@ public class previewImageUpload {
 
     @FXML private Pane pane;
 
+// -------------------------------------------------------------------------------------
+
     @FXML
     void save(ActionEvent event) {
+        track.check = true;
         photoList.addPhoto(track.getSelectedImage());
         Stage stage = (Stage) SaveButton.getScene().getWindow();
         stage.close();
        
     }
+
+// -------------------------------------------------------------------------------------
 
     public void initialize() {
     userPage user = userPage.getInstance();

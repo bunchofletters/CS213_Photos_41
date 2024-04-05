@@ -23,6 +23,7 @@ public class userPage {
     @FXML private Button CreateAlbumButton;
     @FXML private Button DelAlbumButton;
     @FXML private Button OpenAlbumButton;
+    // @FXML private Button PasteButton;
 
     // TextFields
     @FXML private TextField AlbumNameInput;
@@ -42,6 +43,7 @@ public class userPage {
 
     private Photo x = Photo.getInstance();
     private login Login = login.getInstance();
+    private imageTracker track = imageTracker.getInstance();
 
     public static userPage getInstance() {
     if (instance == null) {
@@ -52,30 +54,36 @@ public class userPage {
     linkerClass link = linkerClass.getInstance();
     String user = Login.getUser();
 
+// -------------------------------------------------------------------------------------
+
     /**
      * Uses the "Create New Album" Button to input the names into tableview list using the TextField "AlbumNameInput"
      * @param event
      */
     @FXML void createAlbum(ActionEvent event) {
-        String albumName = AlbumNameInput.getText().trim();
+    String albumName = AlbumNameInput.getText().trim();
         if (!albumName.isEmpty()) {
             if (!containsAlbumName(albumName)) {
                 photoAlbumList newAlbum = new photoAlbumList(albumName, 0, 0, 0);
                 link.addToAlbum(user, newAlbum);
                 link.setAlbumImages(newAlbum);
                 AlbumNameInput.clear();
-                }
             }
+        }
     }
+
+// -------------------------------------------------------------------------------------
     
     private boolean containsAlbumName(String name) {
         for (photoAlbumList album : table.getItems()) {
             if (album.getName().equalsIgnoreCase(name)) {
             return true;
             }
-    }
+        }
         return false;
     }
+
+// -------------------------------------------------------------------------------------
 
     @FXML void delButton(ActionEvent event) {
         int item = table.getSelectionModel().getSelectedIndex();
@@ -84,9 +92,13 @@ public class userPage {
             }
     }
 
+// -------------------------------------------------------------------------------------
+
     @FXML void logout(ActionEvent event) {
         x.changeScene("login.fxml");
     }
+
+// -------------------------------------------------------------------------------------
 
     //modifcatoin?TODO
     @FXML void openAlbum(ActionEvent event) {
@@ -97,26 +109,28 @@ public class userPage {
             }
     }
 
-    @FXML void renameAlbum(ActionEvent event) {
-        int item = table.getSelectionModel().getSelectedIndex();
-        TextInputDialog td = new TextInputDialog();
-        td.setTitle("Rename");
-        //td.setHeaderText("dw");
-        td.setContentText("Please type a name: ");
+// -------------------------------------------------------------------------------------
 
-            if (item >= 0) {
-                Optional<String> result = td.showAndWait();
-                if (result.isPresent()){
-                    photoAlbumList selectedAlbum = table.getItems().get(item);
-                    selectedAlbum.setName(result.get());
-                    AlbumNameInput.clear();
-                    table.refresh();
+    @FXML void renameAlbum(ActionEvent event) {
+    int item = table.getSelectionModel().getSelectedIndex();
+    TextInputDialog td = new TextInputDialog();
+    td.setTitle("Rename");
+    td.setContentText("Please type a name: ");
+        if (item >= 0) {
+            Optional<String> result = td.showAndWait();
+            if (result.isPresent()){
+                photoAlbumList selectedAlbum = table.getItems().get(item);
+                selectedAlbum.setName(result.get());
+                AlbumNameInput.clear();
+                table.refresh();
                 }
-            }
+        }
         
     }
+
+// -------------------------------------------------------------------------------------
+
     public void initialize() {
-       
         //Creates a unique photoAlbumList per user
         if(link.getPhotoAlbum(user) == null){
             link.setUserAlbum(user);
@@ -128,7 +142,10 @@ public class userPage {
         LatestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getHighestDate()));
         table.getColumns().forEach(e -> e.setReorderable(false));
         table.setItems(link.getPhotoAlbum(user).getAlbumList());
+
     }
+
+// -------------------------------------------------------------------------------------
 
     /**
      * This returns the name [String] of the current album

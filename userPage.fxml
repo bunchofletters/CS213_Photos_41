@@ -16,7 +16,7 @@
       </Button>
       <Button fx:id="CreateAlbumButton" alignment="CENTER" layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#createAlbum" text="Create New Album" />
       <Button fx:id="DelAlbumButton" alignment="CENTER" layoutX="26.0" layoutY="499.0" mnemonicParsing="false" onAction="#delButton" text="Delete Album" />
-      <Button fx:id="RenameAlbumButton" alignment="CENTER" layoutX="155.0" layoutY="500.0" mnemonicParsing="false" onAction="#renameAlbum" text="Rename Album" />
+      <Button fx:id="RenameAlbumButton" alignment="CENTER" layoutX="145.0" layoutY="500.0" mnemonicParsing="false" onAction="#renameAlbum" text="Rename Album" />
       <Button fx:id="OpenAlbumButton" alignment="CENTER" layoutX="827.0" layoutY="499.0" mnemonicParsing="false" onAction="#openAlbum" text="Open Album" />
       <TextField fx:id="AlbumNameInput" layoutX="170.0" layoutY="14.0" prefHeight="26.0" prefWidth="372.0" promptText="Set Album Name " />
       <TableView fx:id="table" layoutX="26.0" layoutY="57.0" prefHeight="420.0" prefWidth="887.0">
