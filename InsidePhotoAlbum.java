@@ -23,6 +23,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class InsidePhotoAlbum{
@@ -161,7 +162,7 @@ public class InsidePhotoAlbum{
 
 // -------------------------------------------------------------------------------------
     
-    // useing the box to filter
+    // using the box to filter
     @FXML void filterBox(ActionEvent event) {
 
     }
@@ -169,14 +170,16 @@ public class InsidePhotoAlbum{
 // -------------------------------------------------------------------------------------
 
     @FXML void searchbox(ActionEvent event) {
-
+        
+        ObservableList<Image> images = link.getImageList(user.getAlbum()).getPhotos();
+        for (Image img : images){
+            //search result
+        }
     }
 
 // -------------------------------------------------------------------------------------
 
     @FXML void paste(ActionEvent event) {
-        // link.addToImage(user.getAlbum(), track.getSaveCopyImage());
-        // tilePane.getChildren().add(setImages(track.getSaveCopyImage()));
         Image image = track.getSaveCopyImage();
 
         if (!link.isImageInAlbum(user.getAlbum(), image)) {
@@ -234,6 +237,7 @@ public class InsidePhotoAlbum{
 
                 // Popup Stage
                 popupStage = new Stage();
+                popupStage.initModality(Modality.APPLICATION_MODAL); 
                 popupStage.setScene(scene);
                 popupStage.setResizable(false);
 
@@ -300,6 +304,7 @@ public class InsidePhotoAlbum{
             Scene scene = new Scene(root);
 
             popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL); 
             popupStage.setScene(scene);
             popupStage.setResizable(false);
 
@@ -323,6 +328,4 @@ public class InsidePhotoAlbum{
     void SlideShow(ActionEvent event) {
         photo.changeScene("PhotoSlideshow.fxml");
     }
-
-
 }

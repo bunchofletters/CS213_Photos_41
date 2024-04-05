@@ -5,9 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.MouseEvent;
 /**
  * @author Danny dl1093
  */
@@ -19,7 +21,6 @@ public class userPage {
     @FXML private Button CreateAlbumButton;
     @FXML private Button DelAlbumButton;
     @FXML private Button OpenAlbumButton;
-    // @FXML private Button PasteButton;
 
     // TextFields
     @FXML private TextField AlbumNameInput;
@@ -124,6 +125,7 @@ public class userPage {
 // -------------------------------------------------------------------------------------
 
     public void initialize() {
+        
         //Creates a unique photoAlbumList per user
         if(link.getPhotoAlbum(user) == null){
             link.setUserAlbum(user);
@@ -136,6 +138,20 @@ public class userPage {
         table.getColumns().forEach(e -> e.setReorderable(false));
         table.setItems(link.getPhotoAlbum(user).getAlbumList());
 
+        table.setRowFactory(tv -> {
+            TableRow<photoAlbumList> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                int item = table.getSelectionModel().getSelectedIndex();
+                album = link.getPhotoAlbum(user).getAlbumList().get(item);
+                    if(item != -1){
+                    x.changeScene("insidePhotoAlbum.fxml");
+                    }
+                }
+
+            });
+            return row;
+        });
 
     }
 
@@ -149,5 +165,7 @@ public class userPage {
     public photoAlbumList getAlbum(){
         return album;
     }
+
+// -------------------------------------------------------------------------------------
 
 }
