@@ -7,8 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class login{
-
-    private static admin admin;
     private static ObservableList<String> users = FXCollections.observableArrayList();
     private Photo x = Photo.getInstance();
     private static String userLogined = "";
@@ -42,14 +40,9 @@ public class login{
         return instance;
     }
 
-// -------------------------------------------------------------------------------------
-
-    @FXML void userLogin(ActionEvent event) {
-        if(Username.getText().toLowerCase().equals("admin")){
-            if(admin == null){
-                admin y = new admin();
-                y.setLogin(this);
-            }
+    @FXML
+    void userLogin() {
+        if(Username.getText().toLowerCase.equals("admin")){
             x.changeScene("admin.fxml");
         } 
         else if(Username.getText().toLowerCase().equals("stock")){

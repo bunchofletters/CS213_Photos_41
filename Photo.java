@@ -27,7 +27,7 @@ public class Photo extends Application{
             Scene scene = new Scene(root);
 
             mainStage.setScene(scene);
-            mainStage.setTitle("Photo");
+            mainStage.setTitle("Photo Application");
             mainStage.setResizable(false);
             mainStage.show();
         } catch(Exception e){
@@ -38,7 +38,6 @@ public class Photo extends Application{
         try{
             Parent x = FXMLLoader.load(getClass().getResource(resource));
             Scene change = new Scene(x);
-
             mainStage.setScene(change); 
             mainStage.show();
         }catch(Exception e){
