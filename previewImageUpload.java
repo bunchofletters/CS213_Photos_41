@@ -37,7 +37,7 @@ public class previewImageUpload {
     @FXML
     void save() {
         track.check = true;
-        photoList.addPhoto(track.getSelectedImage(), "Untitled");
+        photoList.addPhoto(track.getSelectedImage());
         user.updateUserAlbum();
         Stage stage = (Stage) SaveButton.getScene().getWindow();
         stage.close();

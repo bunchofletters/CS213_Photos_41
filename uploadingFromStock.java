@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,9 +10,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class uploadingFromStock {
+
+    private listOfPhotos photoList;
+    linkerClass link = linkerClass.getInstance();
+    private imageTracker track = imageTracker.getInstance();
+    private userPage user = userPage.getInstance();
 
     private static ObservableList<String> Stock_Image = FXCollections.observableArrayList();
     private File dir = new File("./data");
@@ -28,7 +34,11 @@ public class uploadingFromStock {
 
     @FXML
     void save(ActionEvent event) {
-        
+        int index = stockPhotoList.getSelectionModel().getSelectedIndex() < 0 ? 0 : stockPhotoList.getSelectionModel().getSelectedIndex();
+        Image images1 = new Image(getClass().getResourceAsStream(images[index].getPath()));
+        track.setStockImage(images1);
+        Stage stage = (Stage) SaveButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -76,6 +86,7 @@ public class uploadingFromStock {
             
             Image imageview = new Image(getClass().getResourceAsStream(filepath));
             ImageViewer.setImage(imageview);
+
     
             long n = System.nanoTime();
             double na = n-st;

@@ -72,7 +72,7 @@ public class InsidePhotoAlbum{
     AlbumNameItsIn.setText(user.getAlbum().getName());
 
     Image image = new Image("data/Frog.jpeg");
-    link.addToImage(user.getAlbum(), image, "Frog");
+    link.addToImage(user.getAlbum(), image);
     
     images = link.getImageList(user.getAlbum()).getPhotos();
     user.getAlbum().setPhotoNum(images.size());
@@ -94,7 +94,7 @@ public class InsidePhotoAlbum{
     // userpage.getlListOfPhotos().getPhotoList().add(image);
     imageView.setFitWidth(150); // Set image width
     imageView.setFitHeight(100); // Set image height
-    Label photoName = new Label(images.get(imageAttributeIndex).getName());
+    Label photoName = new Label("images.get(imageAttributeIndex).getName()");
     photoName.setAlignment(Pos.CENTER);
     
     // creates a VBOX so the Image, Name is linked together
@@ -132,7 +132,7 @@ public class InsidePhotoAlbum{
                     if (child instanceof ImageView){
                     ImageView imageView = (ImageView) child;
                     selectImage = imageView.getImage();
-                    SelectedImage.setText(" " + images.get(imageAttributeIndex).getName());
+                    SelectedImage.setText(" " + "images.get(imageAttributeIndex).getName()");
                     break;
                     }
                     imageAttributeIndex++;
@@ -193,7 +193,7 @@ public class InsidePhotoAlbum{
         Image image = track.getSaveCopyImage();
 
         if (!link.isImageInAlbum(user.getAlbum(), image)) {
-            link.addToImage(user.getAlbum(), image, "Untitled");
+            link.addToImage(user.getAlbum(), image);
             tilePane.getChildren().add(setImages(image));
         }
     }
@@ -381,13 +381,32 @@ public class InsidePhotoAlbum{
             popupStage.setResizable(false);
 
             popupStage.setOnHidden(e -> {
-             // need to implement
+                addToTile();
+                // Image image = track.getStockImage();
+
+                // if (!link.isImageInAlbum(user.getAlbum(), image)) {
+                //     link.addToImage(user.getAlbum(), image);
+                //     user.updateUserAlbum();
+                //     tilePane.getChildren().add(setImages(image));
+                //     track.setStockImage(null);
+                // }
             });
             popupStage.showAndWait();;
                     
         }
         catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void addToTile(){
+        Image image = track.getStockImage();
+
+        if (!link.isImageInAlbum(user.getAlbum(), image)) {
+            link.addToImage(user.getAlbum(), image);
+            user.updateUserAlbum();
+            tilePane.getChildren().add(setImages(image));
+            track.setStockImage(null);
         }
     }
 }

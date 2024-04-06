@@ -57,7 +57,7 @@ public class movingPhotos {
 
         // Only add the image if it's not already in the album
         if (!link.isImageInAlbum(album, track.getSelectedImage())) {
-            link.addToImage(album, track.getSelectedImage(), "Untitled");
+            link.addToImage(album, track.getSelectedImage());
         }
 
         Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
