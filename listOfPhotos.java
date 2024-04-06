@@ -3,6 +3,11 @@ import java.time.LocalDate;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
+/**
+ * This class holds a list of imageAtrributes and will be used when attempting to upload photo to a certain album
+ * @author danny
+ * @author oscar
+ */
 public class listOfPhotos {
 
     private ObservableList<imageAttributes> photos;
@@ -16,9 +21,9 @@ public class listOfPhotos {
     }
 
 
-    public void addPhoto(Image image){
+    public void addPhoto(Image image, String name){
         LocalDate x = LocalDate.now();
-        imageAttributes newImage = new imageAttributes(image, x);
+        imageAttributes newImage = new imageAttributes(image, x, name);
         photos.add(newImage);
     }
     
