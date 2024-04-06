@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
@@ -138,7 +139,20 @@ public class userPage {
         table.getColumns().forEach(e -> e.setReorderable(false));
         table.setItems(link.getPhotoAlbum(user).getAlbumList());
 
+        table.setRowFactory(tv -> {
+            TableRow<photoAlbumList> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                int item = table.getSelectionModel().getSelectedIndex();
+                album = link.getPhotoAlbum(user).getAlbumList().get(item);
+                    if(item != -1){
+                    x.changeScene("insidePhotoAlbum.fxml");
+                    }
+                }
 
+            });
+            return row;
+        });
     }
 
     public void updateUserAlbum(){
