@@ -45,6 +45,7 @@ public class InsidePhotoAlbum{
     @FXML private Button MoveButton;
     @FXML private Button PreviewButton;
     @FXML private Button PasteButton;
+    @FXML private Button UploadFromStockButtom;
 
     //Pane
     @FXML private TilePane tilePane;
@@ -175,7 +176,12 @@ public class InsidePhotoAlbum{
 // -------------------------------------------------------------------------------------
 
     @FXML void searchbox(ActionEvent event) {
-
+        
+        ObservableList<imageAttributes> images = link.getImageList(user.getAlbum()).getPhotos();
+        for (imageAttributes img : images){ //img.get
+            //search result 
+           
+        }
     }
 
 // -------------------------------------------------------------------------------------
@@ -219,8 +225,8 @@ public class InsidePhotoAlbum{
                 popupStage.toFront();
                 return;
             }
-            File file = chooser.showOpenDialog(new Stage());
-            if (file != null){
+                File file = chooser.showOpenDialog(new Stage());
+                if (file != null){
                 String path = file.getAbsolutePath();
                 InputStream stream = new FileInputStream(path);
                 Image image = new Image(stream);
@@ -289,7 +295,31 @@ public class InsidePhotoAlbum{
 
     // cahnge caption
     @FXML void edit(ActionEvent event) {
-        
+            try {
+                if (popupStage != null && popupStage.isShowing()) {
+                    popupStage.toFront();
+                    return;
+                }
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("goIntoImageAndEdit.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                
+                popupStage = new Stage();
+                popupStage.initModality(Modality.APPLICATION_MODAL); 
+                popupStage.setScene(scene);
+                popupStage.setResizable(false);
+    
+                popupStage.setOnHidden(e -> {
+                // do stuff
+                });
+                popupStage.showAndWait();;
+                        
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+    
     }
 
 // -------------------------------------------------------------------------------------
@@ -329,6 +359,32 @@ public class InsidePhotoAlbum{
     void SlideShow(ActionEvent event) {
         photo.changeScene("PhotoSlideshow.fxml");
     }
+// -------------------------------------------------------------------------------------
 
+    @FXML void UploadFromStock(ActionEvent event) {
+        try {
+            if (popupStage != null && popupStage.isShowing()) {
+                popupStage.toFront();
+                return;
+            }
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("uploadingFromStock.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
 
+            popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL); 
+            popupStage.setScene(scene);
+            popupStage.setResizable(false);
+
+            popupStage.setOnHidden(e -> {
+             // need to implement
+            });
+            popupStage.showAndWait();;
+                    
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
