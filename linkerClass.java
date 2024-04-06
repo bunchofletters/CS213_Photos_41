@@ -4,7 +4,10 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
-
+/**
+ * This class allows each user to have unique photo album along with each photo album having their own list of photos
+ * @author oscar
+ */
 public class linkerClass {
     
     // user to photoAlbum
@@ -48,7 +51,18 @@ public class linkerClass {
         return photoAlbum.get(user);
     }
 
-    //to do: remove
+    /**
+     * Remove the user and all photo album from the hashmap, this should only be called the the class that has the ability to remove users
+     * @param user the name of the user
+     */
+    public void removeUser(String user){
+        //Remove all photoALbum->listofPhoto connection first
+        for(int i =0; i<photoAlbum.get(user).getAlbumList().size(); i++){
+            removePhotoList(photoAlbum.get(user).getAlbumList().get(i));
+        }
+        //remove the user->photoAlbumlist connection
+        photoAlbum.remove(user);
+    }
 
 // -------------------------------------------------------------------------------------
 
@@ -63,9 +77,8 @@ public class linkerClass {
     }
 
 // -------------------------------------------------------------------------------------
-
-    public void addToImage(photoAlbumList albumnlist, Image image){
-    imageList.get(albumnlist).addPhoto(image);
+    public void addToImage(photoAlbumList albumnlist, Image image, String name){
+        imageList.get(albumnlist).addPhoto(image, name);
     }
 
 // -------------------------------------------------------------------------------------
@@ -77,6 +90,14 @@ public class linkerClass {
      */
     public listOfPhotos getImageList(photoAlbumList list){
         return imageList.get(list);
+    }
+
+    /**
+     * should be called by whatever class has the ability to remove photoAlbums
+     * @param list the photoAlbum that is to be deleted
+     */
+    public void removePhotoList(photoAlbumList list){
+        imageList.remove(list);
     }
 
 // -------------------------------------------------------------------------------------

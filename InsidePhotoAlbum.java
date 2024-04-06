@@ -23,7 +23,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class InsidePhotoAlbum{
@@ -33,6 +32,8 @@ public class InsidePhotoAlbum{
     linkerClass link = linkerClass.getInstance();
     private userPage user = userPage.getInstance();
     private imageTracker track = imageTracker.getInstance();
+    private ObservableList<imageAttributes> images;
+    private int imageAttributeIndex;
 
     @FXML private Button ReturnButton;
     @FXML private Button logoutButton;
@@ -65,18 +66,20 @@ public class InsidePhotoAlbum{
 // -------------------------------------------------------------------------------------
 
     public void initialize() {
+    imageAttributeIndex = 0;
         // SHOWS WHAT ALBUM YOURE IN, SHOWS THE NAME OF THE ALBUM IN THE MIDDLE
     AlbumNameItsIn.setText(user.getAlbum().getName());
 
     Image image = new Image("data/Frog.jpeg");
-    link.addToImage(user.getAlbum(), image);
+    link.addToImage(user.getAlbum(), image, "Frog");
     
-    ObservableList<imageAttributes> images = link.getImageList(user.getAlbum()).getPhotos();
+    images = link.getImageList(user.getAlbum()).getPhotos();
     user.getAlbum().setPhotoNum(images.size());
     for (imageAttributes img : images){
         if (img != null) {
             tilePane.getChildren().add(setImages(img.getImage()));
         }
+        imageAttributeIndex++;
         scrollPane.setContent(tilePane);
         scrollPane.setFitToWidth(true); // Fit content to width
     }
@@ -90,7 +93,7 @@ public class InsidePhotoAlbum{
     // userpage.getlListOfPhotos().getPhotoList().add(image);
     imageView.setFitWidth(150); // Set image width
     imageView.setFitHeight(100); // Set image height
-    Label photoName = new Label("TEMP PHOTO NAME");
+    Label photoName = new Label(images.get(imageAttributeIndex).getName());
     photoName.setAlignment(Pos.CENTER);
     
     // creates a VBOX so the Image, Name is linked together
@@ -110,6 +113,7 @@ public class InsidePhotoAlbum{
     private Image selectImage;
 
     @FXML void goIntoPhotoDetails(MouseEvent event) {
+        imageAttributeIndex =0;
         if (event.getButton() == MouseButton.PRIMARY) {
 
             // Check if the source of the event is a VBox
@@ -127,9 +131,10 @@ public class InsidePhotoAlbum{
                     if (child instanceof ImageView){
                     ImageView imageView = (ImageView) child;
                     selectImage = imageView.getImage();
-                    SelectedImage.setText(selectImage.getUrl());
+                    SelectedImage.setText(" " + images.get(imageAttributeIndex).getName());
                     break;
                     }
+                    imageAttributeIndex++;
                 }
             }
         }
@@ -163,7 +168,7 @@ public class InsidePhotoAlbum{
 
 // -------------------------------------------------------------------------------------
     
-    // using the box to filter
+    // useing the box to filter
     @FXML void filterBox(ActionEvent event) {
 
     }
@@ -181,11 +186,13 @@ public class InsidePhotoAlbum{
 
 // -------------------------------------------------------------------------------------
 
-    @FXML void paste(ActionEvent event) {
+    @FXML void paste() {
+        // link.addToImage(user.getAlbum(), track.getSaveCopyImage());
+        // tilePane.getChildren().add(setImages(track.getSaveCopyImage()));
         Image image = track.getSaveCopyImage();
 
         if (!link.isImageInAlbum(user.getAlbum(), image)) {
-            link.addToImage(user.getAlbum(), image);
+            link.addToImage(user.getAlbum(), image, "Untitled");
             tilePane.getChildren().add(setImages(image));
         }
     }
@@ -207,7 +214,7 @@ public class InsidePhotoAlbum{
     // uplaod button goest to personal computer to uplaod
     private Stage popupStage;
 
-    @FXML void upload(ActionEvent event) { 
+    @FXML void upload() { 
         FileChooser chooser = new FileChooser();
         chooser.setInitialDirectory(new File(System.getProperty("user.home")));
         chooser.getExtensionFilters().addAll(
@@ -239,7 +246,6 @@ public class InsidePhotoAlbum{
 
                 // Popup Stage
                 popupStage = new Stage();
-                popupStage.initModality(Modality.APPLICATION_MODAL); 
                 popupStage.setScene(scene);
                 popupStage.setResizable(false);
 
@@ -318,7 +324,7 @@ public class InsidePhotoAlbum{
 
 // -------------------------------------------------------------------------------------
 
-    @FXML void move(ActionEvent event) {
+    @FXML void move() {
         try {
             if (popupStage != null && popupStage.isShowing()) {
                 popupStage.toFront();
@@ -330,7 +336,6 @@ public class InsidePhotoAlbum{
             Scene scene = new Scene(root);
 
             popupStage = new Stage();
-            popupStage.initModality(Modality.APPLICATION_MODAL); 
             popupStage.setScene(scene);
             popupStage.setResizable(false);
 

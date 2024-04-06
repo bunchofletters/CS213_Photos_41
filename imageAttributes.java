@@ -4,7 +4,12 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
-
+/**
+ * This class will hold all the attribute of the image such as:
+ * image, tags, captions, and uploadDate
+ * @author danny
+ * @author oscar
+ */
 public class imageAttributes {
 
     private SimpleStringProperty captions;
@@ -13,8 +18,10 @@ public class imageAttributes {
     private LocalDate uploadDate;
 
 
-    public imageAttributes(Image image, LocalDate uploadDate){
+    public imageAttributes(Image image, LocalDate uploadDate, String name){
         this.image = image;
+        this.captions = new SimpleStringProperty(name);
+        System.out.println(uploadDate);
         this.uploadDate = uploadDate;
     }
     
@@ -32,8 +39,12 @@ public class imageAttributes {
         return image;
     }
     
-    public LocalDate getUploadDate(){
-        return uploadDate;
+    public String getUploadDate(){
+        return uploadDate.toString();
+    }
+
+    public String getName(){
+        return captions.get();
     }
 
 

@@ -28,8 +28,8 @@ public class movingPhotos {
     @FXML private Button MoveIntoButton;
 
     @FXML private TableColumn<photoAlbumList, String> AlbumName;
-    @FXML private TableColumn<photoAlbumList, Number> EarliestPhotoDate;
-    @FXML private TableColumn<photoAlbumList, Number> LatestPhotoDate;
+    @FXML private TableColumn<photoAlbumList, String> EarliestPhotoDate;
+    @FXML private TableColumn<photoAlbumList, String> LatestPhotoDate;
     @FXML private TableColumn<photoAlbumList, Number> NumberOfPhotos;
     @FXML private TableView<photoAlbumList> table;
 
@@ -57,7 +57,7 @@ public class movingPhotos {
 
         // Only add the image if it's not already in the album
         if (!link.isImageInAlbum(album, track.getSelectedImage())) {
-            link.addToImage(album, track.getSelectedImage());
+            link.addToImage(album, track.getSelectedImage(), "Untitled");
         }
 
         Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
@@ -75,8 +75,8 @@ public class movingPhotos {
 
         AlbumName.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getName()));
         NumberOfPhotos.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getPhotoNum()));
-        EarliestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getLowestDate()));
-        LatestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getHighestDate()));
+        EarliestPhotoDate.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getLowestDate()));
+        LatestPhotoDate.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getHighestDate()));
         table.getColumns().forEach(e -> e.setReorderable(false));
         table.setItems(link.getPhotoAlbum(user).getAlbumList());
     }
