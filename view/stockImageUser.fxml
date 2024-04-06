@@ -9,7 +9,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uploadingFromStock">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.stockImageUser">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" layoutX="-8.0" layoutY="-6.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -23,9 +24,9 @@
                            </font>
                         </Text>
                         <ListView fx:id="stockPhotoList" onMouseClicked="#setThisImage" prefHeight="398.0" prefWidth="200.0" />
-                        <Button fx:id="SaveButton" mnemonicParsing="false" onAction="#save" prefHeight="21.0" prefWidth="176.0" text="Save / Confirm">
+                        <Button mnemonicParsing="false" onAction="#backToLogin" prefHeight="25.0" prefWidth="183.0" text="Logout">
                            <font>
-                              <Font size="11.0" />
+                              <Font size="14.0" />
                            </font>
                         </Button>
                      </children>
