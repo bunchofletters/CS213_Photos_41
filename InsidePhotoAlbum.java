@@ -298,7 +298,7 @@ public class InsidePhotoAlbum{
                 loader.setLocation(getClass().getResource("goIntoImageAndEdit.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
-    
+                
                 popupStage = new Stage();
                 popupStage.initModality(Modality.APPLICATION_MODAL); 
                 popupStage.setScene(scene);
