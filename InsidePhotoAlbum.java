@@ -247,6 +247,7 @@ public class InsidePhotoAlbum{
 
                 // Popup Stage
                 popupStage = new Stage();
+                popupStage.initModality(Modality.APPLICATION_MODAL); 
                 popupStage.setScene(scene);
                 popupStage.setResizable(false);
 
@@ -337,6 +338,7 @@ public class InsidePhotoAlbum{
             Scene scene = new Scene(root);
 
             popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL); 
             popupStage.setScene(scene);
             popupStage.setResizable(false);
 

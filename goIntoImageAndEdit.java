@@ -21,6 +21,7 @@ public class goIntoImageAndEdit {
     @FXML private Button DeleteTag;
     @FXML private Button SaveButton;
     @FXML private Button changeValueButton;
+    @FXML private Button AddTagButton;
 
     @FXML private ImageView ImageViewer;
 
@@ -69,5 +70,12 @@ public class goIntoImageAndEdit {
         
        // infoTable.setItems();
     }
+
+// -------------------------------------------------------------------------------------
+
+    @FXML void addTag(ActionEvent event) {
+
+    }
+
 
 }
