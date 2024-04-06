@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import app.Photo;
 
 public class PhotoSlideshow {
 
@@ -22,7 +23,7 @@ public class PhotoSlideshow {
 // -------------------------------------------------------------------------------------
 
     @FXML void exit(ActionEvent event) {
-        photo.changeScene("insidePhotoAlbum.fxml");
+        photo.changeScene("/view/insidePhotoAlbum.fxml");
     }
 
 // -------------------------------------------------------------------------------------

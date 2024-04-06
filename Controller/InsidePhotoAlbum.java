@@ -26,6 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import app.Photo;
 
 public class InsidePhotoAlbum{
 
@@ -149,7 +150,7 @@ public class InsidePhotoAlbum{
      * when logout button is clicked changes scene back to login page
      */
     @FXML void logout() {
-        photo.changeScene("login.fxml");
+        photo.changeScene("/voew/login.fxml");
     }
 
 // -------------------------------------------------------------------------------------
@@ -158,7 +159,7 @@ public class InsidePhotoAlbum{
      * goes back to the userPage when its clieked
      */
     @FXML void returnButton() {
-        photo.changeScene("userPage.fxml");
+        photo.changeScene("/view/userPage.fxml");
     }
 
 // -------------------------------------------------------------------------------------
@@ -242,7 +243,7 @@ public class InsidePhotoAlbum{
 
                 // Loader
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("previewImageUpload.fxml"));
+                loader.setLocation(getClass().getResource("/view/previewImageUpload.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
 
@@ -304,7 +305,7 @@ public class InsidePhotoAlbum{
                     return;
                 }
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("goIntoImageAndEdit.fxml"));
+                loader.setLocation(getClass().getResource("/view/goIntoImageAndEdit.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
                 
@@ -334,7 +335,7 @@ public class InsidePhotoAlbum{
                 return;
             }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("movingPhotos.fxml"));
+            loader.setLocation(getClass().getResource("/view/movingPhotos.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
@@ -361,7 +362,7 @@ public class InsidePhotoAlbum{
 
     @FXML
     void SlideShow(ActionEvent event) {
-        photo.changeScene("PhotoSlideshow.fxml");
+        photo.changeScene("/view/PhotoSlideshow.fxml");
     }
 // -------------------------------------------------------------------------------------
 
@@ -372,7 +373,7 @@ public class InsidePhotoAlbum{
                 return;
             }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("uploadingFromStock.fxml"));
+            loader.setLocation(getClass().getResource("/view/uploadingFromStock.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 

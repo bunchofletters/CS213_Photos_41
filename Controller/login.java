@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import app.Photo;
 
 public class login{
     private static ObservableList<String> users = FXCollections.observableArrayList();
@@ -43,20 +44,16 @@ public class login{
     @FXML
     void userLogin() {
         if(Username.getText().toLowerCase().equals("admin")){
-            x.changeScene("admin.fxml");
+            x.changeScene("/view/admin.fxml");
         } 
         else if(Username.getText().toLowerCase().equals("stock")){
-            x.changeScene("stockImageUser.fxml");
+            x.changeScene("/view/stockImageUser.fxml");
         }
         else if (!Username.getText().toLowerCase().equals("admin")) {
             for(int i = 0; i < users.size(); i++){
                 if (Username.getText().toLowerCase().equals(users.get(i))){
                     userLogined = Username.getText().toLowerCase();
-                    x.changeScene("userPage.fxml");
-                }
-                if (Username.getText().toLowerCase().equals(users.get(i))){
-                    userLogined = Username.getText().toLowerCase();
-                    x.changeScene("userPage.fxml");
+                    x.changeScene("/view/userPage.fxml");
                 }
             }
             if(!Username.getText().equals("")){

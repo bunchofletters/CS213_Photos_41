@@ -1,3 +1,4 @@
+package app;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,7 +23,7 @@ public class Photo extends Application{
         mainStage = primStage;
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("userPage.fxml"));
+            loader.setLocation(getClass().getResource("/view/userPage.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 

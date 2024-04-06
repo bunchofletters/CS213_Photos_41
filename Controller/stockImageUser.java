@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import app.Photo;
 
 
 public class stockImageUser {
@@ -51,6 +52,8 @@ public class stockImageUser {
         stockPhotoList.getItems().addAll(Stock_Image);
 
         String filepath = images[0].getPath();
+        filepath = filepath.substring(1);
+        System.out.println(filepath);
         if(filepath.contains("\\")){
             filepath.replace('\\', '/');
         }
@@ -73,6 +76,7 @@ public class stockImageUser {
         long st = System.nanoTime();
         int photoPos = stockPhotoList.getSelectionModel().getSelectedIndex();
         String filepath = images[photoPos].getPath();
+        filepath = filepath.substring(1);
         if(filepath.contains("\\"))
             filepath.replace('\\', '/');
         Image imageview = new Image(getClass().getResourceAsStream(filepath));
@@ -89,7 +93,7 @@ public class stockImageUser {
      */
     @FXML void backToLogin() {
         Photo x = new Photo();
-        x.changeScene("login.fxml");
+        x.changeScene("/view/login.fxml");
     }
 
 
