@@ -8,6 +8,7 @@ public class previewImageUpload {
 
     private listOfPhotos photoList;
     linkerClass link = linkerClass.getInstance();
+    private userPage user = userPage.getInstance();
 
     private imageTracker track = imageTracker.getInstance();
 
@@ -22,7 +23,8 @@ public class previewImageUpload {
     @FXML
     void save() {
         track.check = true;
-        photoList.addPhoto(track.getSelectedImage());
+        photoList.addPhoto(track.getSelectedImage(), "Untitled");
+        user.updateUserAlbum();
         Stage stage = (Stage) SaveButton.getScene().getWindow();
         stage.close();
        

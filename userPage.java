@@ -26,8 +26,8 @@ public class userPage {
 
     // Table
     @FXML private TableColumn<photoAlbumList, String> AlbumName;
-    @FXML private TableColumn<photoAlbumList, Number> EarliestPhotoDate;
-    @FXML private TableColumn<photoAlbumList, Number> LatestPhotoDate;
+    @FXML private TableColumn<photoAlbumList, String> EarliestPhotoDate;
+    @FXML private TableColumn<photoAlbumList, String> LatestPhotoDate;
     @FXML private TableColumn<photoAlbumList, Number> NumberOfPhotos;
     @FXML private TableView<photoAlbumList> table;
 
@@ -36,6 +36,7 @@ public class userPage {
 
     private static photoAlbumList album;
     private static userPage instance;
+    private int item;
 
     private Photo x = Photo.getInstance();
     private login Login = login.getInstance();
@@ -59,9 +60,9 @@ public class userPage {
     String albumName = AlbumNameInput.getText().trim();
         if (!albumName.isEmpty()) {
             if (!containsAlbumName(albumName)) {
-                photoAlbumList newAlbum = new photoAlbumList(albumName, 0, 0, 0);
+                photoAlbumList newAlbum = new photoAlbumList(albumName, 0,"N/A", "N/A");
                 link.addToAlbum(user, newAlbum);
-                link.setAlbumImages(newAlbum);
+                link.setAlbumImages(link.getPhotoAlbum(user).getAlbumList().get(link.getPhotoAlbum(user).getAlbumList().size()-1));
                 AlbumNameInput.clear();
             }
         }
@@ -83,7 +84,8 @@ public class userPage {
     @FXML void delButton(ActionEvent event) {
         int item = table.getSelectionModel().getSelectedIndex();
             if(item != -1){
-            table.getItems().remove(item);
+                table.getItems().remove(item);
+                link.removePhotoList(link.getPhotoAlbum(user).getAlbumList().get(item));
             }
     }
 
@@ -95,7 +97,7 @@ public class userPage {
 
 // -------------------------------------------------------------------------------------
     @FXML void openAlbum(ActionEvent event) {
-        int item = table.getSelectionModel().getSelectedIndex();
+        item = table.getSelectionModel().getSelectedIndex();
         album = link.getPhotoAlbum(user).getAlbumList().get(item);
             if(item != -1){
                 x.changeScene("insidePhotoAlbum.fxml");
@@ -131,12 +133,21 @@ public class userPage {
 
         AlbumName.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getName()));
         NumberOfPhotos.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getPhotoNum()));
-        EarliestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getLowestDate()));
-        LatestPhotoDate.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getHighestDate()));
+        EarliestPhotoDate.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getLowestDate()));
+        LatestPhotoDate.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getHighestDate()));
         table.getColumns().forEach(e -> e.setReorderable(false));
         table.setItems(link.getPhotoAlbum(user).getAlbumList());
 
 
+    }
+
+    public void updateUserAlbum(){
+        photoAlbumList album = link.getPhotoAlbum(user).getAlbumList().get(item);
+        listOfPhotos photoList = link.getImageList(album);
+        if(photoList.getPhotos().size() > 0){
+            album.setLowestDate(photoList.getPhotos().get(0).getUploadDate());
+            album.setHighestDate(photoList.getPhotos().get(photoList.getPhotos().size()-1).getUploadDate());
+        }
     }
 
 // -------------------------------------------------------------------------------------

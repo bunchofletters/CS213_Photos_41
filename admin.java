@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 /**
  * This class handles all function the admin will be able to do which
  * include deleting, creating, and viewing created users
- * @author Oscar ol78
+ * @author Oscar
  */
 public class admin {
     /**
@@ -15,12 +15,14 @@ public class admin {
      */
     private login Login = login.getInstance();
 
+    private linkerClass link = linkerClass.getInstance();
+
     @FXML
     /**
      * This will allow both the creation and deletion of users for the admin
      * based on the input
      */
-    private TextField Createuser;
+    private TextField userInput;
 
     @FXML
     /**
@@ -55,10 +57,11 @@ public class admin {
      * Each user are require to have a unique username
      */
     void createUser() {
-        if(!Login.getList().contains(Createuser.getText().toLowerCase()) && !Createuser.getText().toLowerCase().equals("admin") && !Createuser.getText().toLowerCase().equals("stock") && !Createuser.getText().toLowerCase().equals("") && !Createuser.getText().toLowerCase().substring(0,1).equals(" ")){
-            Login.getList().add(Createuser.getText().toLowerCase());
+        if(!Login.getList().contains(userInput.getText().toLowerCase()) && !userInput.getText().toLowerCase().equals("admin") && !userInput.getText().toLowerCase().equals("stock") && !userInput.getText().toLowerCase().equals("") && !userInput.getText().toLowerCase().substring(0,1).equals(" ")){
+            Login.getList().add(userInput.getText().toLowerCase());
+            link.setUserAlbum(userInput.getText().toLowerCase());
         }
-        Createuser.clear();
+        userInput.clear();
         listUser();
     }
 
@@ -68,11 +71,12 @@ public class admin {
      */
     void deleteUser() {
         for(int i =0; i<Login.getList().size(); i++){
-            if(Login.getList().get(i).equals(Createuser.getText().toLowerCase())){
+            if(Login.getList().get(i).equals(userInput.getText().toLowerCase())){
                 Login.getList().remove(i);
+                link.removeUser(userInput.getText().toLowerCase());
             }
         }
-        Createuser.clear();
+        userInput.clear();
         listUser();
 
     }
