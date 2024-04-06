@@ -78,8 +78,8 @@ public class linkerClass {
     }
 
 // -------------------------------------------------------------------------------------
-    public void addToImage(photoAlbumList albumnlist, Image image, String name){
-        imageList.get(albumnlist).addPhoto(image, name);
+    public void addToImage(photoAlbumList albumnlist, Image image){
+        imageList.get(albumnlist).addPhoto(image);
     }
 
 // -------------------------------------------------------------------------------------

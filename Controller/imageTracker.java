@@ -3,7 +3,7 @@ import javafx.scene.image.Image;
 
 public class imageTracker {
 
-        private Image selectedImage, copyImage, moveImage;
+        private Image selectedImage, copyImage, moveImage, stockImage;
         private static imageTracker instance;
         protected boolean check, move;
 
@@ -41,6 +41,14 @@ public class imageTracker {
 
     public Image getMoveImage(){
         return moveImage;
+    }
+
+    public void setStockImage(Image stockImage){
+        this.stockImage = stockImage;
+    }
+
+    public Image getStockImage(){
+        return stockImage;
     }
 
 }

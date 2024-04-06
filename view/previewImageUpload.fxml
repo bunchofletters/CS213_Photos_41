@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.previewImageUpload">
    <children>
-      <ImageView fx:id="imagePreviewer" fitHeight="137.0" fitWidth="188.0" layoutX="46.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="SaveButton" layoutX="498.0" layoutY="365.0" mnemonicParsing="false" onAction="#save" prefHeight="21.0" prefWidth="87.0" text="Save / Confirm">
+      <ImageView fx:id="imagePreviewer" fitHeight="261.0" fitWidth="291.0" layoutX="31.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="SaveButton" layoutX="498.0" layoutY="352.0" mnemonicParsing="false" onAction="#save" prefHeight="21.0" prefWidth="87.0" text="Save / Confirm">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
+      <Button fx:id="CloseButton" alignment="CENTER" layoutX="524.0" layoutY="11.0" mnemonicParsing="false" onAction="#close" prefHeight="28.0" prefWidth="64.0" text="Close" textAlignment="CENTER">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="AddCaptionButton" layoutX="34.0" layoutY="351.0" mnemonicParsing="false" onAction="#addCaption" text="Add Caption">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="AddTagButton" layoutX="121.0" layoutY="351.0" mnemonicParsing="false" onAction="#addTag" text="Add Tag">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
+      <Text layoutX="37.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Caption:" wrappingWidth="55.94140967228793">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="CurrentCaptionLabel" layoutX="94.0" layoutY="49.0" prefHeight="17.0" prefWidth="162.0" text="Untiled" />
+      <TableView layoutX="325.0" layoutY="74.0" prefHeight="259.0" prefWidth="261.0">
+        <columns>
+          <TableColumn prefWidth="126.14578247070312" text="Tags" />
+          <TableColumn prefWidth="133.5" text="Value" />
+        </columns>
+      </TableView>
    </children>
 </Pane>

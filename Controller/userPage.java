@@ -147,6 +147,8 @@ public class userPage {
                 int item = table.getSelectionModel().getSelectedIndex();
                 album = link.getPhotoAlbum(user).getAlbumList().get(item);
                     if(item != -1){
+                    item = table.getSelectionModel().getSelectedIndex();
+                    album = link.getPhotoAlbum(user).getAlbumList().get(item);
                     x.changeScene("insidePhotoAlbum.fxml");
                     }
                 }
@@ -163,6 +165,10 @@ public class userPage {
             album.setLowestDate(photoList.getPhotos().get(0).getUploadDate());
             album.setHighestDate(photoList.getPhotos().get(photoList.getPhotos().size()-1).getUploadDate());
         }
+    }
+
+    public int getIndex(){
+        return item;
     }
 
 // -------------------------------------------------------------------------------------

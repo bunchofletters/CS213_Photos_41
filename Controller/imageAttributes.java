@@ -19,9 +19,8 @@ public class imageAttributes {
     private LocalDate uploadDate;
 
 
-    public imageAttributes(Image image, LocalDate uploadDate, String name){
+    public imageAttributes(Image image, LocalDate uploadDate){
         this.image = image;
-        this.captions = new SimpleStringProperty(name);
         System.out.println(uploadDate);
         this.uploadDate = uploadDate;
     }
