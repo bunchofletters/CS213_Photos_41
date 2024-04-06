@@ -1,11 +1,15 @@
 package Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class goIntoImageAndEdit {
@@ -56,7 +60,11 @@ public class goIntoImageAndEdit {
 // -------------------------------------------------------------------------------------
 
     @FXML void save(ActionEvent event) {
+    // NEED TO IMPLEMENT THINGS SAVED WHEN CLICKED 
+    // STORE INTO ARRAY OR SOMRTHING
 
+    Stage stage = (Stage) SaveButton.getScene().getWindow();
+    stage.close();    
     }
 
 // -------------------------------------------------------------------------------------
@@ -73,9 +81,32 @@ public class goIntoImageAndEdit {
     }
 
 // -------------------------------------------------------------------------------------
+    private Stage secondPopUp;
+    @FXML void addTag(ActionEvent event) {  
+        try {
+            if (secondPopUp != null && secondPopUp.isShowing()) {
+                secondPopUp.toFront();
+                return;
+            }
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/tagViewPopup.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
 
-    @FXML void addTag(ActionEvent event) {
+            secondPopUp = new Stage();
+            secondPopUp.initModality(Modality.APPLICATION_MODAL); 
+            secondPopUp.setScene(scene);
+            secondPopUp.setResizable(false);
 
+            secondPopUp.setOnHidden(e -> {
+             // need to implement
+            });
+            secondPopUp.showAndWait();;
+                    
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

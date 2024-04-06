@@ -22,7 +22,7 @@
             <Font size="12.0" />
          </font>
       </Button>
-      <Button fx:id="AddCaptionButton" layoutX="34.0" layoutY="351.0" mnemonicParsing="false" onAction="#addCaption" text="Add Caption">
+      <Button fx:id="AddCaptionButton" layoutX="34.0" layoutY="351.0" mnemonicParsing="false" onAction="#addCaption" text="Set Caption">
          <font>
             <Font size="12.0" />
          </font>
@@ -38,11 +38,16 @@
          </font>
       </Text>
       <Label fx:id="CurrentCaptionLabel" layoutX="94.0" layoutY="49.0" prefHeight="17.0" prefWidth="162.0" text="Untiled" />
-      <TableView layoutX="325.0" layoutY="74.0" prefHeight="259.0" prefWidth="261.0">
+      <TableView fx:id="Table" layoutX="325.0" layoutY="74.0" prefHeight="259.0" prefWidth="261.0">
         <columns>
-          <TableColumn prefWidth="126.14578247070312" text="Tags" />
-          <TableColumn prefWidth="133.5" text="Value" />
+          <TableColumn fx:id="TagColum" prefWidth="126.14578247070312" text="Tags" />
+          <TableColumn fx:id="ValueColumn" prefWidth="133.5" text="Value" />
         </columns>
       </TableView>
+      <Button fx:id="AddValueButton" layoutX="327.0" layoutY="351.0" mnemonicParsing="false" onAction="#addValue" text="Add Value">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

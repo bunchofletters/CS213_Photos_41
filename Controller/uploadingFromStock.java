@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 
+import app.Photo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ public class uploadingFromStock {
     linkerClass link = linkerClass.getInstance();
     private imageTracker track = imageTracker.getInstance();
     private userPage user = userPage.getInstance();
+    private Photo photo = Photo.getInstance();
 
     private static ObservableList<String> Stock_Image = FXCollections.observableArrayList();
     private File dir = new File("./data");
@@ -40,6 +42,15 @@ public class uploadingFromStock {
         track.setStockImage(images1);
         Stage stage = (Stage) SaveButton.getScene().getWindow();
         stage.close();
+        
+        // int index = stockPhotoList.getSelectionModel().getSelectedIndex() < 0 ? 0 : stockPhotoList.getSelectionModel().getSelectedIndex();
+        // Image images1 = new Image(getClass().getResourceAsStream(images[index].getPath().substring(1)));
+        // track.setStockImage(images1);
+        // track.turnOnStockImage();
+        
+
+        
+
     }
 
     @FXML

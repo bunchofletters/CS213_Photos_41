@@ -1,5 +1,4 @@
 package Controller;
-import java.time.LocalDate;
 
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -23,8 +22,7 @@ public class listOfPhotos {
 
 
     public void addPhoto(Image image){
-        LocalDate x = LocalDate.now();
-        imageAttributes newImage = new imageAttributes(image, x);
+        imageAttributes newImage = new imageAttributes(image);
         photos.add(newImage);
     }
     

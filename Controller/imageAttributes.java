@@ -19,10 +19,11 @@ public class imageAttributes {
     private LocalDate uploadDate;
 
 
-    public imageAttributes(Image image, LocalDate uploadDate){
+    public imageAttributes(Image image){
         this.image = image;
         System.out.println(uploadDate);
-        this.uploadDate = uploadDate;
+        LocalDate date = LocalDate.now();
+        this.uploadDate = date;
     }
     
     // public imageAttributes(Image image, )
@@ -46,6 +47,7 @@ public class imageAttributes {
     public String getName(){
         return captions.get();
     }
+    
 
 
     
