@@ -85,7 +85,6 @@ public class admin {
     /**
      * This method will remove a user profile by selecting the user from the userList
      * This method will remove a user profile by selecting the user from the list
-     * This method will remove a user profile by selecting the user from the userList
      */
     void deleteUser2() {
         if(userList.getSelectionModel().getSelectedIndex() > -1){
