@@ -23,6 +23,7 @@ public class listOfPhotos {
 
     public void addPhoto(Image image){
         imageAttributes newImage = new imageAttributes(image);
+        System.out.println("This is photo File Path: " + image.getUrl());
         photos.add(newImage);
     }
     

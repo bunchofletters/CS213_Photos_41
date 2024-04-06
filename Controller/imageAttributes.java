@@ -17,6 +17,7 @@ public class imageAttributes {
     private ObservableList<String> tags;
     private Image image;
     private LocalDate uploadDate;
+    private String url;
 
 
     public imageAttributes(Image image){
@@ -36,6 +37,10 @@ public class imageAttributes {
         this.captions.set(caption);
     }
 
+    public void setURL(String url){
+        this.url = url;
+    }
+
     public Image getImage(){
         return image;
     }
@@ -46,6 +51,10 @@ public class imageAttributes {
 
     public String getName(){
         return captions.get();
+    }
+
+    public String getURL(){
+        return url;
     }
     
 

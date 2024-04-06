@@ -78,8 +78,9 @@ public class linkerClass {
     }
 
 // -------------------------------------------------------------------------------------
-    public void addToImage(photoAlbumList albumnlist, Image image){
-        imageList.get(albumnlist).addPhoto(image);
+
+    public void addToImage(photoAlbumList albumnlist, imageAttributes image){
+        imageList.get(albumnlist).getPhotos().add(image);
     }
 
 // -------------------------------------------------------------------------------------
@@ -119,13 +120,14 @@ public class linkerClass {
 
 // -------------------------------------------------------------------------------------
 
-    public boolean isImageInAlbum(photoAlbumList albumList, Image image) {
+    public boolean isImageInAlbum(photoAlbumList albumList, imageAttributes image) {
     listOfPhotos photos = imageList.get(albumList);
         if (photos != null) {
             List<imageAttributes> photoList = photos.getPhotos();
             for (imageAttributes img : photoList) {
-                if (img.getImage().getUrl().equals(image.getUrl())) {
-                return true;
+                System.out.println(img.getImage().getUrl());
+                if (img.getURL().equals(image.getURL())) {
+                    return true;
                 }
             }
         }

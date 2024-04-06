@@ -64,10 +64,10 @@ public class previewImageUpload {
     photoList = link.getImageList(user.getAlbum());
     imagePreviewer.setImage(track.getSelectedImage());
 
-    if (track.stockImageBoolean == true){
-        imagePreviewer.setImage(track.getStockImage());
-        track.turnOffStockImage();
-    }
+    // if (track.stockImageBoolean == true){
+    //     imagePreviewer.setImage(track.getStockImage());
+    //     track.turnOffStockImage();
+    // }
     // TagColum.setCellValueFactory(f -> new String());
     // Table.getColumns().forEach(e -> e.setReorderable(false));
     // Table.getItems().add();

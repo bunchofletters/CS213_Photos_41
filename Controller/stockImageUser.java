@@ -23,6 +23,7 @@ public class stockImageUser {
 
 // -------------------------------------------------------------------------------------
 
+
     /**
      * This will populate the list with the name of each stock photo 
      * and will automatically display the first stock photo

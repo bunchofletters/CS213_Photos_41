@@ -6,7 +6,8 @@ import javafx.scene.image.Image;
 
 public class imageTracker {
 
-        private Image selectedImage, copyImage, moveImage, stockImage;
+        private Image selectedImage, copyImage, moveImage;
+        private imageAttributes stockImage;
         private static imageTracker instance;
         protected boolean check, move, stockImageBoolean;
         protected ObservableList<String> allTags;
@@ -61,11 +62,11 @@ public class imageTracker {
 
 // -------------------------------------------------------------
 
-    public void setStockImage(Image stockImage){
+    public void setStockImage(imageAttributes stockImage){
         this.stockImage = stockImage;
     }
 
-    public Image getStockImage(){
+    public imageAttributes getStockImage(){
         return stockImage;
     }
 

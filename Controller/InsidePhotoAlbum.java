@@ -75,7 +75,9 @@ public class InsidePhotoAlbum{
     AlbumNameItsIn.setText(user.getAlbum().getName());
 
     Image image = new Image("data/Frog.jpeg");
-    link.addToImage(user.getAlbum(), image);
+    imageAttributes newImage = new imageAttributes(image);
+    newImage.setURL("/data/Frog.jpeg");
+    link.addToImage(user.getAlbum(), newImage);
     
     images = link.getImageList(user.getAlbum()).getPhotos();
     user.getAlbum().setPhotoNum(images.size());
@@ -204,10 +206,10 @@ public class InsidePhotoAlbum{
 
         try {
             Image image = track.getSaveCopyImage();
-            if (image != null && !link.isImageInAlbum(user.getAlbum(), image)) {
-                link.addToImage(user.getAlbum(), image);
-                tilePane.getChildren().add(setImages(image));
-            } 
+            // if (image != null && !link.isImageInAlbum(user.getAlbum(), image)) {//TODO
+            //     link.addToImage(user.getAlbum(), image);
+            //     tilePane.getChildren().add(setImages(image));
+            // } 
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -286,7 +288,7 @@ public class InsidePhotoAlbum{
                         user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                         tilePane.getChildren().add(setImages(track.getSelectedImage()));
                         track.check = false;
-                    }
+                    } 
                     
                        
                 });
@@ -372,10 +374,10 @@ public class InsidePhotoAlbum{
             popupStage.setResizable(false);
 
             popupStage.setOnHidden(e -> {
-                if(track.move = true){
-                    remove();
-                    track.move = false;
-                }
+                // if(track.move = true){
+                //     remove();
+                //     track.move = false;
+                // }
             });
             popupStage.showAndWait();;
                     
@@ -405,39 +407,23 @@ public class InsidePhotoAlbum{
             Scene scene = new Scene(root);
 
             popupStage = new Stage();
-            popupStage.initModality(Modality.APPLICATION_MODAL); 
+            popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setScene(scene);
             popupStage.setResizable(false);
 
             popupStage.setOnHidden(e -> {
-                addToTile();
-                // Image image = track.getStockImage();
-
-                // if (!link.isImageInAlbum(user.getAlbum(), image)) {
-                //     link.addToImage(user.getAlbum(), image);
-                //     user.updateUserAlbum();
-                //     tilePane.getChildren().add(setImages(image));
-                //     track.setStockImage(null);
-                // }
+                if (!link.isImageInAlbum(user.getAlbum(), track.getStockImage())) {
+                    link.addToImage(user.getAlbum(), track.getStockImage());
+                    user.updateUserAlbum();
+                    tilePane.getChildren().add(setImages(track.getStockImage().getImage()));
+                    track.setStockImage(null);
+                }    
             });
             popupStage.showAndWait();;
                     
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    // -------------------------------------------------------------------------------------
-
-    public void addToTile(){
-        Image image = track.getStockImage();
-
-        if (!link.isImageInAlbum(user.getAlbum(), image)) {
-            link.addToImage(user.getAlbum(), image);
-            user.updateUserAlbum();
-            tilePane.getChildren().add(setImages(image));
-            track.setStockImage(null);
         }
     }
 
