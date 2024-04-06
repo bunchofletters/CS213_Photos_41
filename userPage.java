@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
@@ -56,7 +57,7 @@ public class userPage {
      * Uses the "Create New Album" Button to input the names into tableview list using the TextField "AlbumNameInput"
      * @param event
      */
-    @FXML void createAlbum(ActionEvent event) {
+    @FXML void createAlbum() {
     String albumName = AlbumNameInput.getText().trim();
         if (!albumName.isEmpty()) {
             if (!containsAlbumName(albumName)) {
@@ -84,8 +85,8 @@ public class userPage {
     @FXML void delButton(ActionEvent event) {
         int item = table.getSelectionModel().getSelectedIndex();
             if(item != -1){
-                table.getItems().remove(item);
                 link.removePhotoList(link.getPhotoAlbum(user).getAlbumList().get(item));
+                table.getItems().remove(item);
             }
     }
 
@@ -138,7 +139,20 @@ public class userPage {
         table.getColumns().forEach(e -> e.setReorderable(false));
         table.setItems(link.getPhotoAlbum(user).getAlbumList());
 
+        table.setRowFactory(tv -> {
+            TableRow<photoAlbumList> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                int item = table.getSelectionModel().getSelectedIndex();
+                album = link.getPhotoAlbum(user).getAlbumList().get(item);
+                    if(item != -1){
+                    x.changeScene("insidePhotoAlbum.fxml");
+                    }
+                }
 
+            });
+            return row;
+        });
     }
 
     public void updateUserAlbum(){
