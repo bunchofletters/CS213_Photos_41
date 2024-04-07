@@ -22,7 +22,7 @@ public class userPage{
     @FXML private Button CreateAlbumButton;
     @FXML private Button DelAlbumButton;
     @FXML private Button OpenAlbumButton;
-    // @FXML private Button PasteButton;
+    @FXML private Button SearchModeButton;
 
     // TextFields
     @FXML private TextField AlbumNameInput;
@@ -139,7 +139,7 @@ public class userPage{
         EarliestPhotoDate.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getLowestDate()));
         LatestPhotoDate.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getHighestDate()));
         table.getColumns().forEach(e -> e.setReorderable(false));
-        table.setItems(link.getPhotoAlbum(user).getAlbumList());
+        tableRefesh();
 
         table.setRowFactory(tv -> {
             TableRow<photoAlbumList> row = new TableRow<>();
@@ -159,6 +159,11 @@ public class userPage{
         });
     }
 
+    public void tableRefesh(){
+        table.getItems().clear();
+        table.setItems(link.getPhotoAlbum(user).getAlbumList());
+    }
+
     public void updateUserAlbum(){
         photoAlbumList album = link.getPhotoAlbum(user).getAlbumList().get(item);
         listOfPhotos photoList = link.getImageList(album);
@@ -166,6 +171,9 @@ public class userPage{
             album.setLowestDate(photoList.getPhotos().get(0).getUploadDate());
             album.setHighestDate(photoList.getPhotos().get(photoList.getPhotos().size()-1).getUploadDate());
         }
+    }
+    public void setItems(int x){
+        item = x;
     }
 
     public int getIndex(){
@@ -183,4 +191,14 @@ public class userPage{
         return album;
     }
 
+    public String getUser(){
+        return user;
+    }
+
+
+// -------------------------------------------------------------------------------------
+
+    @FXML void searchMode(ActionEvent event) {
+        x.changeScene("/view/searchMode.fxml");
+    }
 }

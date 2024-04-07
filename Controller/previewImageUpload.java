@@ -1,6 +1,7 @@
 package Controller;
 import java.util.Optional;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,8 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
@@ -34,6 +33,7 @@ public class previewImageUpload {
     @FXML private Button CloseButton;
     @FXML private Button SaveButton;
     @FXML private Button AddValueButton;
+    @FXML private Button DeleteButton;
 
     @FXML private Label CurrentCaptionLabel;
 
@@ -50,7 +50,7 @@ public class previewImageUpload {
 // -------------------------------------------------------------------------------------
 
     @FXML
-    void save() {
+    void save() { //Confirm that tag=value get send correctly
         // photoList.addPhoto(track.getUplaodImage().getImage());
         System.out.println("Preview:" + track.getUplaodImage().getImage());
         user.updateUserAlbum();
@@ -66,6 +66,7 @@ public class previewImageUpload {
     userPage user = userPage.getInstance();
     photoList = link.getImageList(user.getAlbum());
     imagePreviewer.setImage(track.getUplaodImage().getImage());
+    imgAttr = new imageAttributes(track.getUplaodImage().getImage());
     System.out.println("Preview INTIZ: " + track.getUplaodImage().getImage());
 
     if(track.getSelectedTagList() != null){
@@ -84,6 +85,11 @@ public class previewImageUpload {
     
     TagColum.setCellValueFactory(new PropertyValueFactory<tagsAndValue, String>("tags"));
     ValueColumn.setCellValueFactory(new PropertyValueFactory<tagsAndValue, String>("value"));
+
+    TagColum.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getTag()));
+    ValueColumn.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getValue()));
+
+    Table.getColumns().forEach(e -> e.setReorderable(false));
     Table.setItems(selectedTagsList);
     Table.refresh();
     }
@@ -124,11 +130,14 @@ public class previewImageUpload {
             secondPopUp.setScene(scene);
             secondPopUp.setResizable(false);
 
+            
+
             secondPopUp.setOnHidden(e -> {
-             // need to implement
+                tagsAndValue x = new tagsAndValue(track.getMoveTag(), "");
+                selectedTagsList.add(x);
+                Table.setItems(selectedTagsList);
             });
-            secondPopUp.showAndWait();;
-                    
+            secondPopUp.showAndWait();            
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -147,10 +156,22 @@ public class previewImageUpload {
 
 
     @FXML void addValue(ActionEvent event) {
-
+        int index = Table.getSelectionModel().getSelectedIndex();
+        TextInputDialog td = new TextInputDialog();
+        td.setContentText("Input Tag Value");
+        td.setTitle("Tag Value");
+        Optional<String> result = td.showAndWait();
+        if(result.isPresent()){
+            selectedTagsList.get(index).setValue(result.get());
+            Table.refresh();
+        }
     }
 
 // -------------------------------------------------------------------------------------
-
+    @FXML void deleteTagValue(){
+        int index = Table.getSelectionModel().getSelectedIndex();
+        selectedTagsList.remove(index);
+        Table.refresh();
+    }
 
 }
