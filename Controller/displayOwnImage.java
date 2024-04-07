@@ -1,7 +1,6 @@
 package Controller;
 
 import app.Photo;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,9 +12,8 @@ public class displayOwnImage {
 
     private Photo photo = Photo.getInstance();
     linkerClass link = linkerClass.getInstance();
-    private userPage user = userPage.getInstance();
     private imageTracker track = imageTracker.getInstance();
-    private ObservableList<imageAttributes> images;
+ 
 
     @FXML private Label CaptionLabel;
     @FXML private Label DateLabel;

@@ -1,5 +1,4 @@
 package Controller;
-import java.time.LocalDate;
 
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -24,6 +23,7 @@ public class listOfPhotos{
 
     public void addPhoto(Image image){
         imageAttributes newImage = new imageAttributes(image);
+        System.out.println("This is photo File Path: " + image.getUrl());
         photos.add(newImage);
     }
     

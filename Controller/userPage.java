@@ -14,7 +14,7 @@ import app.Photo;
 /**
  * @author Danny dl1093
  */
-public class userPage implements Serializable{
+public class userPage{
 
     // Buttons
     @FXML private Button RenameAlbumButton;
