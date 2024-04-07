@@ -346,7 +346,7 @@ public class InsidePhotoAlbum{
                 System.out.println(track.getSelectedImage());
                 tilePane.getChildren().remove(selectedVBox);
                 selectedVBox = null;
-                link.removeImage(user.getAlbum(),selectImage);
+                link.getImageList(user.getAlbum()).removeImage(selectImage);
                 user.updateUserAlbum(); //update the album that the image was moved from
                 user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                 } 
