@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 
 public class goIntoImageAndEdit {
     
-    private listOfPhotos photoList;
     linkerClass link = linkerClass.getInstance();
     private imageTracker track = imageTracker.getInstance();
 
@@ -71,7 +70,7 @@ public class goIntoImageAndEdit {
 
     public void initialize() {
 
-        ImageViewer.setImage(track.getSelectedImage());
+        ImageViewer.setImage(track.getSelectedImage().getImage());
 
       //  TagColumn.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getName()));
       //  ValueColum.setCellValueFactory(f -> new SimpleIntegerProperty());
@@ -107,9 +106,6 @@ public class goIntoImageAndEdit {
         catch (Exception e) {
             e.printStackTrace();
         }
-
-    @FXML void addTag(ActionEvent event) {
-
     }
 
 
