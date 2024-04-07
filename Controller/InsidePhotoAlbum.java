@@ -182,7 +182,7 @@ public class InsidePhotoAlbum{
         try {
             // imageAttributes image = track.getSaveCopyImage();
             // System.out.println(track.getSaveCopyImage().getURL());
-            if (track.getSaveCopyImage() != null && !link.isImageInAlbum(user.getAlbum(), track.getSaveCopyImage())) {
+            if (track.getSaveCopyImage() != null && !link.getImageList(user.getAlbum()).isImageInAlbum(track.getSaveCopyImage())) {
                 System.out.println("PASTING PRINT: " + track.getSaveCopyImage().getURL());
                 link.addToImage(user.getAlbum(), track.getSaveCopyImage());
                 tilePane.getChildren().add(setImages(track.getSaveCopyImage().getImage()));
@@ -255,11 +255,11 @@ public class InsidePhotoAlbum{
                 // When the Popup Window CLoses by Any Means (X or EXIT BUTTON)
                 popupStage.setOnHidden(e -> {
                     System.out.println(track.getUplaodImage());
-                    if (!link.isImageInAlbum(user.getAlbum(), track.getUplaodImage())){
+                    if (track.getclosed() && !link.getImageList(user.getAlbum()).isImageInAlbum(track.getUplaodImage())){
                         link.addToImage(user.getAlbum(), track.getUplaodImage());
                         user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                         tilePane.getChildren().add(setImages(track.getUplaodImage().getImage()));
-
+                        track.setClosed(false);
                     }
                            
                 });
@@ -284,7 +284,7 @@ public class InsidePhotoAlbum{
         }
         
         if (selectImage != null){
-            link.removeImage(user.getAlbum(),selectImage);
+            link.getImageList(user.getAlbum()).removeImage(selectImage);
             user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
             selectImage = null;
             }
@@ -365,7 +365,6 @@ public class InsidePhotoAlbum{
 
     @FXML
     void SlideShow(ActionEvent event) {
-        System.out.println("InsidePhotoAlbum:SlideShow Scene Change");
         photo.changeScene("/view/PhotoSlideshow.fxml");
     }
 // -------------------------------------------------------------------------------------
@@ -387,8 +386,8 @@ public class InsidePhotoAlbum{
             popupStage.setResizable(false);
 
             popupStage.setOnHidden(e -> {
-                if (track.getStockImage() != null && !link.isImageInAlbum(user.getAlbum(), track.getStockImage())) {
-                    link.addToImage(user.getAlbum(), track.getStockImage()); //onoe add
+                if (track.getStockImage() != null && !link.getImageList(user.getAlbum()).isImageInAlbum(track.getStockImage())) {
+                    link.addToImage(user.getAlbum(), track.getStockImage());
                     user.updateUserAlbum();
                     user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                     tilePane.getChildren().add(setImages(track.getStockImage().getImage()));

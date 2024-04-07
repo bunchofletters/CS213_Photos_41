@@ -10,6 +10,7 @@ public class imageTracker {
         protected boolean move = false;
         protected ObservableList<String> allTags;
         private String tags;
+        private boolean closed = false;
 
     public static imageTracker getInstance(){
         if (instance == null) {
@@ -202,6 +203,16 @@ public class imageTracker {
     public void setSearchSelectedImage(imageAttributes selectedImage) {
         this.searchSelectImage = selectedImage;
     }
+
+    public boolean getclosed(){
+        return closed;
+    }
+
+    public void setClosed(boolean x){
+        closed = x;
+    }
 }
+
+
 
 

@@ -134,16 +134,20 @@ public class dataList implements Serializable{
                 //Copy image first
                 imageAttributes_serializable copyData = new imageAttributes_serializable(mapPhoto.getPhotos().get(i).getImage());
                 System.out.println("DataList:SetImageList" + copyData.getUrl());
+                System.out.println("Pass Photo Copying");
                 //copy date
                 copyData.setUploadDate(mapPhoto.getPhotos().get(i).getUploadDateAsDate());
+                System.out.println("Pass Date Copying");
                 //copy caption
                 copyData.setCaption(mapPhoto.getPhotos().get(i).getCaption());
+                System.out.println("Pass Caption Copying");
                 //copy tags over
                 if(mapPhoto.getPhotos().get(i).getTags().size() > 0){
                     ArrayList<String> copyTag = new ArrayList<>();
                     copyData.setTag(copyTag);
                     copyTag.addAll(mapPhoto.getPhotos().get(i).getTags());
                 }
+                System.out.println("Pass Tag Copying");
                 tmp.add(copyData);
             }
         }
