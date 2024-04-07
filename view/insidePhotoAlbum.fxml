@@ -30,7 +30,7 @@
       <DatePicker fx:id="DatePickerBar" layoutX="22.0" layoutY="61.0" onAction="#pickDate" prefHeight="26.0" prefWidth="151.0" />
       <TextField fx:id="FilterInput" layoutX="285.0" layoutY="61.0" onAction="#filterBox" prefHeight="26.0" prefWidth="344.0" promptText="Filter" />
       <Button fx:id="SearchInput" alignment="CENTER" layoutX="639.0" layoutY="61.0" mnemonicParsing="false" onAction="#searchbox" prefHeight="26.0" prefWidth="65.0" text="Search" />
-      <Label fx:id="AlbumNameItsIn" layoutX="404.0" layoutY="17.0" prefHeight="24.0" prefWidth="223.0">
+      <Label fx:id="AlbumNameItsIn" layoutX="410.0" layoutY="17.0" prefHeight="24.0" prefWidth="223.0">
          <font>
             <Font name="Avenir Black" size="16.0" />
          </font>

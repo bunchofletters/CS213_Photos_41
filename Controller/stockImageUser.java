@@ -40,7 +40,7 @@ public class stockImageUser {
             });
         
             for (File x : images){
-                String photoName = x.getPath().substring(x.getPath().lastIndexOf('\\')+1,x.getPath().lastIndexOf("."));
+                String photoName = x.getPath().substring(x.getPath().lastIndexOf("\\")+1,x.getPath().lastIndexOf("."));
                 if(photoName.contains("/")){
                     photoName = x.getPath().substring(x.getPath().lastIndexOf("/")+1, x.getPath().lastIndexOf("."));
                 }
@@ -55,8 +55,9 @@ public class stockImageUser {
         filepath = filepath.substring(1);
         System.out.println(filepath);
         if(filepath.contains("\\")){
-            filepath.replace('\\', '/');
+            filepath = filepath.replace("\\", "/");
         }
+        System.out.println(filepath);
         
         Image imageview = new Image(getClass().getResourceAsStream(filepath));
         ImageViewer.setImage(imageview);
@@ -78,7 +79,7 @@ public class stockImageUser {
         String filepath = images[photoPos].getPath();
         filepath = filepath.substring(1);
         if(filepath.contains("\\"))
-            filepath.replace('\\', '/');
+            filepath = filepath.replace("\\", "/");
         Image imageview = new Image(getClass().getResourceAsStream(filepath));
         ImageViewer.setImage(imageview);
         long n = System.nanoTime();
