@@ -1,6 +1,9 @@
 package Controller;
 import java.time.LocalDate;
 import java.util.Optional;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,7 +53,7 @@ public class previewImageUpload {
     @FXML
     void save() {
         // photoList.addPhoto(track.getUplaodImage().getImage());
-        System.out.println("Preview:" + track.getUplaodImage());
+        System.out.println("Preview:" + track.getUplaodImage().getImage());
         user.updateUserAlbum();
         Stage stage = (Stage) SaveButton.getScene().getWindow();
         stage.close();
@@ -63,7 +66,8 @@ public class previewImageUpload {
 
     userPage user = userPage.getInstance();
     photoList = link.getImageList(user.getAlbum());
-    imagePreviewer.setImage(track.getSelectedImage());
+    imagePreviewer.setImage(track.getUplaodImage().getImage());
+    System.out.println("Preview INTIZ: " + track.getUplaodImage().getImage());
 
     if(track.getSelectedTagList() != null){
         for (int i = 0; i < track.tagSelectedListSize(); i++){
