@@ -1,4 +1,8 @@
 package Controller;
+<<<<<<< HEAD
+=======
+import java.time.LocalDate;
+>>>>>>> 4989309 (:))
 
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -8,7 +12,7 @@ import javafx.scene.image.Image;
  * @author danny
  * @author oscar
  */
-public class listOfPhotos {
+public class listOfPhotos{
 
     private ObservableList<imageAttributes> photos;
 
@@ -23,7 +27,10 @@ public class listOfPhotos {
 
     public void addPhoto(Image image){
         imageAttributes newImage = new imageAttributes(image);
+<<<<<<< HEAD
         System.out.println("This is photo File Path: " + image.getUrl());
+=======
+>>>>>>> 4989309 (:))
         photos.add(newImage);
     }
     
