@@ -71,7 +71,7 @@ public class goIntoImageAndEdit {
 
     public void initialize() {
 
-        ImageViewer.setImage(track.getSelectedImage());
+        ImageViewer.setImage(track.getSelectedImage().getImage());
 
       //  TagColumn.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getName()));
       //  ValueColum.setCellValueFactory(f -> new SimpleIntegerProperty());

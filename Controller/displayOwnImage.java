@@ -40,7 +40,7 @@ public class displayOwnImage {
     }
 
     public void initialize(){
-        ImageViewer.setImage(track.getSelectedImage());
+        ImageViewer.setImage(track.getSelectedImage().getImage());
         
     }
 
