@@ -150,7 +150,7 @@ public class userPage{
                     if(item != -1){
                     item = table.getSelectionModel().getSelectedIndex();
                     album = link.getPhotoAlbum(user).getAlbumList().get(item);
-                    x.changeScene("insidePhotoAlbum.fxml");
+                    x.changeScene("/view/insidePhotoAlbum.fxml");
                     }
                 }
 

@@ -405,7 +405,6 @@ public class InsidePhotoAlbum{
 
     @FXML
     void SlideShow(ActionEvent event) {
-        System.out.println("InsidePhotoAlbum:SlideShow Scene Change");
         photo.changeScene("/view/PhotoSlideshow.fxml");
     }
 // -------------------------------------------------------------------------------------

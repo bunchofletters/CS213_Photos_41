@@ -1,27 +1,35 @@
 package Controller;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class tagsAndValue {
     
-    private String tags, value;
+    private SimpleStringProperty tags, value;
 
-    public tagsAndValue(String tag, String value){
-        this.tags = tag;
-        this.value = value;
+    public tagsAndValue(String tag, String values){
+        tags = new SimpleStringProperty();
+        value = new SimpleStringProperty();
+        tags.set(tag);
+        value.set(values);
     }
 
     public void setTag(String stuff){
-        this.tags = value;
+        tags.set(stuff);
     }
 
     public void setValue(String stuff){
-        this.value = stuff;
+        value.set(stuff);
     }
 
     public String getTag(){
-        return tags;
+        if(tags != null)
+            return tags.get();
+        return null;
     }
     public String getValue(){
-        return value;
+        if(value != null)
+            return value.get();
+        return null;
     }
 
 }
