@@ -55,6 +55,7 @@ public class imageAttributes {
     * @param caption The caption to be set.
     */
     public void setCaption(String caption) {
+        this.captions = new SimpleStringProperty();
         this.captions.set(caption);
     }
 
