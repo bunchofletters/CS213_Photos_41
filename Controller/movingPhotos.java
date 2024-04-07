@@ -13,8 +13,10 @@ public class movingPhotos {
     private static photoAlbumList album;
     private static userPage instance;
     
-    private login Login = login.getInstance();
+    private Photo photo = Photo.getInstance();
+    private userPage users = userPage.getInstance();
     private imageTracker track = imageTracker.getInstance();
+    private login Login = login.getInstance();
 
     public static userPage getInstance() {
     if (instance == null) {
@@ -51,19 +53,20 @@ public class movingPhotos {
         // Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
         // stage.close();
 
-        track.move = true;
         int item = table.getSelectionModel().getSelectedIndex();
         album = link.getPhotoAlbum(user).getAlbumList().get(item);
-        
 
         // Only add the image if it's not already in the album
         if (!link.isImageInAlbum(album, track.getSelectedImage())) {
             link.addToImage(album, track.getSelectedImage());
         }
 
-        Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
-        stage.close();
-    }
+
+
+        // // // Only add the image if it's not already in the album
+        // if (!link.isImageInAlbum(album, track.getSelectedImage())) {//TODO
+        //     link.addToImage(album, track.getSelectedImage());
+        // }
 
 // -------------------------------------------------------------------------------------
 

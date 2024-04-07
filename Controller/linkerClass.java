@@ -134,13 +134,15 @@ public class linkerClass{
 
 // -------------------------------------------------------------------------------------
 
-    public boolean isImageInAlbum(photoAlbumList albumList, Image image) {
+    public boolean isImageInAlbum(photoAlbumList albumList, imageAttributes image) {
     listOfPhotos photos = imageList.get(albumList);
         if (photos != null) {
             List<imageAttributes> photoList = photos.getPhotos();
             for (imageAttributes img : photoList) {
-                if (img.getImage().getUrl().equals(image.getUrl())) {
-                return true;
+                System.out.println(img.getURL());
+                System.out.println(image.getURL());
+                if (img.getURL().equals(image.getURL())) {
+                    return true;
                 }
             }
         }

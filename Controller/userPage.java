@@ -1,3 +1,4 @@
+package Controller;
 import java.util.Optional;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -140,7 +141,22 @@ public class userPage implements Serializable{
         table.getColumns().forEach(e -> e.setReorderable(false));
         table.setItems(link.getPhotoAlbum(user).getAlbumList());
 
+        table.setRowFactory(tv -> {
+            TableRow<photoAlbumList> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                int item = table.getSelectionModel().getSelectedIndex();
+                album = link.getPhotoAlbum(user).getAlbumList().get(item);
+                    if(item != -1){
+                    item = table.getSelectionModel().getSelectedIndex();
+                    album = link.getPhotoAlbum(user).getAlbumList().get(item);
+                    x.changeScene("insidePhotoAlbum.fxml");
+                    }
+                }
 
+            });
+            return row;
+        });
     }
 
     public void updateUserAlbum(){

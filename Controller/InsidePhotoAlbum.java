@@ -190,39 +190,22 @@ public class InsidePhotoAlbum{
 // -------------------------------------------------------------------------------------
 
     @FXML void paste() {
-        // link.addToImage(user.getAlbum(), track.getSaveCopyImage());
-        // tilePane.getChildren().add(setImages(track.getSaveCopyImage()));
-        // Image image = track.getSaveCopyImage();
-
-        // if (!link.isImageInAlbum(user.getAlbum(), image)) {
-        //     link.addToImage(user.getAlbum(), image);
-        //     tilePane.getChildren().add(setImages(image));
-        // }
-
         try {
-        Image image = track.getSaveCopyImage();
+            Image image = track.getSaveCopyImage();
 
-        if (!link.isImageInAlbum(user.getAlbum(), image)) {
-            link.addToImage(user.getAlbum(), image);
-            tilePane.getChildren().add(setImages(image));
-        }
+            if (!link.isImageInAlbum(user.getAlbum(), image)) {
+                link.addToImage(user.getAlbum(), image);
+                tilePane.getChildren().add(setImages(image));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     
     }
-    
 // -------------------------------------------------------------------------------------
 
     // copies photos
     @FXML void copyPhotos(ActionEvent event) {
-        // if (selectedVBox != null && selectImage != null) {
-        //     track.setSaveCopyImage(selectImage);
-        //     selectedVBox.setStyle("-fx-border-color: red; -fx-background-color: LIGHTPINK;");
-        //     StatusLabel.setText("STATUS COPYING:");
-        //     StatusUrlLabel.setText(selectImage.getUrl());
-        // }
-
         try {
         if (selectedVBox != null && selectImage != null) {
             track.setSaveCopyImage(selectImage);
@@ -442,10 +425,19 @@ public class InsidePhotoAlbum{
 // -------------------------------------------------------------------------------------
     
     @FXML
-    void display(ActionEvent event) {
+    void display() {
         if (selectImage != null){
             photo.changeScene("/view/displayOwnImage.fxml");
         }
     }
 
+// -------------------------------------------------------------------------------------
+    
+    @FXML
+    void display() {
+        if (selectImage != null){
+            photo.changeScene("/view/displayOwnImage.fxml");
+        }
+    }
+    
 }
