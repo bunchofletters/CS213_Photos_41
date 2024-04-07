@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="933.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.userPage">
+   <children>
+      <Button fx:id="logoutButton" alignment="CENTER" layoutX="839.0" layoutY="14.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="69.0" text="Logout" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="CreateAlbumButton" alignment="CENTER" layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#createAlbum" text="Create New Album" />
+      <Button fx:id="DelAlbumButton" alignment="CENTER" layoutX="26.0" layoutY="499.0" mnemonicParsing="false" onAction="#delButton" text="Delete Album" />
+      <Button fx:id="RenameAlbumButton" alignment="CENTER" layoutX="145.0" layoutY="500.0" mnemonicParsing="false" onAction="#renameAlbum" text="Rename Album" />
+      <Button fx:id="OpenAlbumButton" alignment="CENTER" layoutX="827.0" layoutY="499.0" mnemonicParsing="false" onAction="#openAlbum" text="Open Album" />
+      <TextField fx:id="AlbumNameInput" layoutX="170.0" layoutY="14.0" prefHeight="26.0" prefWidth="372.0" promptText="Set Album Name " />
+      <TableView fx:id="table" layoutX="26.0" layoutY="57.0" prefHeight="420.0" prefWidth="887.0">
+        <columns>
+          <TableColumn fx:id="AlbumName" prefWidth="380.3687858581543" text="Album Name" />
+          <TableColumn fx:id="NumberOfPhotos" prefWidth="184.99688720703125" text="# of Photos" />
+            <TableColumn prefWidth="307.0030517578125" text="Photo Dates">
+               <columns>
+                  <TableColumn fx:id="EarliestPhotoDate" prefWidth="162.1934814453125" text=" Earliest Date" />
+                  <TableColumn fx:id="LatestPhotoDate" minWidth="29.339019775390625" prefWidth="156.8065185546875" text="Latest date" />
+               </columns>
+            </TableColumn>
+        </columns>
+      </TableView>
+   </children>
+</Pane>
