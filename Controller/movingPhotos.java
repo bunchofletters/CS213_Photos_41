@@ -56,8 +56,12 @@ public class movingPhotos {
         album = link.getPhotoAlbum(user).getAlbumList().get(item);
 
         if (track.getSelectedImage() != null){
-            link.addToImage(users.getAlbum(), track.getSelectedImage());
             if (album.getPhotoNum() == 0){
+                link.addToImage(link.getPhotoAlbum(user).getAlbumList().get(item), track.getSelectedImage());
+                link.getPhotoAlbum(user).getAlbumList().get(item).setPhotoNum(link.getImageList(users.getAlbum()).getPhotos().size());
+
+                System.out.println(link.getImageList(users.getAlbum()).getPhotos().size());
+             
                 System.out.println("moving track: " + track.getSelectedImage());
                 System.out.println("moving album: " + users.getAlbum());
                 
@@ -65,8 +69,8 @@ public class movingPhotos {
                 Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
                 stage.close();
                 }
-                for (int i = 0; i < album.getPhotoNum(); i++){
-
+                for (int i = 0; i < link.getPhotoAlbum(user).getAlbumList().get(item).getPhotoNum(); i++){
+                    System.out.println(link.getPhotoAlbum(user).getAlbumList().get(item).getPhotoNum());
                     System.out.println("moving ouside track: " + track.getSelectedImage());
                     System.out.println("moving outside index: " + link.getImageList(album).getPhotos().get(i).getImage());
 
@@ -80,11 +84,13 @@ public class movingPhotos {
                     Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
                     stage.close();
                 }
+                link.addToImage(link.getPhotoAlbum(user).getAlbumList().get(item), track.getSelectedImage());
                 track.move = false;
-                Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
-                stage.close();
                 }
+                
             }
+            Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
+            stage.close();
         }
 
 

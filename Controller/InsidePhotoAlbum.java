@@ -378,11 +378,13 @@ public class InsidePhotoAlbum{
 
             popupStage.setOnHidden(e -> {  
                 if (track.move == false){
-                link.addToImage(user.getAlbum(), track.getSelectedImage());
+                //link.addToImage(user.getAlbum(), track.getSelectedImage());
                 System.out.println(user.getAlbum());
                 System.out.println(track.getSelectedImage());
-                remove();
                 user.updateUserAlbum();
+                remove();
+                
+                user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                 // user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                 }
                 // if (!link.isImageInAlbum(user.getAlbum(), track.getSelectedImage()))
