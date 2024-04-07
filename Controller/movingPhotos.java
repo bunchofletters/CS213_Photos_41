@@ -1,4 +1,5 @@
 package Controller;
+import app.Photo;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -13,8 +14,10 @@ public class movingPhotos {
     private static photoAlbumList album;
     private static userPage instance;
     
-    private login Login = login.getInstance();
+    private Photo photo = Photo.getInstance();
+    private userPage users = userPage.getInstance();
     private imageTracker track = imageTracker.getInstance();
+    private login Login = login.getInstance();
 
     public static userPage getInstance() {
     if (instance == null) {
@@ -50,20 +53,36 @@ public class movingPhotos {
         // Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
         // stage.close();
 
-        // int item = table.getSelectionModel().getSelectedIndex();
-        // album = link.getPhotoAlbum(user).getAlbumList().get(item);
-        
+        int item = table.getSelectionModel().getSelectedIndex();
+        album = link.getPhotoAlbum(user).getAlbumList().get(item);
 
-        // // Only add the image if it's not already in the album
-        // // if (!link.isImageInAlbum(album, track.getSelectedImage())) {//TODO
-        // //     link.addToImage(album, track.getSelectedImage());
-        // // }
+        if (track.getSelectedImage() != null){
+            link.addToImage(users.getAlbum(), track.getSelectedImage());
+            if (album.getPhotoNum() == 0){
+                track.move = false;
+                Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
+                stage.close();
+                }
+                for (int i = 0; i < album.getPhotoNum(); i++){
+                    if (link.getImageList(album).getPhotos().get(i).getImage().equals(track.getSelectedImage().getImage())){
+                    track.move = true;
+                    track.setSelectedImage(null);
+                    Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
+                    stage.close();
+                }
+                track.move = false;
+                Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
+                stage.close();
+                }
+            }
+        }
 
-        // Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
-        // stage.close();
 
 
-    }
+        // // // Only add the image if it's not already in the album
+        // if (!link.isImageInAlbum(album, track.getSelectedImage())) {//TODO
+        //     link.addToImage(album, track.getSelectedImage());
+        // }
 
 // -------------------------------------------------------------------------------------
 

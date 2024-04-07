@@ -162,7 +162,8 @@ public class linkerClass {
         if (photos != null) {
             List<imageAttributes> photoList = photos.getPhotos();
             for (imageAttributes img : photoList) {
-                System.out.println(img.getImage().getUrl());
+                System.out.println(img.getURL());
+                System.out.println(image.getURL());
                 if (img.getURL().equals(image.getURL())) {
                     return true;
                 }

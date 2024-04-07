@@ -2,6 +2,7 @@ package Controller;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,9 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -37,22 +40,23 @@ public class previewImageUpload {
 
     @FXML private ImageView imagePreviewer;
 
-    @FXML private TableColumn<String, String> TagColum;
-    @FXML private TableColumn<?, ?> ValueColumn;
-    @FXML private TableView<String> Table;
+    @FXML private TableColumn<tagsAndValue, String> TagColum;
+    @FXML private TableColumn<tagsAndValue, String> ValueColumn;
+    @FXML private TableView<tagsAndValue> Table;
 
     @FXML private Pane pane;
+
+    ObservableList<tagsAndValue> selectedTagsList = FXCollections.observableArrayList();
 
 // -------------------------------------------------------------------------------------
 
     @FXML
     void save() {
-        track.check = true;
-        photoList.addPhoto(track.getSelectedImage().getImage());
+        // photoList.addPhoto(track.getUplaodImage().getImage());
+        System.out.println("Preview:" + track.getUplaodImage().getImage());
         user.updateUserAlbum();
         Stage stage = (Stage) SaveButton.getScene().getWindow();
         stage.close();
-       
     }
 
     imageAttributes imgAttr;
@@ -62,16 +66,27 @@ public class previewImageUpload {
 
     userPage user = userPage.getInstance();
     photoList = link.getImageList(user.getAlbum());
-    imagePreviewer.setImage(track.getSelectedImage().getImage());
+    imagePreviewer.setImage(track.getUplaodImage().getImage());
+    System.out.println("Preview INTIZ: " + track.getUplaodImage().getImage());
 
+    if(track.getSelectedTagList() != null){
+        for (int i = 0; i < track.tagSelectedListSize(); i++){
+            if(track.getSelectedTagList().get(i) != null){
+                tagsAndValue adding = new tagsAndValue(track.getSelectedTagList().get(i), null);
+                selectedTagsList.add(adding);
+            }
+        }
+    }
+    
     // if (track.stockImageBoolean == true){
     //     imagePreviewer.setImage(track.getStockImage());
     //     track.turnOffStockImage();
     // }
-    // TagColum.setCellValueFactory(f -> new String());
-    // Table.getColumns().forEach(e -> e.setReorderable(false));
-    // Table.getItems().add();
-
+    
+    TagColum.setCellValueFactory(new PropertyValueFactory<tagsAndValue, String>("tags"));
+    ValueColumn.setCellValueFactory(new PropertyValueFactory<tagsAndValue, String>("value"));
+    Table.setItems(selectedTagsList);
+    Table.refresh();
     }
 
 // -------------------------------------------------------------------------------------
@@ -105,6 +120,7 @@ public class previewImageUpload {
             Scene scene = new Scene(root);
 
             secondPopUp = new Stage();
+            secondPopUp.setTitle("Preview Image Upload");
             secondPopUp.initModality(Modality.APPLICATION_MODAL); 
             secondPopUp.setScene(scene);
             secondPopUp.setResizable(false);
