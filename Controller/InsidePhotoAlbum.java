@@ -11,13 +11,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -281,14 +278,6 @@ public class InsidePhotoAlbum{
 
     // remoing photos with this button
     @FXML void remove() {
-        // if (selectedVBox != null){
-        //     Parent parent = selectedVBox.getParent();
-        //     if (parent instanceof Pane) {
-        //         Pane pane = (Pane) parent;
-        //         pane.getChildren().remove(selectedVBox);
-        //         selectedVBox = null;
-        //     }
-
         if (selectedVBox != null){
             tilePane.getChildren().remove(selectedVBox);
             selectedVBox = null;

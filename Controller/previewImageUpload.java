@@ -78,11 +78,6 @@ public class previewImageUpload {
         }
     }
     
-    // if (track.stockImageBoolean == true){
-    //     imagePreviewer.setImage(track.getStockImage());
-    //     track.turnOffStockImage();
-    // }
-    
     TagColum.setCellValueFactory(new PropertyValueFactory<tagsAndValue, String>("tags"));
     ValueColumn.setCellValueFactory(new PropertyValueFactory<tagsAndValue, String>("value"));
 
