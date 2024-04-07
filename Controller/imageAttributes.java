@@ -18,7 +18,6 @@ public class imageAttributes {
     private ObservableList<String> tags;
     private Image image;
     private LocalDate uploadDate;
-    private LocalDate uploadDate;
     private String url;
 
 
