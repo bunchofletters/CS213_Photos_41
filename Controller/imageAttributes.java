@@ -33,7 +33,8 @@ public class imageAttributes {
     public imageAttributes(Image image){
         this.image = image;
         System.out.println(uploadDate);
-        this.uploadDate = uploadDate;
+        LocalDate date = LocalDate.now();
+        this.uploadDate = date;
     }
 // -------------------------------------------------------------
 
@@ -54,6 +55,7 @@ public class imageAttributes {
     * @param caption The caption to be set.
     */
     public void setCaption(String caption) {
+        this.captions = new SimpleStringProperty();
         this.captions.set(caption);
     }
 
@@ -79,9 +81,7 @@ public class imageAttributes {
     * @return The image.
     */
     public Image getImage(){
-        if(image != null)
-            return image;
-        return null;
+        return image;
     }
     
 
