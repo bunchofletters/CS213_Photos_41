@@ -1,5 +1,4 @@
 package Controller;
-import java.io.Serializable;
 import java.util.Optional;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -151,7 +150,7 @@ public class userPage implements Serializable{
                     if(item != -1){
                     item = table.getSelectionModel().getSelectedIndex();
                     album = link.getPhotoAlbum(user).getAlbumList().get(item);
-                    x.changeScene("/view/insidePhotoAlbum.fxml");
+                    x.changeScene("insidePhotoAlbum.fxml");
                     }
                 }
 
