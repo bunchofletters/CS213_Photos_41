@@ -38,20 +38,20 @@
       <Button fx:id="CopyPhotosButton" alignment="CENTER" layoutX="18.0" layoutY="507.0" mnemonicParsing="false" onAction="#copyPhotos" text="Copy" />
       <Button fx:id="UploadButton" alignment="CENTER" layoutX="837.0" layoutY="509.0" mnemonicParsing="false" onAction="#upload" prefHeight="26.0" prefWidth="75.0" text="Upload " />
       <Button fx:id="RemoveButton" alignment="CENTER" layoutX="186.0" layoutY="508.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
-      <Button fx:id="EditButton" alignment="CENTER" layoutX="594.0" layoutY="509.0" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="100.0" text="Display / Edit" />
+      <Button fx:id="EditButton" alignment="CENTER" layoutX="648.0" layoutY="509.0" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="48.0" text="Edit" />
       <Button fx:id="MoveButton" alignment="CENTER" layoutX="73.0" layoutY="507.0" mnemonicParsing="false" onAction="#move" text="Move" />
       <Text layoutX="264.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECTED IMAGE:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Label fx:id="SelectedImage" layoutX="372.0" layoutY="509.0" prefHeight="17.0" prefWidth="204.0" />
+      <Label fx:id="SelectedImage" layoutX="372.0" layoutY="509.0" prefHeight="17.0" prefWidth="257.0" />
       <Label fx:id="StatusLabel" layoutX="264.0" layoutY="528.0" prefHeight="17.0" prefWidth="107.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="StatusUrlLabel" layoutX="372.0" layoutY="528.0" prefHeight="17.0" prefWidth="204.0" />
+      <Label fx:id="StatusUrlLabel" layoutX="372.0" layoutY="528.0" prefHeight="17.0" prefWidth="257.0" />
       <Button fx:id="PreviewButton" layoutX="191.0" layoutY="61.0" mnemonicParsing="false" onAction="#SlideShow" text="Slideshow" />
       <Button fx:id="PasteButton" layoutX="129.0" layoutY="508.0" mnemonicParsing="false" onAction="#paste" text="Paste" />
       <Text layoutX="289.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ALBUM NAME: ">
@@ -60,5 +60,6 @@
          </font>
       </Text>
       <Button fx:id="UploadFromStockButtom" layoutX="705.0" layoutY="509.0" mnemonicParsing="false" onAction="#UploadFromStock" text="Upload From Stock" />
+      <Button fx:id="DisplayButton" layoutX="722.0" layoutY="61.0" mnemonicParsing="false" onAction="#display" prefHeight="26.0" prefWidth="193.0" text="Display" />
    </children>
 </Pane>
