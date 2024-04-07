@@ -47,22 +47,22 @@ public class movingPhotos {
         // track.move = true;
         // int item = table.getSelectionModel().getSelectedIndex();
         // album = link.getPhotoAlbum(user).getAlbumList().get(item);
-        // link.addToImage(album, track.getSelectedImage());
         // Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
         // stage.close();
 
-        track.move = true;
-        int item = table.getSelectionModel().getSelectedIndex();
-        album = link.getPhotoAlbum(user).getAlbumList().get(item);
+        // int item = table.getSelectionModel().getSelectedIndex();
+        // album = link.getPhotoAlbum(user).getAlbumList().get(item);
         
 
-        // Only add the image if it's not already in the album
-        // if (!link.isImageInAlbum(album, track.getSelectedImage())) {//TODO
-        //     link.addToImage(album, track.getSelectedImage());
-        // }
+        // // Only add the image if it's not already in the album
+        // // if (!link.isImageInAlbum(album, track.getSelectedImage())) {//TODO
+        // //     link.addToImage(album, track.getSelectedImage());
+        // // }
 
-        Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
-        stage.close();
+        // Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
+        // stage.close();
+
+
     }
 
 // -------------------------------------------------------------------------------------

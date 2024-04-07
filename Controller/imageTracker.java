@@ -6,8 +6,7 @@ import javafx.scene.image.Image;
 
 public class imageTracker {
 
-        private Image selectedImage, copyImage, moveImage;
-        private imageAttributes stockImage;
+        private imageAttributes stockImage, selectedImage, copyImage, moveImage;
         private static imageTracker instance;
         protected boolean check, move, stockImageBoolean;
         protected ObservableList<String> allTags;
@@ -22,82 +21,139 @@ public class imageTracker {
 
  // -------------------------------------------------------------
 
+    /**
+    * This constructor initializes an imageTracker object.
+    * It also sets up an observable list for all tags.
+    */
     public imageTracker(){
         this.allTags = FXCollections.observableArrayList();
     }
 
   // -------------------------------------------------------------
-
-    public Image getSelectedImage() {
+   
+    /**
+    * This method returns the selected image.
+    *
+    * @return The selected image.
+    */
+    public imageAttributes getSelectedImage() {
         return selectedImage;
     }
 
+
     /**
-     * 
-     * @param selectedImage passes through the image that the user is currently selecting
-     */
-    public void setSelectedImage(Image selectedImage) {
+    * This method sets the selected image.
+    *
+    * @param selectedImage The image that the user is currently selecting.
+    */
+    public void setSelectedImage(imageAttributes selectedImage) {
         this.selectedImage = selectedImage;
     }
 
   // -------------------------------------------------------------
 
-    public void setSaveCopyImage(Image selectedImage) {
+    /**
+    * This method sets the saved copy of the image.
+    *
+    * @param selectedImage The image to be saved as a copy.
+    */
+    public void setSaveCopyImage(imageAttributes selectedImage) {
         this.copyImage = selectedImage;
     }
 
-    public Image getSaveCopyImage(){
+    /**
+    * This method returns the saved copy of the image.
+    *
+    * @return The saved copy of the image.
+    */
+    public imageAttributes getSaveCopyImage(){
         return copyImage;
     }
 
   // -------------------------------------------------------------
 
-    public void setMoveImage(Image selectedImage) {
+    /**
+    * This method sets the image to be moved.
+    *
+    * @param selectedImage The image to be moved.
+    */
+    public void setMoveImage(imageAttributes selectedImage) {
         this.moveImage = selectedImage;
     }
 
-    public Image getMoveImage(){
+    /**
+    * This method returns the image to be moved.
+    *
+    * @return The image to be moved.
+     */
+    public imageAttributes getMoveImage(){
         return moveImage;
     }
 
 // -------------------------------------------------------------
 
+    /**
+    * This method sets the stock image.
+    *
+    * @param stockImage The stock image.
+    */
     public void setStockImage(imageAttributes stockImage){
         this.stockImage = stockImage;
     }
 
+    /**
+    * This method returns the stock image.
+    *
+    * @return The stock image.
+    */
     public imageAttributes getStockImage(){
         return stockImage;
     }
-
-    public void turnOnStockImage(){
-        stockImageBoolean = true;
-    }
-
-    public void turnOffStockImage(){
-        stockImageBoolean = false;
-    }
 // -------------------------------------------------------------
 
+    /**
+    * This method adds a tag to the list of all tags.
+    *
+    * @param tag The tag to be added.
+    */
     public void addTagToList(String tag){
         allTags.add(tag);
     }
 
+    /**
+    * This method returns the size of the list of all tags.
+    *
+    * @return The size of the list of all tags.
+    */
     public int tagListSize(){
         return allTags.size();
     }
 
+    /**
+    * This method returns the list of all tags.
+    *
+    * @return The list of all tags.
+    */
     public ObservableList<String> getTagList(){
         return allTags;
     }
 
 // -------------------------------------------------------------
 
-
+    /**
+    * This method sets the tag to be moved.
+    *
+    * @param tag The tag to be moved.
+    */
     public void setMoveTag(String tag){
         this.tags = tag;
     }
 
+    /**
+    * This method returns the tag to be moved.
+    *
+    * @return The tag to be moved.
+    */
     public String getMoveTag(){
         return tags;
     }

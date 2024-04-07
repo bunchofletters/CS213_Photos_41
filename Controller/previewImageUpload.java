@@ -48,7 +48,7 @@ public class previewImageUpload {
     @FXML
     void save() {
         track.check = true;
-        photoList.addPhoto(track.getSelectedImage());
+        photoList.addPhoto(track.getSelectedImage().getImage());
         user.updateUserAlbum();
         Stage stage = (Stage) SaveButton.getScene().getWindow();
         stage.close();
@@ -62,7 +62,7 @@ public class previewImageUpload {
 
     userPage user = userPage.getInstance();
     photoList = link.getImageList(user.getAlbum());
-    imagePreviewer.setImage(track.getSelectedImage());
+    imagePreviewer.setImage(track.getSelectedImage().getImage());
 
     // if (track.stockImageBoolean == true){
     //     imagePreviewer.setImage(track.getStockImage());

@@ -12,21 +12,32 @@ public class listOfPhotos {
 
     private ObservableList<imageAttributes> photos;
 
-    /**
-     * Initalizes the ArrayList of photos
-     * @param image this is a imageAttribute ObservableList 
+     /**
+     * Constructs a listOfPhotos object with the specified list of image attributes.
+     *
+     * @param image The list of image attributes to be associated with this object.
      */
     public listOfPhotos(ObservableList<imageAttributes> image){
             this.photos = image;
     }
 
-
+    /**
+     * Adds a photo to the list of photos.
+     * It also prints the file path of the photo.
+     *
+     * @param image The photo to be added.
+     */
     public void addPhoto(Image image){
         imageAttributes newImage = new imageAttributes(image);
         System.out.println("This is photo File Path: " + image.getUrl());
         photos.add(newImage);
     }
     
+    /**
+     * Returns the list of photos.
+     *
+     * @return The list of photos.
+     */
     public ObservableList<imageAttributes> getPhotos(){
         return photos;
     }

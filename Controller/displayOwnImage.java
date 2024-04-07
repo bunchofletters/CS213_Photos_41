@@ -29,18 +29,23 @@ public class displayOwnImage {
 
     @FXML private ImageView ImageViewer;
 
-    @FXML
-    void logout(ActionEvent event) {
+// -------------------------------------------------------------
+
+    @FXML void logout(ActionEvent event) {
         photo.changeScene("/view/login.fxml");
     }
+
+// -------------------------------------------------------------
 
     @FXML
     void returnButton(ActionEvent event) {
         photo.changeScene("/view/insidePhotoAlbum.fxml");
     }
+    
+// -------------------------------------------------------------
 
     public void initialize(){
-        ImageViewer.setImage(track.getSelectedImage());
+        ImageViewer.setImage(track.getSelectedImage().getImage());
         
     }
 

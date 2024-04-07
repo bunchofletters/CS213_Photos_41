@@ -7,6 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import app.Photo;
 
+/**
+ * This class represents a login system.
+ * @author Danny, Oscar
+ */
 public class login{
     private static ObservableList<String> users = FXCollections.observableArrayList();
     private Photo x = Photo.getInstance();
@@ -21,7 +25,10 @@ public class login{
     @FXML private Label wrongPassword;
 
 // -------------------------------------------------------------------------------------
-
+    /**
+     * Initializes the login system.
+     * If there are any users in the data holder, it loads them into the users list.
+     */
     void initialize(){
         if(data.getUsers() != null){
             users = data.getUsers();
@@ -41,8 +48,15 @@ public class login{
         return instance;
     }
 
-    @FXML
-    void userLogin() {
+     /**
+     * Handles user login.
+     * Login Credentials "admin", it changes the scene to the admin view.
+     * Login Credentials "stock", it changes the scene to the stock image user view.
+     * Login Credentials not "admin", it checks if the username exists in the users list.
+     * If the username exists, it changes the scene to the user page view.
+     * If the username does not exist, it displays an error message.
+     */
+    @FXML void userLogin() {
         if(Username.getText().toLowerCase().equals("admin")){
             x.changeScene("/view/admin.fxml");
         } 
@@ -64,12 +78,22 @@ public class login{
 
 // -------------------------------------------------------------------------------------
 
+    /**
+     * Returns the username of the logged in user.
+     *
+     * @return The username of the logged in user.
+     */
     public String getUser(){
         return userLogined;
     }
 
 // -------------------------------------------------------------------------------------
 
+     /**
+     * Returns the list of users.
+     *
+     * @return The list of users.
+     */
     public ObservableList<String> getList(){
         return users;
     }

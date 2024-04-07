@@ -24,7 +24,12 @@ public class linkerClass {
     }
 
 // -------------------------------------------------------------------------------------
-
+    /**
+    * Sets up a photo album for the specified user.
+    * If the user does not already have a photo album, a new one is created.
+    *
+    * @param user The user for whom the photo album is to be set up.
+    */
     void setUserAlbum(String user){
     //If user does not have their own photoAblumList create one for them
         if(photoAlbum.get(user) == null){
@@ -35,6 +40,13 @@ public class linkerClass {
     }
 
 // -------------------------------------------------------------------------------------
+
+    /**
+    * Adds a photo album to the specified user's list of photo albums.
+    *
+    * @param user The user to whom the photo album is to be added.
+    * @param photos The photo album to be added.
+    */
 
     public void addToAlbum(String user, photoAlbumList photos){
         //Add the photoAlbum to the user's photoAlbumlist
@@ -69,6 +81,12 @@ public class linkerClass {
 
     private static HashMap<photoAlbumList, listOfPhotos> imageList = new HashMap<>();
 
+    /**
+    * Sets up a list of photos for the specified photo album.
+    * If the photo album does not already have a list of photos, a new one is created.
+    *
+    * @param photos The photo album for which the list of photos is to be set up.
+    */
     void setAlbumImages(photoAlbumList photos){
         if(imageList.get(photos) == null){
             ObservableList<imageAttributes> x = FXCollections.observableArrayList();
@@ -79,6 +97,12 @@ public class linkerClass {
 
 // -------------------------------------------------------------------------------------
 
+    /**
+    * Adds an image to the specified photo album's list of photos.
+    *
+    * @param albumList The photo album to which the image is to be added.
+    * @param image The image to be added.
+    */
     public void addToImage(photoAlbumList albumnlist, imageAttributes image){
         imageList.get(albumnlist).getPhotos().add(image);
     }
@@ -104,6 +128,12 @@ public class linkerClass {
 
 // -------------------------------------------------------------------------------------
 
+    /**
+    * Removes an image from the specified photo album.
+    *
+    * @param albumList The photo album from which the image is to be removed.
+    * @param imageToRemove The image to be removed.
+    */
     public void removeImage(photoAlbumList albumList, Image imageToRemove) {
     listOfPhotos photos = imageList.get(albumList);
         if (photos != null) {
@@ -120,6 +150,13 @@ public class linkerClass {
 
 // -------------------------------------------------------------------------------------
 
+    /**
+    * Checks if an image is in the specified photo album.
+    *
+    * @param albumList The photo album to be checked.
+    * @param image The image for which to check.
+    * @return true if the image is in the photo album, false otherwise.
+    */
     public boolean isImageInAlbum(photoAlbumList albumList, imageAttributes image) {
     listOfPhotos photos = imageList.get(albumList);
         if (photos != null) {
