@@ -93,14 +93,9 @@ public class linkerClass{
     }
 
 // -------------------------------------------------------------------------------------
-<<<<<<< HEAD
 
     public void addToImage(photoAlbumList albumnlist, imageAttributes image){
         imageList.get(albumnlist).getPhotos().add(image);
-=======
-    public void addToImage(photoAlbumList albumnlist, Image image){
-        imageList.get(albumnlist).addPhoto(image);
->>>>>>> 4989309 (:))
     }
 
 // -------------------------------------------------------------------------------------

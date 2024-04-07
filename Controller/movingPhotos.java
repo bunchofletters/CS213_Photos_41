@@ -1,8 +1,5 @@
 package Controller;
-<<<<<<< HEAD
 import app.Photo;
-=======
->>>>>>> 4989309 (:))
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -60,7 +57,6 @@ public class movingPhotos {
         int item = table.getSelectionModel().getSelectedIndex();
         album = link.getPhotoAlbum(user).getAlbumList().get(item);
 
-<<<<<<< HEAD
         if (track.getSelectedImage() != null){
             link.addToImage(users.getAlbum(), track.getSelectedImage());
             if (album.getPhotoNum() == 0){
@@ -80,11 +76,6 @@ public class movingPhotos {
                 stage.close();
                 }
             }
-=======
-        // Only add the image if it's not already in the album
-        if (!link.isImageInAlbum(album, track.getSelectedImage())) {
-            link.addToImage(album, track.getSelectedImage());
->>>>>>> 4989309 (:))
         }
 
 
