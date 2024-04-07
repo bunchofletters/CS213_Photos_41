@@ -18,7 +18,6 @@ public class imageAttributes {
     private ObservableList<String> tags;
     private Image image;
     private LocalDate uploadDate;
-<<<<<<< HEAD
     private String url;
 
 
@@ -44,23 +43,10 @@ public class imageAttributes {
     *
     * @param tag The tag to be added.
     */
-=======
-
-
-    public imageAttributes(Image image){
-        this.image = image;
-        System.out.println(uploadDate);
-        uploadDate = LocalDate.now();
-    }
-    
-    // public imageAttributes(Image image, )
-
->>>>>>> 4989309 (:))
     public void addTag(String tag) {
         tags.add(tag);
     }
 
-<<<<<<< HEAD
 // -------------------------------------------------------------
 
     /**
@@ -68,13 +54,10 @@ public class imageAttributes {
     *
     * @param caption The caption to be set.
     */
-=======
->>>>>>> 4989309 (:))
     public void setCaption(String caption) {
         this.captions.set(caption);
     }
 
-<<<<<<< HEAD
     // -------------------------------------------------------------
 
     /**
@@ -106,18 +89,6 @@ public class imageAttributes {
     *
     * @return The upload date as a string.
     */
-=======
-    public void setTag(ObservableList<String> data){
-        tags = data;
-    }
-
-    public Image getImage(){
-        if(image != null)
-            return image;
-        return null;
-    }
-    
->>>>>>> 4989309 (:))
     public String getUploadDate(){
         return uploadDate.toString();
     }
@@ -142,7 +113,6 @@ public class imageAttributes {
         this.uploadDate = date;
     }
 
-<<<<<<< HEAD
     // -------------------------------------------------------------
 
     /**
@@ -154,8 +124,6 @@ public class imageAttributes {
         return url;
     }
 
-=======
->>>>>>> 4989309 (:))
 
     
 }

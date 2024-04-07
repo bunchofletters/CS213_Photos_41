@@ -2,10 +2,6 @@ package Controller;
 import java.io.File;
 import java.io.FilenameFilter;
 
-<<<<<<< HEAD
-import app.Photo;
-=======
->>>>>>> 4989309 (:))
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,19 +34,9 @@ public class uploadingFromStock {
     void save(ActionEvent event) {
         int index = stockPhotoList.getSelectionModel().getSelectedIndex() < 0 ? 0 : stockPhotoList.getSelectionModel().getSelectedIndex();
         Image images1 = new Image(getClass().getResourceAsStream(images[index].getPath().substring(1)));
-<<<<<<< HEAD
-        imageAttributes newImage = new imageAttributes(images1);
-        newImage.setURL(images[index].getPath().substring(1));
-        track.setStockImage(newImage);
-        System.out.println(newImage);
-        Stage stage = (Stage) SaveButton.getScene().getWindow();
-        stage.close();
-
-=======
         track.setStockImage(images1);
         Stage stage = (Stage) SaveButton.getScene().getWindow();
         stage.close();
->>>>>>> 4989309 (:))
     }
 
     @FXML
