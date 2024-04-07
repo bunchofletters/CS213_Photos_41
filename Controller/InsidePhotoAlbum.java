@@ -380,7 +380,7 @@ public class InsidePhotoAlbum{
                 if (track.move == false){
                 link.addToImage(user.getAlbum(), track.getSelectedImage());
                 System.out.println(user.getAlbum());
-                System.out.println(track.getStockImage());
+                System.out.println(track.getSelectedImage());
                 remove();
                 user.updateUserAlbum();
                 // user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
