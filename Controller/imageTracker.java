@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 
 public class imageTracker {
 
-        private imageAttributes stockImage, selectedImage, copyImage, moveImage, uplaodImage;
+        private imageAttributes stockImage, selectedImage, copyImage, moveImage;
         private static imageTracker instance;
         protected boolean check, move, stockImageBoolean;
         protected ObservableList<String> allTags;
@@ -18,8 +18,6 @@ public class imageTracker {
         }
         return instance;
     }
-
-    private ObservableList<String> selectedTagsOnlyList = FXCollections.observableArrayList();
 
  // -------------------------------------------------------------
 
@@ -61,7 +59,6 @@ public class imageTracker {
     */
     public void setSaveCopyImage(imageAttributes selectedImage) {
         this.copyImage = selectedImage;
-        System.out.println(selectedImage.getURL());
     }
 
     /**
@@ -161,36 +158,6 @@ public class imageTracker {
         return tags;
     }
 
-// -------------------------------------------------------------
-
-
-    public void addSelectedTagToList(String tag){
-        selectedTagsOnlyList.add(tag);
-    }
-
-    
-    public int tagSelectedListSize(){
-        return selectedTagsOnlyList.size();
-    }
-
-   
-    public ObservableList<String> getSelectedTagList(){
-        return selectedTagsOnlyList;
-    }
-
-// -------------------------------------------------------------
-
-
-    
-    public imageAttributes getUplaodImage() {
-        return uplaodImage;
-    }
-
-
-
-    public void setUplaodImage(imageAttributes selectedImage) {
-        this.uplaodImage = selectedImage;
-    }
 }
 
 

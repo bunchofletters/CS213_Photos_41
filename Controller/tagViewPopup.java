@@ -27,12 +27,14 @@ public class tagViewPopup {
 // -------------------------------------------------------------------------------------
 
     public void initialize(){
+       if (track.tagListSize() >= 0){
         if (track.tagListSize() >= 0){
             for (int i = 0; i < track.tagListSize(); i++){
                 listOfTags.getItems().add(track.allTags.get(i));
            }
         }
     }
+}
 
 // -------------------------------------------------------------------------------------
 
@@ -64,19 +66,12 @@ public class tagViewPopup {
 
 // -------------------------------------------------------------------------------------
 
-@FXML void select(ActionEvent event) {
-    int TagValue = listOfTags.getSelectionModel().getSelectedIndex();
-    if(TagValue >= 0 && TagValue < listOfTags.getItems().size()){
-        String selectedTag = listOfTags.getItems().get(TagValue);
-        if(selectedTag != null){
-            track.setMoveTag(selectedTag);
-            track.addSelectedTagToList(selectedTag);
-        }
+    @FXML void select(ActionEvent event) {
+        int TagValue = listOfTags.getSelectionModel().getSelectedIndex();
+        track.setMoveTag(listOfTags.getItems().get(TagValue));
+        Stage stage = (Stage) CloseButton.getScene().getWindow();
+        stage.close();
     }
-    Stage stage = (Stage) CloseButton.getScene().getWindow();
-    stage.close();
-}
-
 
 // -------------------------------------------------------------------------------------
 
