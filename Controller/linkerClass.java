@@ -76,7 +76,7 @@ public class linkerClass{
     }
 
 // -------------------------------------------------------------------------------------
-
+    
     private static HashMap<photoAlbumList, listOfPhotos> imageList = new HashMap<>();
 
     public HashMap<photoAlbumList, listOfPhotos> getPhotoList(){
@@ -91,6 +91,7 @@ public class linkerClass{
             imageList.put(photos, tmp);
         }
     }
+    
 
 // -------------------------------------------------------------------------------------
 
@@ -116,39 +117,4 @@ public class linkerClass{
     public void removePhotoList(photoAlbumList list){
         imageList.remove(list);
     }
-
-// -------------------------------------------------------------------------------------
-
-    public void removeImage(photoAlbumList albumList, Image imageToRemove) {
-    listOfPhotos photos = imageList.get(albumList);
-        if (photos != null) {
-            List<imageAttributes> photoList = photos.getPhotos();
-            for (int i = 0; i < photoList.size(); i++) {
-                Image image = photoList.get(i).getImage();
-                if (image.equals(imageToRemove)) {
-                    photoList.remove(i); 
-                    break; 
-                }
-            }
-        }
-    }
-
-// -------------------------------------------------------------------------------------
-
-    public boolean isImageInAlbum(photoAlbumList albumList, imageAttributes image) {
-    listOfPhotos photos = imageList.get(albumList);
-        if (photos != null) {
-            List<imageAttributes> photoList = photos.getPhotos();
-            for (imageAttributes img : photoList) {
-                System.out.println(img.getURL());
-                System.out.println(image.getURL());
-                if (img.getURL().equals(image.getURL())) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-
 }
