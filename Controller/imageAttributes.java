@@ -2,6 +2,7 @@ package Controller;
 import java.time.LocalDate;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
@@ -17,20 +18,12 @@ public class imageAttributes {
     private ObservableList<String> tags;
     private Image image;
     private LocalDate uploadDate;
-    private String url;
 
-// -------------------------------------------------------------
-    /**
-     * This constructor initializes an imageAttributes object with the provided image. 
-     * It also sets the upload date to the current date.
-     * 
-     * @param image image The image to be associated with this imageAttributes object.
-     */
+
     public imageAttributes(Image image){
         this.image = image;
         System.out.println(uploadDate);
-        LocalDate date = LocalDate.now();
-        this.uploadDate = date;
+        uploadDate = LocalDate.now();
     }
 
 // -------------------------------------------------------------
@@ -55,26 +48,14 @@ public class imageAttributes {
         this.captions.set(caption);
     }
 
-// -------------------------------------------------------------
-
-    /**
-    * This method sets the URL of the image.
-    *
-    * @param url The URL to be set.
-    */
-    public void setURL(String url){
-        this.url = url;
+    public void setTag(ObservableList<String> data){
+        tags = data;
     }
 
-// -------------------------------------------------------------
-
-    /**
-    * This method returns the image.
-    *
-    * @return The image.
-    */
     public Image getImage(){
-        return image;
+        if(image != null)
+            return image;
+        return null;
     }
 
 // -------------------------------------------------------------
@@ -88,26 +69,24 @@ public class imageAttributes {
         return uploadDate.toString();
     }
 
-// -------------------------------------------------------------
-
-    /**
-    * This method returns the name of the image.
-    *
-    * @return The name of the image.
-    */
-    public String getName(){
-        return captions.get();
+    public LocalDate getUploadDateAsDate(){
+        return uploadDate;
     }
 
-// -------------------------------------------------------------
+    public ObservableList<String> getTags(){
+        if(tags != null)
+            return tags;
+        tags = FXCollections.observableArrayList();
+        return tags;
+    }
 
-    /**
-    * This method returns the URL of the image.
-    *
-    * @return The URL of the image.
-    */
-    public String getURL(){
-        return url;
+    public String getCaption(){
+        if(captions != null)
+            return captions.get();
+        return "n/a";
+    }
+    public void setDate(LocalDate date){
+        this.uploadDate = date;
     }
     
 

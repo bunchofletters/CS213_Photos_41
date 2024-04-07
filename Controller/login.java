@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.util.ArrayList;
+
 import app.Photo;
 
 /**
@@ -15,7 +18,6 @@ public class login{
     private static ObservableList<String> users = FXCollections.observableArrayList();
     private Photo x = Photo.getInstance();
     private static String userLogined = "";
-    private dataHolder data = dataHolder.getInstance();
     private static login instance;
 
     @FXML private Button LoginButton;
@@ -25,15 +27,6 @@ public class login{
     @FXML private Label wrongPassword;
 
 // -------------------------------------------------------------------------------------
-    /**
-     * Initializes the login system.
-     * If there are any users in the data holder, it loads them into the users list.
-     */
-    void initialize(){
-        if(data.getUsers() != null){
-            users = data.getUsers();
-        }
-    }
 
 // -------------------------------------------------------------------------------------
 
@@ -98,5 +91,7 @@ public class login{
         return users;
     }
     
-    
+    public void setUserList(ArrayList<String> savedUser){
+        users.addAll(savedUser);
+    }
 }

@@ -1,7 +1,6 @@
 package Controller;
 import java.io.File;
 import java.io.FilenameFilter;
-import java.io.IOException;
 
 import app.Photo;
 import javafx.collections.FXCollections;
@@ -16,11 +15,8 @@ import javafx.stage.Stage;
 
 public class uploadingFromStock {
 
-    private listOfPhotos photoList;
     linkerClass link = linkerClass.getInstance();
     private imageTracker track = imageTracker.getInstance();
-    private userPage user = userPage.getInstance();
-    private Photo photo = Photo.getInstance();
 
     private static ObservableList<String> Stock_Image = FXCollections.observableArrayList();
     private File dir = new File("./data");

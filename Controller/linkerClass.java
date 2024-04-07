@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
  * This class allows each user to have unique photo album along with each photo album having their own list of photos
  * @author oscar
  */
-public class linkerClass {
+public class linkerClass{
     
     // user to photoAlbum
     private static HashMap<String, photoAlbumList> photoAlbum = new HashMap<>();
@@ -23,13 +23,18 @@ public class linkerClass {
         return instance;
     }
 
+    public void loadUserToAlbum(HashMap<String, photoAlbumList> loadData){
+        photoAlbum = loadData;
+    }
+
+    public void loadAlbumToList(HashMap<photoAlbumList, listOfPhotos> loadData){
+        imageList = loadData;
+    }
+
 // -------------------------------------------------------------------------------------
-    /**
-    * Sets up a photo album for the specified user.
-    * If the user does not already have a photo album, a new one is created.
-    *
-    * @param user The user for whom the photo album is to be set up.
-    */
+    public HashMap<String, photoAlbumList> getDataPhotoAlbum(){
+        return photoAlbum;
+    }
     void setUserAlbum(String user){
     //If user does not have their own photoAblumList create one for them
         if(photoAlbum.get(user) == null){
@@ -81,12 +86,11 @@ public class linkerClass {
 
     private static HashMap<photoAlbumList, listOfPhotos> imageList = new HashMap<>();
 
-    /**
-    * Sets up a list of photos for the specified photo album.
-    * If the photo album does not already have a list of photos, a new one is created.
-    *
-    * @param photos The photo album for which the list of photos is to be set up.
-    */
+    public HashMap<photoAlbumList, listOfPhotos> getPhotoList(){
+        return imageList;
+    }
+
+
     void setAlbumImages(photoAlbumList photos){
         if(imageList.get(photos) == null){
             ObservableList<imageAttributes> x = FXCollections.observableArrayList();

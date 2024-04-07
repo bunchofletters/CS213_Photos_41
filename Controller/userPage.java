@@ -1,4 +1,5 @@
 package Controller;
+import java.io.Serializable;
 import java.util.Optional;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,7 +15,7 @@ import app.Photo;
 /**
  * @author Danny dl1093
  */
-public class userPage {
+public class userPage implements Serializable{
 
     // Buttons
     @FXML private Button RenameAlbumButton;

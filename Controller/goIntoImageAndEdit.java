@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 
 public class goIntoImageAndEdit {
     
-    private listOfPhotos photoList;
     linkerClass link = linkerClass.getInstance();
     private imageTracker track = imageTracker.getInstance();
 
