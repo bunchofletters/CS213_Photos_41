@@ -1,4 +1,5 @@
 package Controller;
+import java.io.Serializable;
 import java.util.Optional;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,10 +11,11 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import app.Photo;
 /**
  * @author Danny dl1093
  */
-public class userPage {
+public class userPage implements Serializable{
 
     // Buttons
     @FXML private Button RenameAlbumButton;
@@ -94,7 +96,7 @@ public class userPage {
 // -------------------------------------------------------------------------------------
 
     @FXML void logout(ActionEvent event) {
-        x.changeScene("login.fxml");
+        x.changeScene("/view/login.fxml");
     }
 
 // -------------------------------------------------------------------------------------
@@ -102,7 +104,7 @@ public class userPage {
         item = table.getSelectionModel().getSelectedIndex();
         album = link.getPhotoAlbum(user).getAlbumList().get(item);
             if(item != -1){
-                x.changeScene("insidePhotoAlbum.fxml");
+                x.changeScene("/view/insidePhotoAlbum.fxml");
             }
     }
 
@@ -149,7 +151,7 @@ public class userPage {
                     if(item != -1){
                     item = table.getSelectionModel().getSelectedIndex();
                     album = link.getPhotoAlbum(user).getAlbumList().get(item);
-                    x.changeScene("insidePhotoAlbum.fxml");
+                    x.changeScene("/view/insidePhotoAlbum.fxml");
                     }
                 }
 

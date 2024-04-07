@@ -17,12 +17,14 @@ public class imageAttributes {
     private ObservableList<String> tags;
     private Image image;
     private LocalDate uploadDate;
+    private String url;
 
 
-    public imageAttributes(Image image, LocalDate uploadDate){
+    public imageAttributes(Image image){
         this.image = image;
         System.out.println(uploadDate);
-        this.uploadDate = uploadDate;
+        LocalDate date = LocalDate.now();
+        this.uploadDate = date;
     }
     
     // public imageAttributes(Image image, )
@@ -33,6 +35,10 @@ public class imageAttributes {
 
     public void setCaption(String caption) {
         this.captions.set(caption);
+    }
+
+    public void setURL(String url){
+        this.url = url;
     }
 
     public Image getImage(){
@@ -46,6 +52,11 @@ public class imageAttributes {
     public String getName(){
         return captions.get();
     }
+
+    public String getURL(){
+        return url;
+    }
+    
 
 
     

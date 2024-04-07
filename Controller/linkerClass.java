@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
  * This class allows each user to have unique photo album along with each photo album having their own list of photos
  * @author oscar
  */
-public class linkerClass {
+public class linkerClass{
     
     // user to photoAlbum
     private static HashMap<String, photoAlbumList> photoAlbum = new HashMap<>();
@@ -23,8 +23,18 @@ public class linkerClass {
         return instance;
     }
 
-// -------------------------------------------------------------------------------------
+    public void loadUserToAlbum(HashMap<String, photoAlbumList> loadData){
+        photoAlbum = loadData;
+    }
 
+    public void loadAlbumToList(HashMap<photoAlbumList, listOfPhotos> loadData){
+        imageList = loadData;
+    }
+
+// -------------------------------------------------------------------------------------
+    public HashMap<String, photoAlbumList> getDataPhotoAlbum(){
+        return photoAlbum;
+    }
     void setUserAlbum(String user){
     //If user does not have their own photoAblumList create one for them
         if(photoAlbum.get(user) == null){
@@ -69,6 +79,11 @@ public class linkerClass {
 
     private static HashMap<photoAlbumList, listOfPhotos> imageList = new HashMap<>();
 
+    public HashMap<photoAlbumList, listOfPhotos> getPhotoList(){
+        return imageList;
+    }
+
+
     void setAlbumImages(photoAlbumList photos){
         if(imageList.get(photos) == null){
             ObservableList<imageAttributes> x = FXCollections.observableArrayList();
@@ -78,8 +93,9 @@ public class linkerClass {
     }
 
 // -------------------------------------------------------------------------------------
-    public void addToImage(photoAlbumList albumnlist, Image image){
-        imageList.get(albumnlist).addPhoto(image);
+
+    public void addToImage(photoAlbumList albumnlist, imageAttributes image){
+        imageList.get(albumnlist).getPhotos().add(image);
     }
 
 // -------------------------------------------------------------------------------------
@@ -119,13 +135,15 @@ public class linkerClass {
 
 // -------------------------------------------------------------------------------------
 
-    public boolean isImageInAlbum(photoAlbumList albumList, Image image) {
+    public boolean isImageInAlbum(photoAlbumList albumList, imageAttributes image) {
     listOfPhotos photos = imageList.get(albumList);
         if (photos != null) {
             List<imageAttributes> photoList = photos.getPhotos();
             for (imageAttributes img : photoList) {
-                if (img.getImage().getUrl().equals(image.getUrl())) {
-                return true;
+                System.out.println(img.getURL());
+                System.out.println(image.getURL());
+                if (img.getURL().equals(image.getURL())) {
+                    return true;
                 }
             }
         }

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tagViewPopup">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.tagViewPopup">
    <children>
       <ListView fx:id="listOfTags" layoutX="19.0" layoutY="67.0" prefHeight="284.0" prefWidth="215.0" />
       <Button fx:id="CloseButton" alignment="CENTER" layoutX="179.0" layoutY="8.0" mnemonicParsing="false" onAction="#close" prefHeight="28.0" prefWidth="64.0" text="Close" textAlignment="CENTER">

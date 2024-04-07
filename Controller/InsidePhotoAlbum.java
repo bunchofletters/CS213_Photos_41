@@ -26,6 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import app.Photo;
 
 public class InsidePhotoAlbum{
 
@@ -48,6 +49,7 @@ public class InsidePhotoAlbum{
     @FXML private Button PreviewButton;
     @FXML private Button PasteButton;
     @FXML private Button UploadFromStockButtom;
+    @FXML private Button DisplayButton;
 
     //Pane
     @FXML private TilePane tilePane;
@@ -73,7 +75,9 @@ public class InsidePhotoAlbum{
     AlbumNameItsIn.setText(user.getAlbum().getName());
 
     Image image = new Image("data/Frog.jpeg");
-    link.addToImage(user.getAlbum(), image);
+    imageAttributes newImage = new imageAttributes(image);
+    newImage.setURL("/data/Frog.jpeg");
+    link.addToImage(user.getAlbum(), newImage);
     
     images = link.getImageList(user.getAlbum()).getPhotos();
     user.getAlbum().setPhotoNum(images.size());
@@ -85,6 +89,7 @@ public class InsidePhotoAlbum{
         scrollPane.setContent(tilePane);
         scrollPane.setFitToWidth(true); // Fit content to width
     }
+    
 }
 // -------------------------------------------------------------------------------------
 
@@ -115,7 +120,7 @@ public class InsidePhotoAlbum{
     private Image selectImage;
 
     @FXML void goIntoPhotoDetails(MouseEvent event) {
-        imageAttributeIndex =0;
+        imageAttributeIndex = 0;
         if (event.getButton() == MouseButton.PRIMARY) {
 
             // Check if the source of the event is a VBox
@@ -131,12 +136,22 @@ public class InsidePhotoAlbum{
 
                 for (Node child : children) {
                     if (child instanceof ImageView){
-                    ImageView imageView = (ImageView) child;
-                    selectImage = imageView.getImage();
-                    SelectedImage.setText(" " + "images.get(imageAttributeIndex).getName()");
-                    break;
+                        ImageView imageView = (ImageView) child;
+                        selectImage = imageView.getImage();
+                        imageAttributes newImage = new imageAttributes(selectImage);
+                        for(imageAttributeIndex = 0; imageAttributeIndex< images.size();imageAttributeIndex++){
+                            if(imageView.getImage().equals(images.get(imageAttributeIndex).getImage())){
+                                break;
+                            }
+                        }
+                        if(imageAttributeIndex != images.size()){
+                            newImage.setURL(images.get(imageAttributeIndex).getURL());
+                        }
+                        System.out.println("GointoPhtoDetail: " + images.get(imageAttributeIndex).getURL());
+                        track.setSelectedImage(newImage);
+                        SelectedImage.setText(" " + "images.get(imageAttributeIndex).getName()");
+                        break;
                     }
-                    imageAttributeIndex++;
                 }
             }
         }
@@ -149,7 +164,7 @@ public class InsidePhotoAlbum{
      * when logout button is clicked changes scene back to login page
      */
     @FXML void logout() {
-        photo.changeScene("login.fxml");
+        photo.changeScene("/view/login.fxml");
     }
 
 // -------------------------------------------------------------------------------------
@@ -158,7 +173,7 @@ public class InsidePhotoAlbum{
      * goes back to the userPage when its clieked
      */
     @FXML void returnButton() {
-        photo.changeScene("userPage.fxml");
+        photo.changeScene("/view/userPage.fxml");
     }
 
 // -------------------------------------------------------------------------------------
@@ -189,25 +204,39 @@ public class InsidePhotoAlbum{
 // -------------------------------------------------------------------------------------
 
     @FXML void paste() {
-        // link.addToImage(user.getAlbum(), track.getSaveCopyImage());
-        // tilePane.getChildren().add(setImages(track.getSaveCopyImage()));
-        Image image = track.getSaveCopyImage();
+    if(track.getSaveCopyImage() != null && track.getSaveCopyImage().getImage() != null){
+        try {
+            // imageAttributes image = track.getSaveCopyImage();
+            // System.out.println(track.getSaveCopyImage().getURL());
+            if (track.getSaveCopyImage() != null && !link.isImageInAlbum(user.getAlbum(), track.getSaveCopyImage())) {
+                System.out.println("PASTING PRINT: " + track.getSaveCopyImage().getURL());
+                link.addToImage(user.getAlbum(), track.getSaveCopyImage());
+                tilePane.getChildren().add(setImages(track.getSaveCopyImage().getImage()));
+                user.updateUserAlbum();
 
-        if (!link.isImageInAlbum(user.getAlbum(), image)) {
-            link.addToImage(user.getAlbum(), image);
-            tilePane.getChildren().add(setImages(image));
+            } 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+    
     }
     
 // -------------------------------------------------------------------------------------
 
     // copies photos
-    @FXML void copyPhotos(ActionEvent event) {
-        if (selectedVBox != null && selectImage != null) {
-            track.setSaveCopyImage(selectImage);
-            selectedVBox.setStyle("-fx-border-color: red; -fx-background-color: LIGHTPINK;");
-            StatusLabel.setText("STATUS COPYING:");
-            StatusUrlLabel.setText(selectImage.getUrl());
+    @FXML void copyPhotos() {
+          try {
+            if (selectedVBox != null && track.getSelectedImage() != null) {
+                // imageAttributes images1 = new imageAttributes(selectImage);
+                System.out.println("CopyPhoto: "+ track.getSelectedImage().getURL());
+                track.setSaveCopyImage(track.getSelectedImage());
+                selectedVBox.setStyle("-fx-border-color: red; -fx-background-color: LIGHTPINK;");
+                StatusLabel.setText("STATUS COPYING:");
+                StatusUrlLabel.setText(selectImage.getUrl());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -232,36 +261,35 @@ public class InsidePhotoAlbum{
                 String path = file.getAbsolutePath();
                 InputStream stream = new FileInputStream(path);
                 Image image = new Image(stream);
-                ImageWithPath imageWithPath = new ImageWithPath(image, path);
-
+                imageAttributes newImage = new imageAttributes(image);
+                newImage.setURL(path);
+                System.out.println("Preview: IMAGE ATTR" + newImage);
                 // set setSelectedImage() to image in imageTracker.java
-                track.setSelectedImage(image);
-
-                // testing to see what path it prints
-                System.out.println(imageWithPath.getPath());
+                track.setUplaodImage(newImage);
 
                 // Loader
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("previewImageUpload.fxml"));
+                loader.setLocation(getClass().getResource("/view/previewImageUpload.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
 
                 // Popup Stage
                 popupStage = new Stage();
+                popupStage.setTitle("Uploading Application");
                 popupStage.initModality(Modality.APPLICATION_MODAL); 
                 popupStage.setScene(scene);
                 popupStage.setResizable(false);
 
                 // When the Popup Window CLoses by Any Means (X or EXIT BUTTON)
                 popupStage.setOnHidden(e -> {
-                    if (track.check == true){
-                        // uses to get list size and updates to the newly added
+                    System.out.println(track.getUplaodImage());
+                    if (!link.isImageInAlbum(user.getAlbum(), track.getUplaodImage())){
+                        link.addToImage(user.getAlbum(), track.getUplaodImage());
                         user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
-                        tilePane.getChildren().add(setImages(track.getSelectedImage()));
-                        track.check = false;
+                        tilePane.getChildren().add(setImages(track.getUplaodImage().getImage()));
+
                     }
-                    
-                       
+                           
                 });
                 // waits for window before it runs (popupStage.setOnHidden) ABOVE
                 popupStage.showAndWait();;
@@ -278,21 +306,27 @@ public class InsidePhotoAlbum{
 
     // remoing photos with this button
     @FXML void remove() {
+        // if (selectedVBox != null){
+        //     Parent parent = selectedVBox.getParent();
+        //     if (parent instanceof Pane) {
+        //         Pane pane = (Pane) parent;
+        //         pane.getChildren().remove(selectedVBox);
+        //         selectedVBox = null;
+        //     }
+
         if (selectedVBox != null){
-            Parent parent = selectedVBox.getParent();
-            if (parent instanceof Pane) {
-                Pane pane = (Pane) parent;
-                pane.getChildren().remove(selectedVBox);
-                selectedVBox = null;
-            }
+            tilePane.getChildren().remove(selectedVBox);
+            selectedVBox = null;
+        }
         
         if (selectImage != null){
             link.removeImage(user.getAlbum(),selectImage);
+            user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
             SelectedImage.setText(null);
             selectImage = null;
             }
         }
-    }
+
 
 // -------------------------------------------------------------------------------------
 
@@ -304,7 +338,7 @@ public class InsidePhotoAlbum{
                     return;
                 }
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("goIntoImageAndEdit.fxml"));
+                loader.setLocation(getClass().getResource("/view/goIntoImageAndEdit.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
                 
@@ -334,7 +368,7 @@ public class InsidePhotoAlbum{
                 return;
             }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("movingPhotos.fxml"));
+            loader.setLocation(getClass().getResource("/view/movingPhotos.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
@@ -343,11 +377,17 @@ public class InsidePhotoAlbum{
             popupStage.setScene(scene);
             popupStage.setResizable(false);
 
-            popupStage.setOnHidden(e -> {
-                if(track.move = true){
-                    remove();
-                    track.move = false;
+            popupStage.setOnHidden(e -> {  
+                if (track.move == false){
+                tilePane.getChildren().remove(setImages(track.getSelectedImage().getImage()));
+                user.updateUserAlbum();
+                user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                 }
+                // if (!link.isImageInAlbum(user.getAlbum(), track.getSelectedImage()))
+                //     link.addToImage(user.getAlbum(), track.getSelectedImage());
+                //     user.updateUserAlbum();
+                //     user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
+                //     tilePane.getChildren().add(setImages(track.getSelectedImage().getImage()));
             });
             popupStage.showAndWait();;
                     
@@ -361,7 +401,7 @@ public class InsidePhotoAlbum{
 
     @FXML
     void SlideShow(ActionEvent event) {
-        photo.changeScene("PhotoSlideshow.fxml");
+        photo.changeScene("/view/PhotoSlideshow.fxml");
     }
 // -------------------------------------------------------------------------------------
 
@@ -372,25 +412,23 @@ public class InsidePhotoAlbum{
                 return;
             }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("uploadingFromStock.fxml"));
+            loader.setLocation(getClass().getResource("/view/uploadingFromStock.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
             popupStage = new Stage();
-            popupStage.initModality(Modality.APPLICATION_MODAL); 
+            popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setScene(scene);
             popupStage.setResizable(false);
 
             popupStage.setOnHidden(e -> {
-                addToTile();
-                // Image image = track.getStockImage();
-
-                // if (!link.isImageInAlbum(user.getAlbum(), image)) {
-                //     link.addToImage(user.getAlbum(), image);
-                //     user.updateUserAlbum();
-                //     tilePane.getChildren().add(setImages(image));
-                //     track.setStockImage(null);
-                // }
+                if (track.getStockImage() != null && !link.isImageInAlbum(user.getAlbum(), track.getStockImage())) {
+                    link.addToImage(user.getAlbum(), track.getStockImage());
+                    user.updateUserAlbum();
+                    user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
+                    tilePane.getChildren().add(setImages(track.getStockImage().getImage()));
+                    track.setStockImage(null);
+                }    
             });
             popupStage.showAndWait();;
                     
@@ -400,14 +438,13 @@ public class InsidePhotoAlbum{
         }
     }
 
-    public void addToTile(){
-        Image image = track.getStockImage();
-
-        if (!link.isImageInAlbum(user.getAlbum(), image)) {
-            link.addToImage(user.getAlbum(), image);
-            user.updateUserAlbum();
-            tilePane.getChildren().add(setImages(image));
-            track.setStockImage(null);
+// -------------------------------------------------------------------------------------
+    
+    @FXML
+    void display(ActionEvent event) {
+        if (selectImage != null){
+            photo.changeScene("/view/displayOwnImage.fxml");
         }
     }
+    
 }

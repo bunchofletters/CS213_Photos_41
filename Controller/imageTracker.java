@@ -1,12 +1,16 @@
 package Controller;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
 public class imageTracker {
 
-        private Image selectedImage, copyImage, moveImage, stockImage;
+        private imageAttributes stockImage, selectedImage, copyImage, moveImage, uplaodImage;
         private static imageTracker instance;
-        protected boolean check, move;
-
+        protected boolean check, move, stockImageBoolean;
+        protected ObservableList<String> allTags;
+        private String tags;
 
     public static imageTracker getInstance(){
         if (instance == null) {
@@ -14,6 +18,16 @@ public class imageTracker {
         }
         return instance;
     }
+
+    private ObservableList<String> selectedTagsOnlyList = FXCollections.observableArrayList();
+
+ // -------------------------------------------------------------
+
+    public imageTracker(){
+        this.allTags = FXCollections.observableArrayList();
+    }
+
+  // -------------------------------------------------------------
 
     public Image getSelectedImage() {
         return selectedImage;
@@ -27,13 +41,18 @@ public class imageTracker {
         this.selectedImage = selectedImage;
     }
 
+  // -------------------------------------------------------------
+
     public void setSaveCopyImage(Image selectedImage) {
         this.copyImage = selectedImage;
+        System.out.println(selectedImage.getURL());
     }
 
     public Image getSaveCopyImage(){
         return copyImage;
     }
+
+  // -------------------------------------------------------------
 
     public void setMoveImage(Image selectedImage) {
         this.moveImage = selectedImage;
@@ -43,14 +62,78 @@ public class imageTracker {
         return moveImage;
     }
 
-    public void setStockImage(Image stockImage){
+// -------------------------------------------------------------
+
+    public void setStockImage(imageAttributes stockImage){
         this.stockImage = stockImage;
     }
 
-    public Image getStockImage(){
+    public imageAttributes getStockImage(){
         return stockImage;
     }
 
+    public void turnOnStockImage(){
+        stockImageBoolean = true;
+    }
+
+    public void turnOffStockImage(){
+        stockImageBoolean = false;
+    }
+// -------------------------------------------------------------
+
+    public void addTagToList(String tag){
+        allTags.add(tag);
+    }
+
+    public int tagListSize(){
+        return allTags.size();
+    }
+
+    public ObservableList<String> getTagList(){
+        return allTags;
+    }
+
+// -------------------------------------------------------------
+
+
+    public void setMoveTag(String tag){
+        this.tags = tag;
+    }
+
+    public String getMoveTag(){
+        return tags;
+    }
+
+// -------------------------------------------------------------
+
+
+    public void addSelectedTagToList(String tag){
+        selectedTagsOnlyList.add(tag);
+    }
+
+    
+    public int tagSelectedListSize(){
+        return selectedTagsOnlyList.size();
+    }
+
+   
+    public ObservableList<String> getSelectedTagList(){
+        return selectedTagsOnlyList;
+    }
+
+// -------------------------------------------------------------
+
+
+    
+    public imageAttributes getUplaodImage() {
+        return uplaodImage;
+    }
+
+
+
+    public void setUplaodImage(imageAttributes selectedImage) {
+        this.uplaodImage = selectedImage;
+    }
 }
 
 
