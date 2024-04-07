@@ -207,7 +207,7 @@ public class InsidePhotoAlbum{
         try {
             // imageAttributes image = track.getSaveCopyImage();
             // System.out.println(track.getSaveCopyImage().getURL());
-            if (track.getSaveCopyImage() != null && !link.isImageInAlbum(user.getAlbum(), track.getSaveCopyImage())) {
+            if (track.getSaveCopyImage() != null && !link.getImageList(user.getAlbum()).isImageInAlbum(track.getSaveCopyImage())) {
                 System.out.println("PASTING PRINT: " + track.getSaveCopyImage().getURL());
                 link.addToImage(user.getAlbum(), track.getSaveCopyImage());
                 tilePane.getChildren().add(setImages(track.getSaveCopyImage().getImage()));
@@ -282,7 +282,7 @@ public class InsidePhotoAlbum{
                 // When the Popup Window CLoses by Any Means (X or EXIT BUTTON)
                 popupStage.setOnHidden(e -> {
                     System.out.println(track.getUplaodImage());
-                    if (track.getclosed() && !link.isImageInAlbum(user.getAlbum(), track.getUplaodImage())){
+                    if (track.getclosed() && !link.getImageList(user.getAlbum()).isImageInAlbum(track.getUplaodImage())){
                         link.addToImage(user.getAlbum(), track.getUplaodImage());
                         user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                         tilePane.getChildren().add(setImages(track.getUplaodImage().getImage()));
@@ -305,21 +305,13 @@ public class InsidePhotoAlbum{
 
     // remoing photos with this button
     @FXML void remove() {
-        // if (selectedVBox != null){
-        //     Parent parent = selectedVBox.getParent();
-        //     if (parent instanceof Pane) {
-        //         Pane pane = (Pane) parent;
-        //         pane.getChildren().remove(selectedVBox);
-        //         selectedVBox = null;
-        //     }
-
         if (selectedVBox != null){
             tilePane.getChildren().remove(selectedVBox);
             selectedVBox = null;
         }
         
         if (selectImage != null){
-            link.removeImage(user.getAlbum(),selectImage);
+            link.getImageList(user.getAlbum()).removeImage(selectImage);
             user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
             SelectedImage.setText(null);
             selectImage = null;
@@ -426,7 +418,7 @@ public class InsidePhotoAlbum{
             popupStage.setResizable(false);
 
             popupStage.setOnHidden(e -> {
-                if (track.getStockImage() != null && !link.isImageInAlbum(user.getAlbum(), track.getStockImage())) {
+                if (track.getStockImage() != null && !link.getImageList(user.getAlbum()).isImageInAlbum(track.getStockImage())) {
                     link.addToImage(user.getAlbum(), track.getStockImage());
                     user.updateUserAlbum();
                     user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
