@@ -50,6 +50,7 @@ public class movingPhotos {
         // track.move = true;
         // int item = table.getSelectionModel().getSelectedIndex();
         // album = link.getPhotoAlbum(user).getAlbumList().get(item);
+        // link.addToImage(album, track.getSelectedImage());
         // Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
         // stage.close();
 

@@ -50,7 +50,7 @@ public class previewImageUpload {
     @FXML
     void save() {
         // photoList.addPhoto(track.getUplaodImage().getImage());
-        System.out.println("Preview:" + track.getUplaodImage().getImage());
+        System.out.println("Preview:" + track.getUplaodImage());
         user.updateUserAlbum();
         Stage stage = (Stage) SaveButton.getScene().getWindow();
         stage.close();
@@ -63,8 +63,7 @@ public class previewImageUpload {
 
     userPage user = userPage.getInstance();
     photoList = link.getImageList(user.getAlbum());
-    imagePreviewer.setImage(track.getUplaodImage().getImage());
-    System.out.println("Preview INTIZ: " + track.getUplaodImage().getImage());
+    imagePreviewer.setImage(track.getSelectedImage());
 
     if(track.getSelectedTagList() != null){
         for (int i = 0; i < track.tagSelectedListSize(); i++){

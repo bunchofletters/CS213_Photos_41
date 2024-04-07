@@ -320,7 +320,7 @@ public class InsidePhotoAlbum{
         }
         
         if (selectImage != null){
-            link.removeImage(user.getAlbum(),track.getSelectedImage().getImage());
+            link.removeImage(user.getAlbum(),selectImage);
             user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
             SelectedImage.setText(null);
             selectImage = null;
