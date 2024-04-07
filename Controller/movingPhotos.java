@@ -1,5 +1,4 @@
 package Controller;
-import app.Photo;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -14,7 +13,6 @@ public class movingPhotos {
     private static photoAlbumList album;
     private static userPage instance;
     
-    private Photo photo = Photo.getInstance();
     private userPage users = userPage.getInstance();
     private imageTracker track = imageTracker.getInstance();
     private login Login = login.getInstance();
@@ -60,12 +58,23 @@ public class movingPhotos {
         if (track.getSelectedImage() != null){
             link.addToImage(users.getAlbum(), track.getSelectedImage());
             if (album.getPhotoNum() == 0){
+                System.out.println("moving track: " + track.getSelectedImage());
+                System.out.println("moving album: " + users.getAlbum());
+                
                 track.move = false;
                 Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
                 stage.close();
                 }
                 for (int i = 0; i < album.getPhotoNum(); i++){
+
+                    System.out.println("moving ouside track: " + track.getSelectedImage());
+                    System.out.println("moving outside index: " + link.getImageList(album).getPhotos().get(i).getImage());
+
                     if (link.getImageList(album).getPhotos().get(i).getImage().equals(track.getSelectedImage().getImage())){
+
+                    System.out.println("moving index: " + link.getImageList(album).getPhotos().get(i).getImage());
+                    System.out.println("moving track: " + track.getSelectedImage().getImage());
+
                     track.move = true;
                     track.setSelectedImage(null);
                     Stage stage = (Stage) MoveIntoButton.getScene().getWindow();

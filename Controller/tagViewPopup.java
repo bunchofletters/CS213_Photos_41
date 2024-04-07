@@ -1,7 +1,6 @@
 package Controller;
 import java.util.Optional;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,8 +11,6 @@ import javafx.stage.Stage;
 public class tagViewPopup {
 
     linkerClass link = linkerClass.getInstance();
-    private userPage user = userPage.getInstance();
-    private ObservableList<imageAttributes> images;
     private imageTracker track = imageTracker.getInstance();
 
     @FXML private Button CloseButton;

@@ -1,8 +1,6 @@
 package Controller;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 
 public class imageTracker {
 

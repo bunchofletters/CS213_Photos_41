@@ -2,7 +2,6 @@ package Controller;
 import java.io.File;
 import java.io.FilenameFilter;
 
-import app.Photo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

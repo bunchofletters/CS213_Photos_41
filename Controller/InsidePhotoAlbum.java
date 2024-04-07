@@ -20,7 +20,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -379,9 +378,12 @@ public class InsidePhotoAlbum{
 
             popupStage.setOnHidden(e -> {  
                 if (track.move == false){
-                tilePane.getChildren().remove(setImages(track.getSelectedImage().getImage()));
+                link.addToImage(user.getAlbum(), track.getSelectedImage());
+                System.out.println(user.getAlbum());
+                System.out.println(track.getStockImage());
+                remove();
                 user.updateUserAlbum();
-                user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
+                // user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                 }
                 // if (!link.isImageInAlbum(user.getAlbum(), track.getSelectedImage()))
                 //     link.addToImage(user.getAlbum(), track.getSelectedImage());
