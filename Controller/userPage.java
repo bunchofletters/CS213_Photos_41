@@ -1,3 +1,5 @@
+package Controller;
+import java.io.Serializable;
 import java.util.Optional;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,10 +11,11 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import app.Photo;
 /**
  * @author Danny dl1093
  */
-public class userPage {
+public class userPage implements Serializable{
 
     // Buttons
     @FXML private Button RenameAlbumButton;
@@ -57,7 +60,7 @@ public class userPage {
      * Uses the "Create New Album" Button to input the names into tableview list using the TextField "AlbumNameInput"
      * @param event
      */
-    @FXML void createAlbum(ActionEvent event) {
+    @FXML void createAlbum() {
     String albumName = AlbumNameInput.getText().trim();
         if (!albumName.isEmpty()) {
             if (!containsAlbumName(albumName)) {
@@ -85,15 +88,15 @@ public class userPage {
     @FXML void delButton(ActionEvent event) {
         int item = table.getSelectionModel().getSelectedIndex();
             if(item != -1){
-                table.getItems().remove(item);
                 link.removePhotoList(link.getPhotoAlbum(user).getAlbumList().get(item));
+                table.getItems().remove(item);
             }
     }
 
 // -------------------------------------------------------------------------------------
 
     @FXML void logout(ActionEvent event) {
-        x.changeScene("login.fxml");
+        x.changeScene("/view/login.fxml");
     }
 
 // -------------------------------------------------------------------------------------
@@ -101,7 +104,7 @@ public class userPage {
         item = table.getSelectionModel().getSelectedIndex();
         album = link.getPhotoAlbum(user).getAlbumList().get(item);
             if(item != -1){
-                x.changeScene("insidePhotoAlbum.fxml");
+                x.changeScene("/view/insidePhotoAlbum.fxml");
             }
     }
 
@@ -146,7 +149,9 @@ public class userPage {
                 int item = table.getSelectionModel().getSelectedIndex();
                 album = link.getPhotoAlbum(user).getAlbumList().get(item);
                     if(item != -1){
-                    x.changeScene("insidePhotoAlbum.fxml");
+                    item = table.getSelectionModel().getSelectedIndex();
+                    album = link.getPhotoAlbum(user).getAlbumList().get(item);
+                    x.changeScene("/view/insidePhotoAlbum.fxml");
                     }
                 }
 
@@ -162,6 +167,10 @@ public class userPage {
             album.setLowestDate(photoList.getPhotos().get(0).getUploadDate());
             album.setHighestDate(photoList.getPhotos().get(photoList.getPhotos().size()-1).getUploadDate());
         }
+    }
+
+    public int getIndex(){
+        return item;
     }
 
 // -------------------------------------------------------------------------------------

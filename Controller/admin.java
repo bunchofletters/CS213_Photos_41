@@ -1,6 +1,8 @@
+package Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import app.Photo;
 
 /**
  * This class handles all function the admin will be able to do which
@@ -38,7 +40,7 @@ public class admin {
      */
     void backToLogin() {
         Photo x = Photo.getInstance();
-        x.changeScene("login.fxml");
+        x.changeScene("/view/login.fxml");
     }
     
     /**

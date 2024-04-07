@@ -1,6 +1,8 @@
+package Controller;
 import java.time.LocalDate;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
@@ -18,11 +20,10 @@ public class imageAttributes {
     private LocalDate uploadDate;
 
 
-    public imageAttributes(Image image, LocalDate uploadDate, String name){
+    public imageAttributes(Image image){
         this.image = image;
-        this.captions = new SimpleStringProperty(name);
         System.out.println(uploadDate);
-        this.uploadDate = uploadDate;
+        uploadDate = LocalDate.now();
     }
     
     // public imageAttributes(Image image, )
@@ -35,16 +36,38 @@ public class imageAttributes {
         this.captions.set(caption);
     }
 
+    public void setTag(ObservableList<String> data){
+        tags = data;
+    }
+
     public Image getImage(){
-        return image;
+        if(image != null)
+            return image;
+        return null;
     }
     
     public String getUploadDate(){
         return uploadDate.toString();
     }
 
-    public String getName(){
-        return captions.get();
+    public LocalDate getUploadDateAsDate(){
+        return uploadDate;
+    }
+
+    public ObservableList<String> getTags(){
+        if(tags != null)
+            return tags;
+        tags = FXCollections.observableArrayList();
+        return tags;
+    }
+
+    public String getCaption(){
+        if(captions != null)
+            return captions.get();
+        return "n/a";
+    }
+    public void setDate(LocalDate date){
+        this.uploadDate = date;
     }
 
 
