@@ -20,7 +20,7 @@ public class imageAttributes {
     private LocalDate uploadDate;
 
 
-    public imageAttributes(Image image){
+    public imageAttributes(Image image, LocalDate uploadDate, String name){
         this.image = image;
         System.out.println(uploadDate);
         uploadDate = LocalDate.now();

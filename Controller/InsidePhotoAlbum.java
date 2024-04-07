@@ -299,31 +299,7 @@ public class InsidePhotoAlbum{
 
     // cahnge caption
     @FXML void edit(ActionEvent event) {
-            try {
-                if (popupStage != null && popupStage.isShowing()) {
-                    popupStage.toFront();
-                    return;
-                }
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/view/goIntoImageAndEdit.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                
-                popupStage = new Stage();
-                popupStage.initModality(Modality.APPLICATION_MODAL); 
-                popupStage.setScene(scene);
-                popupStage.setResizable(false);
-    
-                popupStage.setOnHidden(e -> {
-                // do stuff
-                });
-                popupStage.showAndWait();;
-                        
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-    
+        
     }
 
 // -------------------------------------------------------------------------------------
@@ -364,51 +340,6 @@ public class InsidePhotoAlbum{
     void SlideShow(ActionEvent event) {
         photo.changeScene("/view/PhotoSlideshow.fxml");
     }
-// -------------------------------------------------------------------------------------
 
-    @FXML void UploadFromStock(ActionEvent event) {
-        try {
-            if (popupStage != null && popupStage.isShowing()) {
-                popupStage.toFront();
-                return;
-            }
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/uploadingFromStock.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
 
-            popupStage = new Stage();
-            popupStage.initModality(Modality.APPLICATION_MODAL); 
-            popupStage.setScene(scene);
-            popupStage.setResizable(false);
-
-            popupStage.setOnHidden(e -> {
-                addToTile();
-                // Image image = track.getStockImage();
-
-                // if (!link.isImageInAlbum(user.getAlbum(), image)) {
-                //     link.addToImage(user.getAlbum(), image);
-                //     user.updateUserAlbum();
-                //     tilePane.getChildren().add(setImages(image));
-                //     track.setStockImage(null);
-                // }
-            });
-            popupStage.showAndWait();;
-                    
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void addToTile(){
-        Image image = track.getStockImage();
-
-        if (!link.isImageInAlbum(user.getAlbum(), image)) {
-            link.addToImage(user.getAlbum(), image);
-            user.updateUserAlbum();
-            tilePane.getChildren().add(setImages(image));
-            track.setStockImage(null);
-        }
-    }
 }

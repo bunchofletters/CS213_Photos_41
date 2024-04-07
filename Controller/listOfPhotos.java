@@ -22,8 +22,9 @@ public class listOfPhotos{
     }
 
 
-    public void addPhoto(Image image){
-        imageAttributes newImage = new imageAttributes(image);
+    public void addPhoto(Image image, String name){
+        LocalDate x = LocalDate.now();
+        imageAttributes newImage = new imageAttributes(image, x, name);
         photos.add(newImage);
     }
     
