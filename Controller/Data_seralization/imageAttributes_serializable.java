@@ -12,10 +12,10 @@ import javafx.scene.image.Image;
  */
 public class imageAttributes_serializable implements Serializable{
 
-    private String captions;
+    private String captions = "";
     private ArrayList<String> tags = new ArrayList<>();
     transient private Image image;
-    private String url;
+    private String url="";
     private LocalDate uploadDate;
 
 

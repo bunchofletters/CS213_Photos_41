@@ -67,14 +67,21 @@ public class dataList implements Serializable{
                         //copy photo
                         try {
                             String url = data.getUrl();
-                            url.replaceAll("\\", "/");
-                            InputStream stream = new FileInputStream(data.getUrl());
+                            if(url.contains("\\")){
+                                url.replace("\\", "/");
+                            }
+                            url = url.substring(6);
+                            System.out.println(url);
+                            InputStream stream = new FileInputStream(url);
                             Image image = new Image(stream);
                             imageAttributes imageDataCopy = new imageAttributes(image);
+                            System.out.println("Pass Image copying");
                             //copy date
                             imageDataCopy.setDate(data.getUploadDateAsDate());
+                            System.out.println("Pass Date copying");
                             //copy caption
                             imageDataCopy.setCaption(data.getCaption());
+                            System.out.println("Pass Caption copying");
                             //copy tag
                             if(imageDataCopy.getTags().size()>0){
                                 //make a observableArrayList of String
@@ -82,6 +89,7 @@ public class dataList implements Serializable{
                                 imageDataCopy.setTag(tagCopy);
                                 tagCopy.addAll(imageDataCopy.getTags());
                             }
+                            System.out.println("Pass Tag copying");
                             copydata.add(imageDataCopy);
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
