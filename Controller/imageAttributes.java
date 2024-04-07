@@ -18,34 +18,78 @@ public class imageAttributes {
     private ObservableList<String> tags;
     private Image image;
     private LocalDate uploadDate;
+    private LocalDate uploadDate;
+    private String url;
 
 
+
+
+// -------------------------------------------------------------
+    /**
+     * This constructor initializes an imageAttributes object with the provided image. 
+     * It also sets the upload date to the current date.
+     * 
+     * @param image image The image to be associated with this imageAttributes object.
+     */
     public imageAttributes(Image image){
         this.image = image;
         System.out.println(uploadDate);
-        uploadDate = LocalDate.now();
+        LocalDate date = LocalDate.now();
+        this.uploadDate = date;
     }
-    
-    // public imageAttributes(Image image, )
+// -------------------------------------------------------------
 
+    /**
+    * This method adds a tag to the image.
+    *
+    * @param tag The tag to be added.
+    */
     public void addTag(String tag) {
         tags.add(tag);
     }
 
+// -------------------------------------------------------------
+
+    /**
+    * This method sets the caption of the image.
+    *
+    * @param caption The caption to be set.
+    */
     public void setCaption(String caption) {
         this.captions.set(caption);
+    }
+
+    // -------------------------------------------------------------
+
+    /**
+    * This method sets the URL of the image.
+    *
+    * @param url The URL to be set.
+    */
+    public void setURL(String url){
+        this.url = url;
     }
 
     public void setTag(ObservableList<String> data){
         tags = data;
     }
+// -------------------------------------------------------------
 
+    /**
+    * This method returns the image.
+    *
+    * @return The image.
+    */
     public Image getImage(){
-        if(image != null)
-            return image;
-        return null;
+        return image;
     }
     
+
+    /**
+    * This method returns the upload date of the image.
+    *
+    * @return The upload date as a string.
+    */
     public String getUploadDate(){
         return uploadDate.toString();
     }
@@ -68,6 +112,17 @@ public class imageAttributes {
     }
     public void setDate(LocalDate date){
         this.uploadDate = date;
+    }
+
+    // -------------------------------------------------------------
+
+    /**
+    * This method returns the URL of the image.
+    *
+    * @return The URL of the image.
+    */
+    public String getURL(){
+        return url;
     }
 
 
