@@ -192,23 +192,46 @@ public class InsidePhotoAlbum{
     @FXML void paste() {
         // link.addToImage(user.getAlbum(), track.getSaveCopyImage());
         // tilePane.getChildren().add(setImages(track.getSaveCopyImage()));
+        // Image image = track.getSaveCopyImage();
+
+        // if (!link.isImageInAlbum(user.getAlbum(), image)) {
+        //     link.addToImage(user.getAlbum(), image);
+        //     tilePane.getChildren().add(setImages(image));
+        // }
+
+        try {
         Image image = track.getSaveCopyImage();
 
         if (!link.isImageInAlbum(user.getAlbum(), image)) {
             link.addToImage(user.getAlbum(), image);
             tilePane.getChildren().add(setImages(image));
         }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    
     }
     
 // -------------------------------------------------------------------------------------
 
     // copies photos
     @FXML void copyPhotos(ActionEvent event) {
+        // if (selectedVBox != null && selectImage != null) {
+        //     track.setSaveCopyImage(selectImage);
+        //     selectedVBox.setStyle("-fx-border-color: red; -fx-background-color: LIGHTPINK;");
+        //     StatusLabel.setText("STATUS COPYING:");
+        //     StatusUrlLabel.setText(selectImage.getUrl());
+        // }
+
+        try {
         if (selectedVBox != null && selectImage != null) {
             track.setSaveCopyImage(selectImage);
             selectedVBox.setStyle("-fx-border-color: red; -fx-background-color: LIGHTPINK;");
             StatusLabel.setText("STATUS COPYING:");
             StatusUrlLabel.setText(selectImage.getUrl());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -249,6 +272,7 @@ public class InsidePhotoAlbum{
 
                 // Popup Stage
                 popupStage = new Stage();
+                popupStage.setTitle("Uploading Application");
                 popupStage.initModality(Modality.APPLICATION_MODAL); 
                 popupStage.setScene(scene);
                 popupStage.setResizable(false);
@@ -289,6 +313,7 @@ public class InsidePhotoAlbum{
         
         if (selectImage != null){
             link.removeImage(user.getAlbum(),selectImage);
+            user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
             SelectedImage.setText(null);
             selectImage = null;
             }
@@ -299,6 +324,30 @@ public class InsidePhotoAlbum{
 
     // cahnge caption
     @FXML void edit(ActionEvent event) {
+            try {
+                if (popupStage != null && popupStage.isShowing()) {
+                    popupStage.toFront();
+                    return;
+                }
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/view/goIntoImageAndEdit.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                
+                popupStage = new Stage();
+                popupStage.initModality(Modality.APPLICATION_MODAL); 
+                popupStage.setScene(scene);
+                popupStage.setResizable(false);
+    
+                popupStage.setOnHidden(e -> {
+                // do stuff
+                });
+                popupStage.showAndWait();;
+                        
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         
     }
 
@@ -340,6 +389,63 @@ public class InsidePhotoAlbum{
     void SlideShow(ActionEvent event) {
         photo.changeScene("/view/PhotoSlideshow.fxml");
     }
+// -------------------------------------------------------------------------------------
 
+    @FXML void UploadFromStock(ActionEvent event) {
+        try {
+            if (popupStage != null && popupStage.isShowing()) {
+                popupStage.toFront();
+                return;
+            }
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/uploadingFromStock.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL); 
+            popupStage.setScene(scene);
+            popupStage.setResizable(false);
+
+            popupStage.setOnHidden(e -> {
+                addToTile();
+                // Image image = track.getStockImage();
+
+                // if (!link.isImageInAlbum(user.getAlbum(), image)) {
+                //     link.addToImage(user.getAlbum(), image);
+                //     user.updateUserAlbum();
+                //     tilePane.getChildren().add(setImages(image));
+                //     track.setStockImage(null);
+                // }
+            });
+            popupStage.showAndWait();;
+                    
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // -------------------------------------------------------------------------------------
+
+    public void addToTile(){
+        Image image = track.getStockImage();
+
+        if (!link.isImageInAlbum(user.getAlbum(), image)) {
+            link.addToImage(user.getAlbum(), image);
+            user.updateUserAlbum();
+            tilePane.getChildren().add(setImages(image));
+            track.setStockImage(null);
+        }
+    }
+
+// -------------------------------------------------------------------------------------
+    
+    @FXML
+    void display(ActionEvent event) {
+        if (selectImage != null){
+            photo.changeScene("/view/displayOwnImage.fxml");
+        }
+    }
 
 }
