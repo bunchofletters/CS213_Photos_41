@@ -1,16 +1,26 @@
 package Controller;
+<<<<<<< HEAD
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+=======
+>>>>>>> 4989309 (:))
 import javafx.scene.image.Image;
 
 public class imageTracker {
 
+<<<<<<< HEAD
         private imageAttributes stockImage, selectedImage, copyImage, moveImage, uplaodImage;
         private static imageTracker instance;
         protected boolean check, move, stockImageBoolean;
         protected ObservableList<String> allTags;
         private String tags;
+=======
+        private Image selectedImage, copyImage, moveImage, stockImage;
+        private static imageTracker instance;
+        protected boolean check, move;
+
+>>>>>>> 4989309 (:))
 
     public static imageTracker getInstance(){
         if (instance == null) {
@@ -19,6 +29,7 @@ public class imageTracker {
         return instance;
     }
 
+<<<<<<< HEAD
     private ObservableList<String> selectedTagsOnlyList = FXCollections.observableArrayList();
 
  // -------------------------------------------------------------
@@ -191,6 +202,44 @@ public class imageTracker {
     public void setUplaodImage(imageAttributes selectedImage) {
         this.uplaodImage = selectedImage;
     }
+=======
+    public Image getSelectedImage() {
+        return selectedImage;
+    }
+
+    /**
+     * 
+     * @param selectedImage passes through the image that the user is currently selecting
+     */
+    public void setSelectedImage(Image selectedImage) {
+        this.selectedImage = selectedImage;
+    }
+
+    public void setSaveCopyImage(Image selectedImage) {
+        this.copyImage = selectedImage;
+    }
+
+    public Image getSaveCopyImage(){
+        return copyImage;
+    }
+
+    public void setMoveImage(Image selectedImage) {
+        this.moveImage = selectedImage;
+    }
+
+    public Image getMoveImage(){
+        return moveImage;
+    }
+
+    public void setStockImage(Image stockImage){
+        this.stockImage = stockImage;
+    }
+
+    public Image getStockImage(){
+        return stockImage;
+    }
+
+>>>>>>> 4989309 (:))
 }
 
 

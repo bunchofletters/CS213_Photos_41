@@ -49,7 +49,10 @@ public class InsidePhotoAlbum{
     @FXML private Button PreviewButton;
     @FXML private Button PasteButton;
     @FXML private Button UploadFromStockButtom;
+<<<<<<< HEAD
     @FXML private Button DisplayButton;
+=======
+>>>>>>> 4989309 (:))
 
     //Pane
     @FXML private TilePane tilePane;
@@ -75,9 +78,13 @@ public class InsidePhotoAlbum{
     AlbumNameItsIn.setText(user.getAlbum().getName());
 
     Image image = new Image("data/Frog.jpeg");
+<<<<<<< HEAD
     imageAttributes newImage = new imageAttributes(image);
     newImage.setURL("/data/Frog.jpeg");
     link.addToImage(user.getAlbum(), newImage);
+=======
+    link.addToImage(user.getAlbum(), image);
+>>>>>>> 4989309 (:))
     
     images = link.getImageList(user.getAlbum()).getPhotos();
     user.getAlbum().setPhotoNum(images.size());
@@ -136,6 +143,7 @@ public class InsidePhotoAlbum{
 
                 for (Node child : children) {
                     if (child instanceof ImageView){
+<<<<<<< HEAD
                         ImageView imageView = (ImageView) child;
                         selectImage = imageView.getImage();
                         imageAttributes newImage = new imageAttributes(selectImage);
@@ -151,6 +159,12 @@ public class InsidePhotoAlbum{
                         track.setSelectedImage(newImage);
                         SelectedImage.setText(" " + "images.get(imageAttributeIndex).getName()");
                         break;
+=======
+                    ImageView imageView = (ImageView) child;
+                    selectImage = imageView.getImage();
+                    SelectedImage.setText(" " + "images.get(imageAttributeIndex).getName()");
+                    break;
+>>>>>>> 4989309 (:))
                     }
                 }
             }
@@ -214,9 +228,15 @@ public class InsidePhotoAlbum{
                 tilePane.getChildren().add(setImages(track.getSaveCopyImage().getImage()));
                 user.updateUserAlbum();
 
+<<<<<<< HEAD
             } 
         } catch (Exception e) {
             e.printStackTrace();
+=======
+        if (!link.isImageInAlbum(user.getAlbum(), image)) {
+            link.addToImage(user.getAlbum(), image);
+            tilePane.getChildren().add(setImages(image));
+>>>>>>> 4989309 (:))
         }
     }
     
@@ -275,7 +295,10 @@ public class InsidePhotoAlbum{
 
                 // Popup Stage
                 popupStage = new Stage();
+<<<<<<< HEAD
                 popupStage.setTitle("Uploading Application");
+=======
+>>>>>>> 4989309 (:))
                 popupStage.initModality(Modality.APPLICATION_MODAL); 
                 popupStage.setScene(scene);
                 popupStage.setResizable(false);
@@ -417,11 +440,16 @@ public class InsidePhotoAlbum{
             Scene scene = new Scene(root);
 
             popupStage = new Stage();
+<<<<<<< HEAD
             popupStage.initModality(Modality.APPLICATION_MODAL);
+=======
+            popupStage.initModality(Modality.APPLICATION_MODAL); 
+>>>>>>> 4989309 (:))
             popupStage.setScene(scene);
             popupStage.setResizable(false);
 
             popupStage.setOnHidden(e -> {
+<<<<<<< HEAD
                 if (track.getStockImage() != null && !link.isImageInAlbum(user.getAlbum(), track.getStockImage())) {
                     link.addToImage(user.getAlbum(), track.getStockImage());
                     user.updateUserAlbum();
@@ -429,6 +457,17 @@ public class InsidePhotoAlbum{
                     tilePane.getChildren().add(setImages(track.getStockImage().getImage()));
                     track.setStockImage(null);
                 }    
+=======
+                addToTile();
+                // Image image = track.getStockImage();
+
+                // if (!link.isImageInAlbum(user.getAlbum(), image)) {
+                //     link.addToImage(user.getAlbum(), image);
+                //     user.updateUserAlbum();
+                //     tilePane.getChildren().add(setImages(image));
+                //     track.setStockImage(null);
+                // }
+>>>>>>> 4989309 (:))
             });
             popupStage.showAndWait();;
                     
@@ -438,6 +477,7 @@ public class InsidePhotoAlbum{
         }
     }
 
+<<<<<<< HEAD
 // -------------------------------------------------------------------------------------
     
     @FXML
@@ -447,4 +487,16 @@ public class InsidePhotoAlbum{
         }
     }
     
+=======
+    public void addToTile(){
+        Image image = track.getStockImage();
+
+        if (!link.isImageInAlbum(user.getAlbum(), image)) {
+            link.addToImage(user.getAlbum(), image);
+            user.updateUserAlbum();
+            tilePane.getChildren().add(setImages(image));
+            track.setStockImage(null);
+        }
+    }
+>>>>>>> 4989309 (:))
 }

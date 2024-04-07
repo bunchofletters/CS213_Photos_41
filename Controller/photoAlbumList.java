@@ -1,4 +1,8 @@
 package Controller;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4989309 (:))
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -8,7 +12,7 @@ import javafx.collections.ObservableList;
  * @author oscar
  * @author danny
  */
-public class photoAlbumList {
+public class photoAlbumList{
 
     private SimpleStringProperty AlbumName,EarliestPhotoDate, LatestPhotoDate;
     private SimpleIntegerProperty NumberOfPhotos;
@@ -27,16 +31,24 @@ public class photoAlbumList {
     }
 
     public String getName(){
-        return AlbumName.get();
+        if (AlbumName != null)
+            return AlbumName.get();
+        return "null";
     }
     public int getPhotoNum(){
-        return NumberOfPhotos.get();
+        if(NumberOfPhotos != null)
+            return NumberOfPhotos.get();
+        return 0;
     }
     public String getLowestDate(){
-        return EarliestPhotoDate.get();
+        if(EarliestPhotoDate != null)
+            return EarliestPhotoDate.get();
+        return "n/a";
     }
     public String getHighestDate(){
-        return LatestPhotoDate.get();
+        if(LatestPhotoDate != null)
+            return LatestPhotoDate.get();
+        return "n/a";
     }
     public void setName(String input){
          this.AlbumName.set(input);
