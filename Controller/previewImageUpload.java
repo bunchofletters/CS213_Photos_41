@@ -156,6 +156,8 @@ public class previewImageUpload {
             secondPopUp.setScene(scene);
             secondPopUp.setResizable(false);
 
+            
+
             secondPopUp.setOnHidden(e -> {
                 if(track.getMoveTag()!= null && !track.getMoveTag().equals("")){
                     tagsAndValue x = new tagsAndValue(track.getMoveTag(), "");

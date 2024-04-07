@@ -56,25 +56,54 @@ public class movingPhotos {
         album = link.getPhotoAlbum(user).getAlbumList().get(item);
 
         if (track.getSelectedImage() != null){
-            link.addToImage(users.getAlbum(), track.getSelectedImage());
             if (album.getPhotoNum() == 0){
-                track.move = false;
-                Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
-                stage.close();
-                }
-                for (int i = 0; i < album.getPhotoNum(); i++){
+                link.addToImage(link.getPhotoAlbum(user).getAlbumList().get(item), track.getSelectedImage());
+                link.getPhotoAlbum(user).getAlbumList().get(item).setPhotoNum(link.getImageList(users.getAlbum()).getPhotos().size());
+                System.out.println(link.getImageList(users.getAlbum()).getPhotos().size());
+             
+                System.out.println("moving track: " + track.getSelectedImage());
+                System.out.println("moving album: " + users.getAlbum());
+                
+                track.move = true;
+                link.getDataPhotoAlbum().get(users.getUser()).getAlbumList().get(item).setPhotoNum(link.getImageList(album).getPhotos().size());
+                users.getAlbum().setPhotoNum(link.getImageList(users.getAlbum()).getPhotos().size());
+            }
+            else{
+                boolean run = true;
+                for (int i = 0; i < link.getImageList(album).getPhotos().size(); i++){
+
+                    System.out.println(link.getPhotoAlbum(user).getAlbumList().get(item).getPhotoNum());
+                    System.out.println("moving ouside track: " + track.getSelectedImage());
+                    // System.out.println("moving outside index: " + link.getImageList(album).getPhotos().get(i).getImage());
+
                     if (link.getImageList(album).getPhotos().get(i).getImage().equals(track.getSelectedImage().getImage())){
-                    track.move = true;
-                    track.setSelectedImage(null);
-                    Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
-                    stage.close();
+
+                        System.out.println("moving index: " + link.getImageList(album).getPhotos().get(i).getImage());
+                        System.out.println("moving track: " + track.getSelectedImage().getImage());
+
+                        track.move = false;
+                        track.setSelectedImage(null);
+                        run = false;
+                        break;
+                        // Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
+                        // stage.close();
+                    }   
                 }
-                track.move = false;
-                Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
-                stage.close();
+                if(run){
+                    link.addToImage(link.getPhotoAlbum(user).getAlbumList().get(item), track.getSelectedImage()); //one add
+                    link.getDataPhotoAlbum().get(users.getUser()).getAlbumList().get(item).setPhotoNum(link.getImageList(album).getPhotos().size());
+                    users.getAlbum().setPhotoNum(link.getImageList(users.getAlbum()).getPhotos().size());
+                    track.move = true;
                 }
             }
+            Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
+            stage.close();
         }
+        int tmp = users.getIndex();
+        users.setItems(item);
+        users.updateUserAlbum();
+        users.setItems(tmp);
+    }
 
 
 
@@ -88,16 +117,17 @@ public class movingPhotos {
     public void initialize() {
        
         //Creates a unique photoAlbumList per user
-        if(link.getPhotoAlbum(user) == null){
-            link.setUserAlbum(user);
-        }
+        // if(link.getPhotoAlbum(user) == null){
+        //     link.setUserAlbum(user);
+        // }
 
         AlbumName.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getName()));
         NumberOfPhotos.setCellValueFactory(f -> new SimpleIntegerProperty(f.getValue().getPhotoNum()));
         EarliestPhotoDate.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getLowestDate()));
         LatestPhotoDate.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getHighestDate()));
         table.getColumns().forEach(e -> e.setReorderable(false));
-        table.setItems(link.getPhotoAlbum(user).getAlbumList());
+        refreshTable();
+        // table.setItems(link.getPhotoAlbum(user).getAlbumList());
     }
 
 // -------------------------------------------------------------------------------------
