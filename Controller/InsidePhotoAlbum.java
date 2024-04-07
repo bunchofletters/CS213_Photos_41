@@ -282,11 +282,11 @@ public class InsidePhotoAlbum{
                 // When the Popup Window CLoses by Any Means (X or EXIT BUTTON)
                 popupStage.setOnHidden(e -> {
                     System.out.println(track.getUplaodImage());
-                    if (!link.isImageInAlbum(user.getAlbum(), track.getUplaodImage())){
+                    if (track.getclosed() && !link.isImageInAlbum(user.getAlbum(), track.getUplaodImage())){
                         link.addToImage(user.getAlbum(), track.getUplaodImage());
                         user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                         tilePane.getChildren().add(setImages(track.getUplaodImage().getImage()));
-
+                        track.setClosed(false);
                     }
                            
                 });

@@ -33,12 +33,12 @@ public class tagViewPopup {
 
 // -------------------------------------------------------------------------------------
 
-    @FXML void addingTag(ActionEvent event) {
+    @FXML void addingTag() {
         TextInputDialog td = new TextInputDialog();
         td.setTitle("Tag");
         td.setContentText("Please type enter a Tag: ");
         Optional<String> result = td.showAndWait();
-        if (result.isPresent()){
+        if (result.isPresent() && !result.get().equals("") && !result.get().substring(0,1).equals(" ")){
             boolean tagExists = false;
             for (int i = 0; i < track.tagListSize(); i++){
                 if (result.get().equals(track.allTags.get(i))){
@@ -54,14 +54,14 @@ public class tagViewPopup {
     }
 // -------------------------------------------------------------------------------------
 
-    @FXML void close(ActionEvent event) {
+    @FXML void close() {
         Stage stage = (Stage) CloseButton.getScene().getWindow();
         stage.close();
     }
 
 // -------------------------------------------------------------------------------------
 
-@FXML void select(ActionEvent event) {
+@FXML void select() {
     int TagValue = listOfTags.getSelectionModel().getSelectedIndex();
     if(TagValue >= 0 && TagValue < listOfTags.getItems().size()){
         String selectedTag = listOfTags.getItems().get(TagValue);

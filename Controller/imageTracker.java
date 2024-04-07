@@ -9,6 +9,7 @@ public class imageTracker {
         protected boolean check, move, stockImageBoolean;
         protected ObservableList<String> allTags;
         private String tags;
+        private boolean closed = false;
 
     public static imageTracker getInstance(){
         if (instance == null) {
@@ -189,6 +190,16 @@ public class imageTracker {
     public void setUplaodImage(imageAttributes selectedImage) {
         this.uplaodImage = selectedImage;
     }
+
+    public boolean getclosed(){
+        return closed;
+    }
+
+    public void setClosed(boolean x){
+        closed = x;
+    }
 }
+
+
 
 

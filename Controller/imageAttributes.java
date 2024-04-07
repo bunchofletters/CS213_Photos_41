@@ -15,7 +15,7 @@ import javafx.scene.image.Image;
 public class imageAttributes {
 
     private SimpleStringProperty captions;
-    private ObservableList<String> tags;
+    private ObservableList<String> tags = FXCollections.observableArrayList();
     private Image image;
     private LocalDate uploadDate;
     private String url;
