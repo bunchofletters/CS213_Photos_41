@@ -49,6 +49,7 @@ public class tagViewPopup {
             if (!tagExists) {
                 track.addTagToList(result.get());
                 listOfTags.getItems().add(result.get());
+                listOfTags.refresh();
             }
         }
     }

@@ -186,46 +186,63 @@ public class previewImageUpload {
 
     @FXML void addValue(ActionEvent event) {
         int index = Table.getSelectionModel().getSelectedIndex();
-        TextInputDialog td = new TextInputDialog();
-        td.setContentText("Input Tag Value");
-        td.setTitle("Tag Value");
-        Optional<String> result = td.showAndWait();
-        if(result.isPresent()){
-            if(!result.get().equals("") && !result.get().substring(0,1).equals(" ")){
-                boolean run = false;
-                for(int i = 0; i<selectedTagsList.size(); i++){
-                    if(selectedTagsList.get(i).getTag().equals(TagColum.getCellData(index))){
-                        if(result.get().equals(ValueColumn.getCellData(index))){
-                            Alert alert = new Alert(AlertType.ERROR);
-                            alert.setTitle("Error");
-                            alert.setHeaderText("There was an Error");
-                            alert.setContentText("Attempting to have multiple [tag] with the same [value]");
-                            alert.showAndWait();
-                            run = true;
-                            break;
+        if (index < 0){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("There was an Error");
+            alert.setContentText("NO TAG SELECTED");
+            alert.showAndWait();
+        }
+        else{
+            TextInputDialog td = new TextInputDialog();
+            td.setContentText("Input Tag Value");
+            td.setTitle("Tag Value");
+            Optional<String> result = td.showAndWait();
+            if(result.isPresent()){
+                if(!result.get().equals("") && !result.get().substring(0,1).equals(" ")){
+                    boolean run = false;
+                    for(int i = 0; i<selectedTagsList.size(); i++){
+                        if(selectedTagsList.get(i).getTag().equals(TagColum.getCellData(index))){
+                            if(result.get().equals(ValueColumn.getCellData(index))){
+                                Alert alert = new Alert(AlertType.ERROR);
+                                alert.setTitle("Error");
+                                alert.setHeaderText("There was an Error");
+                                alert.setContentText("Attempting to have multiple [tag] with the same [value]");
+                                alert.showAndWait();
+                                run = true;
+                                break;
+                            }
                         }
                     }
+                    if(!run){
+                        selectedTagsList.get(index).setValue(result.get());
+                        Table.refresh();
+                    }
                 }
-                if(!run){
-                    selectedTagsList.get(index).setValue(result.get());
-                    Table.refresh();
+                else if(result.get().substring(0,1).equals(" ")){
+                    Alert alert = new Alert(AlertType.WARNING);
+                    alert.setTitle("Warning");
+                    alert.setHeaderText("An Warning has Occured");
+                    alert.setContentText("Attempting to set [value] with a value that starts with 'space'. S    tart with a number or letter instead");
+                    alert.showAndWait();
                 }
-            }
-            else if(result.get().substring(0,1).equals(" ")){
-                Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText("An Warning has Occured");
-                alert.setContentText("Attempting to set [value] with a value that starts with 'space'. S    tart with a number or letter instead");
-                alert.showAndWait();
-            }
+            } 
         }
     }
+
 
 // -------------------------------------------------------------------------------------
     @FXML void deleteTagValue(){
         int index = Table.getSelectionModel().getSelectedIndex();
-        selectedTagsList.remove(index);
-        Table.refresh();
+        if (index > 0){
+            selectedTagsList.remove(index);
+            Table.refresh();
+        }
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("An Warning has Occured");
+        alert.setContentText("SELECTION NEEDED TO BE DELETED");
+        alert.showAndWait();
     }
 
 }

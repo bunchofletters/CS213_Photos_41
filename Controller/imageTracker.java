@@ -11,6 +11,8 @@ public class imageTracker {
         protected ObservableList<String> allTags;
         private String tags;
         private boolean closed = false;
+        protected int val = 0;
+        protected photoAlbumList img;
 
     public static imageTracker getInstance(){
         if (instance == null) {

@@ -65,4 +65,8 @@ public class photoAlbumList{
     public ObservableList<photoAlbumList> getAlbumList(){
         return photoAlbum;
     }
+
+
+
+    
 }
