@@ -10,6 +10,8 @@ public class imageTracker {
         protected boolean move = false;
         private String tags;
         private boolean closed = false;
+        private int lastSelectedIndex = 0;
+
     public static imageTracker getInstance(){
         if (instance == null) {
             instance = new imageTracker();
@@ -49,7 +51,8 @@ public class imageTracker {
     */
     public void setSaveCopyImage(imageAttributes selectedImage) {
         this.copyImage = selectedImage;
-        System.out.println(selectedImage.getURL());
+        if(selectedImage != null)
+            System.out.println(selectedImage.getURL());
     }
 
     /**
@@ -150,18 +153,6 @@ public class imageTracker {
 
     public void setUplaodImage(imageAttributes selectedImage) {
         this.uplaodImage = selectedImage;
-    }
-
-// -------------------------------------------------------------
-    
-    public imageAttributes getSearchSelectedImage() {
-        return searchSelectImage;
-    }
-
-
-   
-    public void setSearchSelectedImage(imageAttributes selectedImage) {
-        this.searchSelectImage = selectedImage;
     }
 
 // -------------------------------------------------------------

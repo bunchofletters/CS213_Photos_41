@@ -177,27 +177,30 @@ public class userPage{
     
 
 
-        // album list
-        ObservableList<photoAlbumList> userAlbum = link.getPhotoAlbum(user).getAlbumList();
+    // album list
+    ObservableList<photoAlbumList> userAlbum = link.getPhotoAlbum(user).getAlbumList();
 
-        if (userAlbum != null){
-            for (int i = 0; i < userAlbum.size(); i++){
-                LocalDate early = LocalDate.MAX;;
-                LocalDate late = LocalDate.MIN;
-                LocalDate temp = null;
-                System.out.println(userAlbum.size());
+    if (userAlbum != null){
+        for (int i = 0; i < userAlbum.size(); i++){
+            LocalDate early = LocalDate.MAX;;
+            LocalDate late = LocalDate.MIN;
+            LocalDate temp = null;
+            System.out.println(userAlbum.size());
+                if (userAlbum.get(i).getPhotoNum() == 0){
+                    link.getPhotoAlbum(user).getAlbumList().get(i).setLowestDate(null);
+                    link.getPhotoAlbum(user).getAlbumList().get(i).setHighestDate(null);
+                } else {
                     if (userAlbum.get(i).getPhotoNum() == 1){
                         early = link.getImageList(userAlbum.get(i)).getPhotos().get(0).getUploadDateAsDate();
                         link.getPhotoAlbum(user).getAlbumList().get(i).setLowestDate(early.toString());
                         link.getPhotoAlbum(user).getAlbumList().get(i).setHighestDate(early.toString());
-                    }else{
+                    } else{
                         for (int j = 0; j < link.getImageList(userAlbum.get(i)).getPhotos().size(); j++){
                             temp = link.getImageList(userAlbum.get(i)).getPhotos().get(j).getUploadDateAsDate();
                                 if (temp.isAfter(late)){
                                     System.out.println(temp);
                                     System.out.println(late);
                                     late = temp;
-
                                     System.out.println(late);
                                 } else{
                                     if (temp.isBefore(early)){
@@ -211,6 +214,7 @@ public class userPage{
                         link.getPhotoAlbum(user).getAlbumList().get(i).setHighestDate(late.toString());
                                 
                         }
+                    }
                 }
             }
         

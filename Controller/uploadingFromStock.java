@@ -33,16 +33,18 @@ public class uploadingFromStock {
     @FXML
     void save(ActionEvent event) {
         int index = stockPhotoList.getSelectionModel().getSelectedIndex() < 0 ? 0 : stockPhotoList.getSelectionModel().getSelectedIndex();
-        String filepath = images[index].getPath().substring(1);
-        if(filepath.contains("\\")){
-            filepath = filepath.replace("\\", "/");
+        if(index > -1){
+            String filepath = images[index].getPath().substring(1);
+            if(filepath.contains("\\")){
+                filepath = filepath.replace("\\", "/");
+            }
+            Image images1 = new Image(getClass().getResourceAsStream(filepath));
+            imageAttributes newImage = new imageAttributes(images1);
+            newImage.setURL(images[index].getPath().substring(1));
+            newImage.setCaption(filepath.substring(filepath.lastIndexOf("/")+1, filepath.lastIndexOf(".")));
+            track.setStockImage(newImage);
+            System.out.println(newImage);
         }
-        Image images1 = new Image(getClass().getResourceAsStream(filepath));
-        imageAttributes newImage = new imageAttributes(images1);
-        newImage.setURL(images[index].getPath().substring(1));
-        newImage.setCaption(filepath.substring(filepath.lastIndexOf("/")+1, filepath.lastIndexOf(".")));
-        track.setStockImage(newImage);
-        System.out.println(newImage);
         Stage stage = (Stage) SaveButton.getScene().getWindow();
         stage.close();
 
@@ -52,15 +54,17 @@ public class uploadingFromStock {
     void setThisImage() {
         long st = System.nanoTime();
         int photoPos = stockPhotoList.getSelectionModel().getSelectedIndex();
-        String filepath = images[photoPos].getPath();
-        filepath = filepath.substring(1);
-        if(filepath.contains("\\"))
-            filepath = filepath.replace('\\', '/');
-        Image imageview = new Image(getClass().getResourceAsStream(filepath));
-        ImageViewer.setImage(imageview);
-        long n = System.nanoTime();
-        double na = n-st;
-        System.out.println(filepath+ ": " + na);
+        if(photoPos > -1){
+            String filepath = images[photoPos].getPath();
+            filepath = filepath.substring(1);
+            if(filepath.contains("\\"))
+                filepath = filepath.replace('\\', '/');
+            Image imageview = new Image(getClass().getResourceAsStream(filepath));
+            ImageViewer.setImage(imageview);
+            long n = System.nanoTime();
+            double na = n-st;
+            System.out.println(filepath+ ": " + na);
+        }
     }
 
     public void initialize(){

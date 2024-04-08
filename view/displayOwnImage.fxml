@@ -17,7 +17,7 @@
          </font>
       </Button>
       <ImageView fx:id="ImageViewer" fitHeight="405.0" fitWidth="517.0" layoutX="20.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
-      <TableView fx:id="Table" layoutX="565.0" layoutY="69.0" prefHeight="400.0" prefWidth="349.0">
+      <TableView fx:id="table" layoutX="565.0" layoutY="66.0" prefHeight="403.0" prefWidth="349.0">
         <columns>
           <TableColumn fx:id="Tags" prefWidth="139.90478515625" text="Tags" />
           <TableColumn fx:id="Values" prefWidth="208.09521484375" text="Values" />
@@ -38,7 +38,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Label fx:id="CaptionLabel" layoutX="89.0" layoutY="486.0" prefHeight="17.0" prefWidth="451.0" text="Label" />
-      <Label fx:id="DateLabel" layoutX="65.0" layoutY="525.0" prefHeight="17.0" prefWidth="451.0" text="Label" />
+      <Label fx:id="CaptionLabel" layoutX="95.0" layoutY="486.0" prefHeight="17.0" prefWidth="451.0" />
+      <Label fx:id="DateLabel" layoutX="71.0" layoutY="525.0" prefHeight="17.0" prefWidth="451.0" />
    </children>
 </Pane>
