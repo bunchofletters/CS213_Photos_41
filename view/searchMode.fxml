@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="933.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.searchMode">
+   <children>
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="896.0" vbarPolicy="ALWAYS">
+         <content>
+            <TilePane fx:id="tilePane" onMouseClicked="#goIntoPhotoDetails" prefHeight="390.0" prefWidth="880.0" />
+         </content>
+      </ScrollPane>
+      <Button fx:id="logoutButton" alignment="CENTER" layoutX="846.0" layoutY="16.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="69.0" text="Logout" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="ReturnButton" alignment="CENTER" layoutX="20.0" layoutY="16.0" mnemonicParsing="false" onAction="#returnButton" prefHeight="27.0" prefWidth="108.0" text="&lt;- Return" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="FilterInput" alignment="CENTER" layoutX="138.0" layoutY="61.0" prefHeight="26.0" prefWidth="607.0" promptText="Enter Search Parameter {Date Formate YYYY/MM/DD}" />
+      <Button fx:id="SearchInput" alignment="CENTER" layoutX="757.0" layoutY="60.0" mnemonicParsing="false" onAction="#searchbox" prefHeight="26.0" prefWidth="65.0" text="Search" />
+      <Button fx:id="UploadButton" alignment="CENTER" layoutX="607.0" layoutY="507.0" mnemonicParsing="false" onAction="#makeAlbumn" prefHeight="35.0" prefWidth="309.0" text="Create Album From Search Results">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Text layoutX="289.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SEARCH MODE" textAlignment="CENTER" wrappingWidth="357.5916748046875">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

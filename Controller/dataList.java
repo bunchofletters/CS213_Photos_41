@@ -17,7 +17,6 @@ import javafx.scene.image.Image;
 public class dataList implements Serializable{
         // Obser ArrayList of Strings of Users
         ArrayList<String> users = new ArrayList<>();
-
         // HashMap<String, photoAlbumList> photoAlbum = new HashMap<>();
         HashMap<String, photoAlbumList_serializable> photoAlbum = new HashMap<>();
         // HashMap<photoAlbumList, listOfPhotos> imageList = new HashMap<>();
@@ -37,6 +36,9 @@ public class dataList implements Serializable{
             for(int i = 0; i < photoAlbum.size(); i++){
                 ObservableList<photoAlbumList> tmp = FXCollections.observableArrayList();
                 photoAlbumList tmpList = new photoAlbumList(tmp);
+                ObservableList<String> tagData = FXCollections.observableArrayList();
+                tagData.addAll(photoAlbum.get(users.get(i)).getTag());
+                tmpList.setTagList(tagData);
                 for(int j = 0; j<photoAlbum.get(users.get(i)).getAlbumList().size();j++){
                     photoAlbumList tmp3 = new photoAlbumList(photoAlbum.get(users.get(i)).getAlbumList().get(j).getName(), photoAlbum.get(users.get(i)).getAlbumList().get(j).getPhotoNum(), photoAlbum.get(users.get(i)).getAlbumList().get(j).getLowestDate(), photoAlbum.get(users.get(i)).getAlbumList().get(j).getHighestDate());
                     tmp.add(tmp3);
@@ -68,9 +70,11 @@ public class dataList implements Serializable{
                         try {
                             String url = data.getUrl();
                             if(url.contains("\\")){
-                                url.replace("\\", "/");
+                                url = url.replace("\\", "/");
                             }
-                            url = url.substring(6);
+                            if(url.substring(0,4).equals("file")){
+                                url = url.substring(6);
+                            }
                             System.out.println(url);
                             InputStream stream = new FileInputStream(url);
                             Image image = new Image(stream);
@@ -83,6 +87,9 @@ public class dataList implements Serializable{
                             imageDataCopy.setCaption(data.getCaption());
                             System.out.println("Pass Caption copying");
                             //copy tag
+                            imageDataCopy.setURL(url);
+                            System.out.println("Pass URL copying");
+                            //copy url
                             if(imageDataCopy.getTags().size()>0){
                                 //make a observableArrayList of String
                                 ObservableList<String> tagCopy = FXCollections.observableArrayList();
@@ -109,6 +116,9 @@ public class dataList implements Serializable{
                 for(int i = 0; i< users.size(); i++){
                     ArrayList<photoAlbumList_serializable> tmp = new ArrayList<>();
                     photoAlbumList_serializable tmp2 = new photoAlbumList_serializable(tmp);
+                    ArrayList<String> tagData = new ArrayList<>();
+                    tagData.addAll(data.get(users.get(i)).getTag());
+                    tmp2.setTagList(tagData);
                     for(int j = 0; j<data.get(users.get(i)).getAlbumList().size(); j++){
                         photoAlbumList_serializable tmp3 = new photoAlbumList_serializable(data.get(users.get(i)).getAlbumList().get(j).getName(), data.get(users.get(i)).getAlbumList().get(j).getPhotoNum(), data.get(users.get(i)).getAlbumList().get(j).getLowestDate(), data.get(users.get(i)).getAlbumList().get(j).getHighestDate());
                         tmp.add(tmp3);
@@ -132,7 +142,7 @@ public class dataList implements Serializable{
             for(int i = 0; i< mapPhoto.getPhotos().size(); i++){
                 //Copy image_attribute in mapPhoto and make them into imageAttribute_ser
                 //Copy image first
-                imageAttributes_serializable copyData = new imageAttributes_serializable(mapPhoto.getPhotos().get(i).getImage());
+                imageAttributes_serializable copyData = new imageAttributes_serializable(mapPhoto.getPhotos().get(i).getURL());
                 System.out.println("DataList:SetImageList" + copyData.getUrl());
                 System.out.println("Pass Photo Copying");
                 //copy date

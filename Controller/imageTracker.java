@@ -4,12 +4,13 @@ import javafx.collections.ObservableList;
 
 public class imageTracker {
 
-        private imageAttributes stockImage, selectedImage, copyImage, moveImage, uplaodImage;
+        private imageAttributes stockImage, selectedImage, copyImage, moveImage, uplaodImage, searchSelectImage;
         private static imageTracker instance;
-        protected boolean check, move, stockImageBoolean;
-        protected ObservableList<String> allTags;
+        protected boolean check, stockImageBoolean;
+        protected boolean move = false;
         private String tags;
         private boolean closed = false;
+        private int lastSelectedIndex = 0;
 
     public static imageTracker getInstance(){
         if (instance == null) {
@@ -19,16 +20,6 @@ public class imageTracker {
     }
 
     private ObservableList<String> selectedTagsOnlyList = FXCollections.observableArrayList();
-
- // -------------------------------------------------------------
-
-    /**
-    * This constructor initializes an imageTracker object.
-    * It also sets up an observable list for all tags.
-    */
-    public imageTracker(){
-        this.allTags = FXCollections.observableArrayList();
-    }
 
   // -------------------------------------------------------------
    
@@ -111,34 +102,6 @@ public class imageTracker {
     public imageAttributes getStockImage(){
         return stockImage;
     }
-// -------------------------------------------------------------
-
-    /**
-    * This method adds a tag to the list of all tags.
-    *
-    * @param tag The tag to be added.
-    */
-    public void addTagToList(String tag){
-        allTags.add(tag);
-    }
-
-    /**
-    * This method returns the size of the list of all tags.
-    *
-    * @return The size of the list of all tags.
-    */
-    public int tagListSize(){
-        return allTags.size();
-    }
-
-    /**
-    * This method returns the list of all tags.
-    *
-    * @return The list of all tags.
-    */
-    public ObservableList<String> getTagList(){
-        return allTags;
-    }
 
 // -------------------------------------------------------------
 
@@ -191,12 +154,31 @@ public class imageTracker {
         this.uplaodImage = selectedImage;
     }
 
+// -------------------------------------------------------------
+    
+    public imageAttributes getSearchSelectedImage() {
+        return searchSelectImage;
+    }
+
+
+   
+    public void setSearchSelectedImage(imageAttributes selectedImage) {
+        this.searchSelectImage = selectedImage;
+    }
+
     public boolean getclosed(){
         return closed;
     }
 
     public void setClosed(boolean x){
         closed = x;
+    }
+
+    public int getLastSelectIndex(){
+        return lastSelectedIndex;
+    }
+    public void setLastSelectedIndex(int set){
+        lastSelectedIndex = set;
     }
 }
 

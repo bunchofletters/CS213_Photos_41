@@ -1,10 +1,8 @@
 package Controller;
 import java.util.HashMap;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 /**
  * This class allows each user to have unique photo album along with each photo album having their own list of photos
  * @author oscar

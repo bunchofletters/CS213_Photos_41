@@ -13,6 +13,8 @@ public class photoAlbumList_serializable implements Serializable{
     private int NumberOfPhotos = 0;
     private ArrayList<photoAlbumList_serializable> photoAlbum = new ArrayList<>();
 
+    private ArrayList<String> allTags = new ArrayList<>();
+
 
     public photoAlbumList_serializable(ArrayList<photoAlbumList_serializable> photoAlbum){
         this.photoAlbum = photoAlbum;
@@ -55,5 +57,13 @@ public class photoAlbumList_serializable implements Serializable{
      */
     public ArrayList<photoAlbumList_serializable> getAlbumList(){
         return photoAlbum;
+    }
+
+    public ArrayList<String> getTag(){
+        return allTags;
+    }
+
+    public void setTagList(ArrayList<String> data){
+        allTags = data;
     }
 }

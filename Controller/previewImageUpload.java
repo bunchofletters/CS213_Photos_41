@@ -84,6 +84,7 @@ public class previewImageUpload {
 
     imagePreviewer.setImage(track.getUplaodImage().getImage());
     imgAttr = new imageAttributes(track.getUplaodImage().getImage());
+    imgAttr.setURL(track.getUplaodImage().getURL());
     System.out.println("Preview INTIZ: " + track.getUplaodImage().getImage());
 
     if(track.getSelectedTagList() != null){
@@ -126,6 +127,18 @@ public class previewImageUpload {
                 CurrentCaptionLabel.setText("Untitled");
                 imgAttr.setCaption("Untitled");
             }
+            else if(result.get().contains("=")){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setHeaderText("A Error has Occured");
+                alert.setTitle("Error");
+                alert.setContentText("You have attempted to add '=' to your caption. Try another caption without '='");
+            }
+            else if(result.get().contains("/")){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setHeaderText("A Error has Occured");
+                alert.setTitle("Error");
+                alert.setContentText("You have attempted to add '/' to your caption. Try another caption without '/'");
+            }
             else{
                 CurrentCaptionLabel.setText(result.get());
                 imgAttr.setCaption(result.get());
@@ -155,6 +168,8 @@ public class previewImageUpload {
             secondPopUp.initModality(Modality.APPLICATION_MODAL); 
             secondPopUp.setScene(scene);
             secondPopUp.setResizable(false);
+
+            
 
             secondPopUp.setOnHidden(e -> {
                 if(track.getMoveTag()!= null && !track.getMoveTag().equals("")){

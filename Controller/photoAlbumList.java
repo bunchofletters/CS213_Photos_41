@@ -1,6 +1,7 @@
 package Controller;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -13,6 +14,8 @@ public class photoAlbumList{
     private SimpleStringProperty AlbumName,EarliestPhotoDate, LatestPhotoDate;
     private SimpleIntegerProperty NumberOfPhotos;
     private ObservableList<photoAlbumList> photoAlbum;
+
+    private ObservableList<String> allTags = FXCollections.observableArrayList();
 
 
     public photoAlbumList(ObservableList<photoAlbumList> photoAlbum){
@@ -64,5 +67,13 @@ public class photoAlbumList{
      */
     public ObservableList<photoAlbumList> getAlbumList(){
         return photoAlbum;
+    }
+
+    public ObservableList<String> getTag(){
+        return allTags;
+    }
+
+    public void setTagList(ObservableList<String> data){
+        allTags = data;
     }
 }

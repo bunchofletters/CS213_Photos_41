@@ -40,6 +40,7 @@ public class uploadingFromStock {
         Image images1 = new Image(getClass().getResourceAsStream(filepath));
         imageAttributes newImage = new imageAttributes(images1);
         newImage.setURL(images[index].getPath().substring(1));
+        newImage.setCaption(filepath.substring(filepath.lastIndexOf("/")+1, filepath.lastIndexOf(".")));
         track.setStockImage(newImage);
         System.out.println(newImage);
         Stage stage = (Stage) SaveButton.getScene().getWindow();
