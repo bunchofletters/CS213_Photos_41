@@ -1,4 +1,5 @@
 package Controller;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import app.Photo;
@@ -92,7 +93,7 @@ public class searchMode {
         ImageView imageView = new ImageView(observableList.get(index).getImage());
         imageView.setFitWidth(150); // Set image width
         imageView.setFitHeight(100); // Set image height
-        Label photoName = new Label("images.get(imageAttributeIndex).getName()");
+        Label photoName = new Label(observableList.get(index).getCaption());
         photoName.setAlignment(Pos.CENTER);
         
         // creates a VBOX so the Image, Name is linked together
@@ -155,15 +156,19 @@ public class searchMode {
                             filterList.add(x);
                     }
                 }
-                else if(filterType == 2){ //date filter
-                    String dateUpload = tmp.getPhotos().get(counter).getUploadDate();
-                    if(dateUpload.equals(FilterInput.getText())){
+                else if (filterType == 2){
+                    String date1 = FilterInput.getText().substring(0,10); //1234(5)67(8)910
+                    String date2 = FilterInput.getText().substring(11);
+                    LocalDate earlyDate = LocalDate.of(Integer.parseInt(date1.substring(0,4)), Integer.parseInt(date1.substring(5, 7)), Integer.parseInt(date1.substring(8)));
+                    LocalDate lateDate = LocalDate.of(Integer.parseInt(date2.substring(0,4)), Integer.parseInt(date2.substring(5, 7)), Integer.parseInt(date2.substring(8)));
+                    LocalDate photoDate = x.getUploadDateAsDate();
+                    if ((photoDate.isEqual(earlyDate) || photoDate.isEqual(lateDate)) || (photoDate.isAfter(earlyDate) && photoDate.isBefore(lateDate))){
                         filterList.add(x);
                     }
                 }
                 else if(filterType == 3){
                     //check for match case maybe
-                    if(FilterInput.getText().toLowerCase().equals(tmp.getPhotos().get(counter).getCaption().toLowerCase())){
+                    if(tmp.getPhotos().get(counter).getCaption().toLowerCase().contains(FilterInput.getText().toLowerCase())){
                         filterList.add(x);
                     }
                 }

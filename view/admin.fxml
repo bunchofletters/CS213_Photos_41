@@ -33,11 +33,6 @@
             </AnchorPane>
          </items>
       </SplitPane>
-      <Button layoutX="15.0" layoutY="7.0" mnemonicParsing="false" onAction="#deleteUser2" prefHeight="35.0" prefWidth="120.0" text="Delete_User">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </Button>
       <Text layoutX="158.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of User" textAlignment="CENTER" wrappingWidth="283.75832748413086">
          <font>
             <Font name="System Bold" size="24.0" />

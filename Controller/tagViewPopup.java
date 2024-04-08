@@ -57,6 +57,7 @@ public class tagViewPopup {
 
     @FXML void close() {
         Stage stage = (Stage) CloseButton.getScene().getWindow();
+        track.setClosed(false);
         stage.close();
     }
 
@@ -70,6 +71,9 @@ public class tagViewPopup {
             track.setMoveTag(selectedTag);
             track.addSelectedTagToList(selectedTag);
         }
+    }
+    else{
+        track.setMoveTag(null);
     }
     Stage stage = (Stage) CloseButton.getScene().getWindow();
     stage.close();
