@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 public class imageTracker {
 
         private imageAttributes stockImage, selectedImage, copyImage, moveImage, uplaodImage, searchSelectImage;
+        private imageAttributes stockImage, selectedImage, copyImage, moveImage, uplaodImage, searchSelectImage;
         private static imageTracker instance;
         protected boolean check, stockImageBoolean;
         protected boolean move = false;
@@ -152,6 +153,18 @@ public class imageTracker {
 
     public void setUplaodImage(imageAttributes selectedImage) {
         this.uplaodImage = selectedImage;
+    }
+
+// -------------------------------------------------------------
+    
+    public imageAttributes getSearchSelectedImage() {
+        return searchSelectImage;
+    }
+
+
+   
+    public void setSearchSelectedImage(imageAttributes selectedImage) {
+        this.searchSelectImage = selectedImage;
     }
 
 // -------------------------------------------------------------
