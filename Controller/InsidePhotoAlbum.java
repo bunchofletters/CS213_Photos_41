@@ -68,11 +68,6 @@ public class InsidePhotoAlbum{
     imageAttributeIndex = 0;
         // SHOWS WHAT ALBUM YOURE IN, SHOWS THE NAME OF THE ALBUM IN THE MIDDLE
     AlbumNameItsIn.setText(user.getAlbum().getName());
-
-    //Image image = new Image("data/Frog.jpeg");
-    //imageAttributes newImage = new imageAttributes(image);
-    //newImage.setURL("/data/Frog.jpeg");
-    //link.addToImage(user.getAlbum(), newImage);
     
     images = link.getImageList(user.getAlbum()).getPhotos();
     user.getAlbum().setPhotoNum(images.size());
@@ -136,11 +131,11 @@ public class InsidePhotoAlbum{
                         imageAttributes newImage = new imageAttributes(selectImage);
                         for(imageAttributeIndex = 0; imageAttributeIndex< images.size();imageAttributeIndex++){
                             if(imageView.getImage().equals(images.get(imageAttributeIndex).getImage())){
+                                newImage.setURL(images.get(imageAttributeIndex).getURL());
+                                newImage.setCaption(images.get(imageAttributeIndex).getCaption());
+                                newImage.setTag(images.get(imageAttributeIndex).getTags());
                                 break;
                             }
-                        }
-                        if(imageAttributeIndex != images.size()){
-                            newImage.setURL(images.get(imageAttributeIndex).getURL());
                         }
                         System.out.println("GointoPhtoDetail: " + images.get(imageAttributeIndex).getURL());
                         track.setSelectedImage(newImage);

@@ -1,6 +1,9 @@
 package Controller;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
+import java.io.InputStream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,20 +34,16 @@ public class uploadingFromStock {
     private ListView<String> stockPhotoList;
 
     @FXML
-    void save(ActionEvent event) {
+    void save(ActionEvent event) throws FileNotFoundException {
         int index = stockPhotoList.getSelectionModel().getSelectedIndex() < 0 ? 0 : stockPhotoList.getSelectionModel().getSelectedIndex();
-        if(index > -1){
-            String filepath = images[index].getPath().substring(1);
-            if(filepath.contains("\\")){
-                filepath = filepath.replace("\\", "/");
-            }
-            Image images1 = new Image(getClass().getResourceAsStream(filepath));
-            imageAttributes newImage = new imageAttributes(images1);
-            newImage.setURL(images[index].getPath().substring(1));
-            newImage.setCaption(filepath.substring(filepath.lastIndexOf("/")+1, filepath.lastIndexOf(".")));
-            track.setStockImage(newImage);
-            System.out.println(newImage);
-        }
+        String filepath = images[index].getAbsolutePath();
+        InputStream stream = new FileInputStream(filepath);
+        Image images1 = new Image(stream);
+        imageAttributes newImage = new imageAttributes(images1);
+        newImage.setURL(images[index].getAbsolutePath());
+        newImage.setCaption(images[index].getName());
+        track.setStockImage(newImage);
+        System.out.println(newImage);
         Stage stage = (Stage) SaveButton.getScene().getWindow();
         stage.close();
 
@@ -52,23 +51,17 @@ public class uploadingFromStock {
 
     @FXML
     void setThisImage() {
-        long st = System.nanoTime();
         int photoPos = stockPhotoList.getSelectionModel().getSelectedIndex();
-        if(photoPos > -1){
-            String filepath = images[photoPos].getPath();
-            filepath = filepath.substring(1);
-            if(filepath.contains("\\"))
-                filepath = filepath.replace('\\', '/');
-            Image imageview = new Image(getClass().getResourceAsStream(filepath));
-            ImageViewer.setImage(imageview);
-            long n = System.nanoTime();
-            double na = n-st;
-            System.out.println(filepath+ ": " + na);
-        }
+        String filepath = images[photoPos].getPath();
+        filepath = filepath.substring(1);
+        if(filepath.contains("\\"))
+            filepath = filepath.replace('\\', '/');
+        Image imageview = new Image(getClass().getResourceAsStream(filepath));
+        ImageViewer.setImage(imageview);
+
     }
 
-    public void initialize(){
-        long st = System.nanoTime();
+    public void initialize() throws FileNotFoundException{
             if(Stock_Image.size() == 0 || images.length > Stock_Image.size()){
                 images = dir.listFiles(new FilenameFilter() {
                     public boolean accept(File dir, String name){
@@ -91,19 +84,15 @@ public class uploadingFromStock {
             stockPhotoList.getItems().clear();
             stockPhotoList.getItems().addAll(Stock_Image);
     
-            String filepath = images[0].getPath();
-            filepath = filepath.substring(1);
-            if(filepath.contains("\\")){
-                filepath = filepath.replace("\\", "/");
-            }
-            
-            Image imageview = new Image(getClass().getResourceAsStream(filepath));
+            String filepath = images[0].getAbsolutePath();
+            System.out.println(filepath);
+            // filepath = filepath.substring(1);
+            // if(filepath.contains("\\")){
+            //     filepath = filepath.replace("\\", "/");
+            // }
+            InputStream stream = new FileInputStream(filepath);
+            Image imageview = new Image(stream);
             ImageViewer.setImage(imageview);
-
-    
-            long n = System.nanoTime();
-            double na = n-st;
-            System.out.println(na);
         }
 
 }

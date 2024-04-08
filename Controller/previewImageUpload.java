@@ -86,15 +86,6 @@ public class previewImageUpload {
     imgAttr = new imageAttributes(track.getUplaodImage().getImage());
     imgAttr.setURL(track.getUplaodImage().getURL());
     System.out.println("Preview INTIZ: " + track.getUplaodImage().getImage());
-
-    if(track.getSelectedTagList() != null){
-        for (int i = 0; i < track.tagSelectedListSize(); i++){
-            if(track.getSelectedTagList().get(i) != null){
-                tagsAndValue adding = new tagsAndValue(track.getSelectedTagList().get(i), null);
-                selectedTagsList.add(adding);
-            }
-        }
-    }
     
     TagColum.setCellValueFactory(new PropertyValueFactory<tagsAndValue, String>("tags"));
     ValueColumn.setCellValueFactory(new PropertyValueFactory<tagsAndValue, String>("value"));
@@ -145,8 +136,6 @@ public class previewImageUpload {
             }
 
         }
-
-        // still need to implement adding the caption to the actual photo, it should do a method call to imageTracker or something so it stores the caption with the image so if its abanoned it doesnt save so eveything should go to save
         
     }
 
@@ -199,11 +188,11 @@ public class previewImageUpload {
 
     @FXML void addValue(ActionEvent event) {
         int index = Table.getSelectionModel().getSelectedIndex();
-        if (index < 0){
+        if(index < 0){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("There was an Error");
-            alert.setContentText("NO TAG SELECTED");
+            alert.setContentText("Attempting to Add Value Without Selecting a Tag. Try Selecting a Tag and Clicking Add Value");
+            alert.setHeaderText("An Error Occured");
             alert.showAndWait();
         }
         else{
@@ -236,26 +225,27 @@ public class previewImageUpload {
                     Alert alert = new Alert(AlertType.WARNING);
                     alert.setTitle("Warning");
                     alert.setHeaderText("An Warning has Occured");
-                    alert.setContentText("Attempting to set [value] with a value that starts with 'space'. S    tart with a number or letter instead");
+                    alert.setContentText("Attempting to set [value] with a value that starts with 'space'. Start with a number or letter instead");
                     alert.showAndWait();
                 }
-            } 
+            }
         }
     }
-
 
 // -------------------------------------------------------------------------------------
     @FXML void deleteTagValue(){
         int index = Table.getSelectionModel().getSelectedIndex();
-        if (index > 0){
+        if(index < 0){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Attempting to Delete Without Selecting a Tag. Try Selecting a Tag and Clicking Delete");
+            alert.setHeaderText("An Error Occured");
+            alert.showAndWait();
+        }
+        else{
             selectedTagsList.remove(index);
             Table.refresh();
         }
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle("Warning");
-        alert.setHeaderText("An Warning has Occured");
-        alert.setContentText("SELECTION NEEDED TO BE DELETED");
-        alert.showAndWait();
     }
 
 }
