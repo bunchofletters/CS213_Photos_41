@@ -105,13 +105,6 @@ public class movingPhotos {
         users.setItems(tmp);
     }
 
-
-
-        // // // Only add the image if it's not already in the album
-        // if (!link.isImageInAlbum(album, track.getSelectedImage())) {//TODO
-        //     link.addToImage(album, track.getSelectedImage());
-        // }
-
 // -------------------------------------------------------------------------------------
 
     public void initialize() {
