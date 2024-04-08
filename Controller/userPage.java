@@ -1,9 +1,16 @@
 package Controller;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Optional;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -36,7 +43,7 @@ public class userPage{
 
     
     // ------------------------------------------------------------------------------------
-
+    private imageTracker track = imageTracker.getInstance();
     private static photoAlbumList album;
     private static userPage instance;
     private int item;
@@ -52,6 +59,7 @@ public class userPage{
     }
     linkerClass link = linkerClass.getInstance();
     String user = Login.getUser();
+    private LocalDate[] dates;
 
 // -------------------------------------------------------------------------------------
 
@@ -69,6 +77,7 @@ public class userPage{
                 AlbumNameInput.clear();
             }
         }
+
     }
 
 // -------------------------------------------------------------------------------------
@@ -101,11 +110,17 @@ public class userPage{
 // -------------------------------------------------------------------------------------
     @FXML void openAlbum(ActionEvent event) {
         item = table.getSelectionModel().getSelectedIndex();
-        album = link.getPhotoAlbum(user).getAlbumList().get(item);
-            if(item != -1){
+            if(item >= 0){
+                album = link.getPhotoAlbum(user).getAlbumList().get(item);
                 x.changeScene("/view/insidePhotoAlbum.fxml");
+            } else{
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("An Warning has Occured");
+                alert.setContentText("PLEASE SELECT AN ALBUM");
+                alert.showAndWait();
+                }
             }
-    }
 
 // -------------------------------------------------------------------------------------
 
@@ -157,7 +172,57 @@ public class userPage{
             });
             return row;
         });
+        
+        
+    
+
+
+    // album list
+    ObservableList<photoAlbumList> userAlbum = link.getPhotoAlbum(user).getAlbumList();
+
+    if (userAlbum != null){
+        for (int i = 0; i < userAlbum.size(); i++){
+            LocalDate early = LocalDate.MAX;;
+            LocalDate late = LocalDate.MIN;
+            LocalDate temp = null;
+            System.out.println(userAlbum.size());
+                if (userAlbum.get(i).getPhotoNum() == 0){
+                    link.getPhotoAlbum(user).getAlbumList().get(i).setLowestDate(null);
+                    link.getPhotoAlbum(user).getAlbumList().get(i).setHighestDate(null);
+                } else {
+                    if (userAlbum.get(i).getPhotoNum() == 1){
+                        early = link.getImageList(userAlbum.get(i)).getPhotos().get(0).getUploadDateAsDate();
+                        link.getPhotoAlbum(user).getAlbumList().get(i).setLowestDate(early.toString());
+                        link.getPhotoAlbum(user).getAlbumList().get(i).setHighestDate(early.toString());
+                    } else{
+                        for (int j = 0; j < link.getImageList(userAlbum.get(i)).getPhotos().size(); j++){
+                            temp = link.getImageList(userAlbum.get(i)).getPhotos().get(j).getUploadDateAsDate();
+                                if (temp.isAfter(late)){
+                                    System.out.println(temp);
+                                    System.out.println(late);
+                                    late = temp;
+                                    System.out.println(late);
+                                } else{
+                                    if (temp.isBefore(early)){
+                                        System.out.println(temp);
+                                        System.out.println(early);
+                                        early = temp;
+                                        System.out.println(early);
+                                    }
+                                }
+                        link.getPhotoAlbum(user).getAlbumList().get(i).setLowestDate(early.toString());
+                        link.getPhotoAlbum(user).getAlbumList().get(i).setHighestDate(late.toString());
+                                
+                        }
+                    }
+                }
+            }
+        
+        }
+        
     }
+
+    // -------------------------------------------------------------------------------------
 
     public void tableRefesh(){
         table.getItems().clear();

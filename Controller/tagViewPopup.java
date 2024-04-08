@@ -50,6 +50,7 @@ public class tagViewPopup {
             if (!tagExists) {
                 link.getPhotoAlbum(users.getUser()).getTag().add(result.get());
                 listOfTags.getItems().add(result.get());
+                listOfTags.refresh();
             }
         }
     }

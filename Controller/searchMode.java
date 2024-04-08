@@ -132,7 +132,7 @@ public class searchMode {
             if(FilterInput.getText().lastIndexOf("=") != FilterInput.getText().indexOf("="))
                 filterType = 1; //1 for two tag-value serching
         }
-        else if(FilterInput.getText().contains("/")){
+        else if(FilterInput.getText().contains("-")){
             filterType = 2; //2 for date search
         }
         else{

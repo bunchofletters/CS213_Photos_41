@@ -51,7 +51,8 @@ public class imageTracker {
     */
     public void setSaveCopyImage(imageAttributes selectedImage) {
         this.copyImage = selectedImage;
-        System.out.println(selectedImage.getURL());
+        if(selectedImage != null)
+            System.out.println(selectedImage.getURL());
     }
 
     /**
