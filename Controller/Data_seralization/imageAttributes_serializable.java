@@ -19,9 +19,8 @@ public class imageAttributes_serializable implements Serializable{
     private LocalDate uploadDate;
 
 
-    public imageAttributes_serializable(Image image){
-        this.image = image;
-        url = image.getUrl();
+    public imageAttributes_serializable(String url){
+        this.url = url;
         System.out.println(uploadDate);
         uploadDate = LocalDate.now();
     }

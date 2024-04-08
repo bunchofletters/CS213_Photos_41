@@ -192,6 +192,7 @@ public class userPage{
     }
 
     public String getUser(){
+        user = Login.getUser();
         return user;
     }
 

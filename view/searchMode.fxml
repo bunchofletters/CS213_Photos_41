@@ -25,9 +25,9 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="FilterInput" layoutX="85.0" layoutY="61.0" onAction="#filterBox" prefHeight="26.0" prefWidth="660.0" promptText="Search By Date ( eg. YYYY / MM / DD ) ,  Tag ( eg. Person,  Car OR Location ) , Value ( eg. John,  Joe AND Molly) ) " />
+      <TextField fx:id="FilterInput" alignment="CENTER" layoutX="138.0" layoutY="61.0" prefHeight="26.0" prefWidth="607.0" promptText="Enter Search Parameter {Date Formate YYYY/MM/DD}" />
       <Button fx:id="SearchInput" alignment="CENTER" layoutX="757.0" layoutY="60.0" mnemonicParsing="false" onAction="#searchbox" prefHeight="26.0" prefWidth="65.0" text="Search" />
-      <Button fx:id="UploadButton" alignment="CENTER" layoutX="607.0" layoutY="507.0" mnemonicParsing="false" onAction="#upload" prefHeight="35.0" prefWidth="309.0" text="Create Album From Search Results">
+      <Button fx:id="UploadButton" alignment="CENTER" layoutX="607.0" layoutY="507.0" mnemonicParsing="false" onAction="#makeAlbumn" prefHeight="35.0" prefWidth="309.0" text="Create Album From Search Results">
          <font>
             <Font size="18.0" />
          </font></Button>
