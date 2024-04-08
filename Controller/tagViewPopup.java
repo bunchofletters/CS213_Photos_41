@@ -12,6 +12,7 @@ public class tagViewPopup {
 
     linkerClass link = linkerClass.getInstance();
     private imageTracker track = imageTracker.getInstance();
+    private userPage users = userPage.getInstance();
 
     @FXML private Button CloseButton;
     @FXML private Button SelecteButton;
@@ -24,9 +25,9 @@ public class tagViewPopup {
 // -------------------------------------------------------------------------------------
 
     public void initialize(){
-        if (track.tagListSize() >= 0){
-            for (int i = 0; i < track.tagListSize(); i++){
-                listOfTags.getItems().add(track.allTags.get(i));
+        if (link.getPhotoAlbum(users.getUser()).getTag().size() >= 0){
+            for (int i = 0; i < link.getPhotoAlbum(users.getUser()).getTag().size(); i++){
+                listOfTags.getItems().add(link.getPhotoAlbum(users.getUser()).getTag().get(i));
            }
         }
     }
@@ -40,14 +41,14 @@ public class tagViewPopup {
         Optional<String> result = td.showAndWait();
         if (result.isPresent() && !result.get().equals("") && !result.get().substring(0,1).equals(" ")){
             boolean tagExists = false;
-            for (int i = 0; i < track.tagListSize(); i++){
-                if (result.get().equals(track.allTags.get(i))){
+            for (int i = 0; i < link.getPhotoAlbum(users.getUser()).getTag().size(); i++){
+                if (result.get().equals(link.getPhotoAlbum(users.getUser()).getTag().get(i))){
                     tagExists = true;
                     break;
                 }
             }
             if (!tagExists) {
-                track.addTagToList(result.get());
+                link.getPhotoAlbum(users.getUser()).getTag().add(result.get());
                 listOfTags.getItems().add(result.get());
                 listOfTags.refresh();
             }

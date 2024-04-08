@@ -78,7 +78,7 @@ public class InsidePhotoAlbum{
     user.getAlbum().setPhotoNum(images.size());
     for (imageAttributes img : images){
         if (img != null) {
-            tilePane.getChildren().add(setImages(img.getImage()));
+            tilePane.getChildren().add(setImages(img));
         }
         imageAttributeIndex++;
         scrollPane.setContent(tilePane);
@@ -88,14 +88,14 @@ public class InsidePhotoAlbum{
 }
 // -------------------------------------------------------------------------------------
 
-    public VBox setImages(Image image){
+    public VBox setImages(imageAttributes image){
     // Load the image (replace with your image file path)
     // Image image = new Image("data/Beach.jpeg");
-    ImageView imageView = new ImageView(image);
+    ImageView imageView = new ImageView(image.getImage());
     // userpage.getlListOfPhotos().getPhotoList().add(image);
     imageView.setFitWidth(150); // Set image width
     imageView.setFitHeight(100); // Set image height
-    Label photoName = new Label("images.get(imageAttributeIndex).getName()");
+    Label photoName = new Label(image.getCaption());
     photoName.setAlignment(Pos.CENTER);
     
     // creates a VBOX so the Image, Name is linked together
@@ -182,7 +182,7 @@ public class InsidePhotoAlbum{
             if (track.getSaveCopyImage() != null && !link.getImageList(user.getAlbum()).isImageInAlbum(track.getSaveCopyImage())) {
                 System.out.println("PASTING PRINT: " + track.getSaveCopyImage().getURL());
                 link.addToImage(user.getAlbum(), track.getSaveCopyImage());
-                tilePane.getChildren().add(setImages(track.getSaveCopyImage().getImage()));
+                tilePane.getChildren().add(setImages(track.getSaveCopyImage()));
                 user.updateUserAlbum();
                 track.setSaveCopyImage(null);
 
@@ -258,8 +258,7 @@ public class InsidePhotoAlbum{
                     if (track.getclosed() && !link.getImageList(user.getAlbum()).isImageInAlbum(track.getUplaodImage())){
                         link.addToImage(user.getAlbum(), track.getUplaodImage());
                         user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
-                        tilePane.getChildren().add(setImages(track.getUplaodImage().getImage()));
-                        track.setUplaodImage(null);
+                        tilePane.getChildren().add(setImages(track.getUplaodImage()));
                         track.setClosed(false);
                     }
                            
@@ -400,7 +399,7 @@ public class InsidePhotoAlbum{
                     link.addToImage(user.getAlbum(), track.getStockImage());
                     user.updateUserAlbum();
                     user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
-                    tilePane.getChildren().add(setImages(track.getStockImage().getImage()));
+                    tilePane.getChildren().add(setImages(track.getStockImage()));
                     track.setStockImage(null);
                     track.setSelectedImage(null);
                 }    

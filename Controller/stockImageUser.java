@@ -28,7 +28,6 @@ public class stockImageUser {
      * and will automatically display the first stock photo
      */
     public void initialize(){
-    long st = System.nanoTime();
         if(Stock_Image.size() == 0 || images.length > Stock_Image.size()){
             images = dir.listFiles(new FilenameFilter() {
                 public boolean accept(File dir, String name){
@@ -61,10 +60,6 @@ public class stockImageUser {
         
         Image imageview = new Image(getClass().getResourceAsStream(filepath));
         ImageViewer.setImage(imageview);
-
-        long n = System.nanoTime();
-        double na = n-st;
-        System.out.println(na);
     }
 
 // -------------------------------------------------------------------------------------
