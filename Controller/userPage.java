@@ -1,8 +1,5 @@
 package Controller;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Optional;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -43,7 +40,6 @@ public class userPage{
 
     
     // ------------------------------------------------------------------------------------
-    private imageTracker track = imageTracker.getInstance();
     private static photoAlbumList album;
     private static userPage instance;
     private int item;
@@ -59,7 +55,6 @@ public class userPage{
     }
     linkerClass link = linkerClass.getInstance();
     String user = Login.getUser();
-    private LocalDate[] dates;
 
 // -------------------------------------------------------------------------------------
 
