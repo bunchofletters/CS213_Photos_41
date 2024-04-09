@@ -12,14 +12,12 @@ public class dataHolder implements Serializable{
     login Login;
     linkerClass link;
 
-// -------------------------------------------------------------------------------------
-
     /**
      * Creates a single instance of dataHolder
-     * It saves the data in a file named "saveData.ser".
      * @return the single instance of dataHolder
-     * @throws Exception if an error happens during the serialization.
-     * 
+     */
+    /**
+     * Save all data that will be need for the next running of photo program
      */
     public void saveData() throws Exception{
         File f = new File("saveData.ser");
@@ -32,7 +30,6 @@ public class dataHolder implements Serializable{
         list.setPhotoAlbum(link.getDataPhotoAlbum());
         for(int i = 0; i<link.getDataPhotoAlbum().size(); i++){ //run up to the amount of user
             for(int j = 0; j<link.getDataPhotoAlbum().get(Login.getList().get(i)).getAlbumList().size(); j++){ //run up to the amount of photoAlbum in that users
-                
                 //feed it the user, photoAlbumList, and HashMap
                 list.setimageList(Login.getList().get(i), j, link.getPhotoAlbum(Login.getList().get(i)).getAlbumList().get(j), link.getPhotoList());
             }
@@ -43,13 +40,6 @@ public class dataHolder implements Serializable{
         oos.close();
     }
 
-// -------------------------------------------------------------------------------------
-
-
-    /**
-     * retrieves program data from the saved file "saveData.ser".
-     * deserializes the data before loading it into the data structures.
-     */
     public void loadData(){
         File f = new File("saveData.ser");
         try{
@@ -70,35 +60,16 @@ public class dataHolder implements Serializable{
         }
     }
 
-// -------------------------------------------------------------------------------------
-
-    
-    /**
-     * The Login instance receives the user list from the provided dataList.
-     * @param list The user list will be loaded from the dataList.
-     */
     public void loadUserList(dataList list){
         if(list.getDataUser() != null)
             Login.setUserList(list.getDataUser());
     }
 
-// -------------------------------------------------------------------------------------
-
-    /**
-     * Loads the user's album data into the LinkerClass instance using the dataList.
-     * @param list The dataList from which to load the user's album data
-     */
     public void loadHashMapUserToAlbum(dataList list){
         if(list.getPA() != null)
             link.loadUserToAlbum(list.getphotoAlbum());
     }
 
-// -------------------------------------------------------------------------------------
-    
-    /**
-     * The album data and image lists are loaded into the LinkerClass instance using the dataList provided.
-     * @param list The dataList is used to load the album data and image lists.
-     */
     public void loadAlbumToList(dataList list){
         if(list.getIL() != null)
             link.loadAlbumToList(list.getimageList(link.getDataPhotoAlbum()));

@@ -15,27 +15,25 @@ public class admin {
 
     private linkerClass link = linkerClass.getInstance();
 
-    @FXML private TextField userInput;
+    @FXML
+    private TextField userInput;
 
-    @FXML private ListView<String> userList;
+    @FXML
+    private ListView<String> userList;
 
-// -------------------------------------------------------------------------------------
-
-    @FXML void backToLogin() {
+    @FXML
+    void backToLogin() {
         Photo x = Photo.getInstance();
         x.changeScene("/view/login.fxml");
     }
-
-// -------------------------------------------------------------------------------------
 
     public void initialize(){
         System.out.println(Login);
         listUser();
     }
 
-// -------------------------------------------------------------------------------------
-
-    @FXML void createUser() {
+    @FXML
+    void createUser() {
         if(!Login.getList().contains(userInput.getText().toLowerCase()) && !userInput.getText().toLowerCase().equals("admin") && !userInput.getText().toLowerCase().equals("stock") && !userInput.getText().toLowerCase().equals("") && !userInput.getText().toLowerCase().substring(0,1).equals(" ")){
             Login.getList().add(userInput.getText().toLowerCase());
             link.setUserAlbum(userInput.getText().toLowerCase());
@@ -43,8 +41,6 @@ public class admin {
         userInput.clear();
         listUser();
     }
-
-// -------------------------------------------------------------------------------------
 
     @FXML
     void deleteUser() {
@@ -64,9 +60,8 @@ public class admin {
 
     }
 
-// -------------------------------------------------------------------------------------
-
-    @FXML private void listUser() {
+    @FXML
+    private void listUser() {
         userList.getItems().clear();
         userList.getItems().addAll(Login.getList());
     }
