@@ -75,8 +75,8 @@ public class movingPhotos {
                             System.out.println("moving ouside track: " + track.getSelectedImage());
                             // System.out.println("moving outside index: " + link.getImageList(album).getPhotos().get(i).getImage());
                                 
-                                System.out.println("moving index: " + link.getImageList(album).getPhotos().get(i).getImage().getUrl());
-                                System.out.println("moving track: " + track.getSelectedImage().getImage().getUrl());
+                                System.out.println("moving index: " + link.getImageList(album).getPhotos().get(i).getImage());
+                                System.out.println("moving track: " + track.getSelectedImage().getImage());
                                 if (link.getImageList(album).getPhotos().get(i).getImage().equals(track.getSelectedImage().getImage())){
 
                                     System.out.println("moving index: " + link.getImageList(album).getPhotos().get(i).getImage());

@@ -24,9 +24,8 @@ public class imageTracker {
   // -------------------------------------------------------------
    
     /**
-    * This method returns the selected image.
     *
-    * @return The selected image.
+    * @return The selected image
     */
     public imageAttributes getSelectedImage() {
         return selectedImage;
@@ -34,9 +33,8 @@ public class imageTracker {
 
 
     /**
-    * This method sets the selected image.
     *
-    * @param selectedImage The image that the user is currently selecting.
+    * @param selectedImage sets the selected image image that the user is currently selecting
     */
     public void setSelectedImage(imageAttributes selectedImage) {
         this.selectedImage = selectedImage;
@@ -45,9 +43,8 @@ public class imageTracker {
   // -------------------------------------------------------------
 
     /**
-    * This method sets the saved copy of the image.
-    *
-    * @param selectedImage The image to be saved as a copy.
+    * 
+    * @param selectedImage The image to be saved as a copy.]
     */
     public void setSaveCopyImage(imageAttributes selectedImage) {
         this.copyImage = selectedImage;
@@ -56,9 +53,7 @@ public class imageTracker {
     }
 
     /**
-    * This method returns the saved copy of the image.
-    *
-    * @return The saved copy of the image.
+    * @return The saved copy of the image
     */
     public imageAttributes getSaveCopyImage(){
         return copyImage;
@@ -67,18 +62,16 @@ public class imageTracker {
   // -------------------------------------------------------------
 
     /**
-    * This method sets the image to be moved.
-    *
-    * @param selectedImage The image to be moved.
+    * 
+    * @param selectedImage sets the image to be moved
     */
     public void setMoveImage(imageAttributes selectedImage) {
         this.moveImage = selectedImage;
     }
 
     /**
-    * This method returns the image to be moved.
     *
-    * @return The image to be moved.
+    * @return The image to be moved
      */
     public imageAttributes getMoveImage(){
         return moveImage;
@@ -87,18 +80,18 @@ public class imageTracker {
 // -------------------------------------------------------------
 
     /**
-    * This method sets the stock image.
     *
-    * @param stockImage The stock image.
+    * @param stockImage sets the stock image
     */
     public void setStockImage(imageAttributes stockImage){
         this.stockImage = stockImage;
     }
 
+// -------------------------------------------------------------
+
     /**
-    * This method returns the stock image.
     *
-    * @return The stock image.
+    * @return the stock image
     */
     public imageAttributes getStockImage(){
         return stockImage;
@@ -107,18 +100,18 @@ public class imageTracker {
 // -------------------------------------------------------------
 
     /**
-    * This method sets the tag to be moved.
     *
-    * @param tag The tag to be moved.
+    * @param tag set the tag to be moved
     */
     public void setMoveTag(String tag){
         this.tags = tag;
     }
 
+// -------------------------------------------------------------
+
     /**
-    * This method returns the tag to be moved.
     *
-    * @return The tag to be moved.
+    * @return The tag to be moved
     */
     public String getMoveTag(){
         return tags;
@@ -126,61 +119,89 @@ public class imageTracker {
 
 // -------------------------------------------------------------
 
-
+    /**
+     * @param tag The tag to add to the list
+     */
     public void addSelectedTagToList(String tag){
         selectedTagsOnlyList.add(tag);
     }
 
-    
+    /**
+     * @return The size of the selected tag list
+     */
     public int tagSelectedListSize(){
         return selectedTagsOnlyList.size();
     }
 
-   
+     /**
+     * @return An ObservableList of selected tags
+     */
     public ObservableList<String> getSelectedTagList(){
         return selectedTagsOnlyList;
     }
 
 // -------------------------------------------------------------
 
-
-    
+    /**
+     * @return The uploaded image
+     */
     public imageAttributes getUplaodImage() {
         return uplaodImage;
     }
 
-
-
+    /**
+     * @param selectedImage The image to set as the uploaded image
+     */
     public void setUplaodImage(imageAttributes selectedImage) {
         this.uplaodImage = selectedImage;
     }
 
 // -------------------------------------------------------------
     
+     /**
+     * @return The selected image from the search
+     */
     public imageAttributes getSearchSelectedImage() {
         return searchSelectImage;
     }
 
-
+// -------------------------------------------------------------
    
+     /**
+     * @param selectedImage the image to set as the selected image from the search
+     */
     public void setSearchSelectedImage(imageAttributes selectedImage) {
         this.searchSelectImage = selectedImage;
     }
 
+    /**
+     * @return the closed status
+     */
     public boolean getclosed(){
         return closed;
     }
 
+     /**
+     * @param x the status to set as the closed status
+     */
     public void setClosed(boolean x){
         closed = x;
     }
-
+    
+    /**
+     * @return the last selected index
+     */
     public int getLastSelectIndex(){
         return lastSelectedIndex;
     }
+
+    /**
+     * @param set the index to set as the last selected index
+     */
     public void setLastSelectedIndex(int set){
         lastSelectedIndex = set;
     }
+
 }
 
 
