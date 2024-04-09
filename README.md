@@ -3,7 +3,7 @@ Login Infomation:
 
     Username: “admin” (not case sensitive)-> admin portal can get access to add list users, create a new user, and delete an existing user
 
-    Username: “stock” (not case sensitive) -> Store stock photos under this user, in an album named "stock". Reserve username
+    Username: “stock” (not case sensitive) -> Store stock photos under this user, in an album named "stock". Reserved username
 
 -------------------------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ Uploading Photos:
 
 -------------------------------------------------------------------------------------
 
-Searching:
+Searching/filtering:
 
     CAPTIONS: when filter searching for a caption make sure it doesn't include
        
@@ -55,6 +55,11 @@ Searching:
  -   Between Date: [YYYY/MM/DD]-[YYYY/MM/DD] no " "(space) between "-";
         e.g:(2039/01/23-2039/04/23)
 
+    "CREATE ALBUM FROM SEARCH RESULT" BUTTON:
+        You have to filter down your result before you can create an album from the filtered result that you entered
+
+
+
 
 -------------------------------------------------------------------------------------
 
@@ -72,6 +77,13 @@ COPYING AND PASTING:
 
 -------------------------------------------------------------------------------------
 
+
+FEATURE: 
+
+ -   Double clicking ablum in table is the same as clicking opening album button
+
+ -   To filter down the photos, click on "Search Mode CLICK HERE" To filter your search, on the   
+    album list page. When you click "Create album from search results." Duplicate images removed and creates an album with those picture through that filter result
 
 
 

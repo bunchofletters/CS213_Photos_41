@@ -198,6 +198,7 @@ private void reload(){
      * goes back to the userPage when its clieked
      */
     @FXML void returnButton() {
+        user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
         photo.changeScene("/view/userPage.fxml");
     }
 
