@@ -28,6 +28,7 @@ public class dataHolder implements Serializable{
         list.setDataUser(Login.getList());
         list.setstockUserAlbumn(Login.getcreatedPhotoAlbum());
         list.setstockUserPage(Login.getcreatedUserPage());
+        list.setStockDeleted(Login.getStockDeleted());
         link = linkerClass.getInstance();
         list.setPhotoAlbum(link.getDataPhotoAlbum());
         for(int i = 0; i<link.getDataPhotoAlbum().size(); i++){ //run up to the amount of user
@@ -67,6 +68,7 @@ public class dataHolder implements Serializable{
             Login.setUserList(list.getDataUser());
         Login.setcreatedUserPage(list.getstockUserPage());
         Login.setcreatedPhotoAlbum(list.getstockUserAlbumn());
+        Login.setStockDeleted(list.getStockDeleted());
     }
 
     public void loadHashMapUserToAlbum(dataList list){

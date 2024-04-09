@@ -29,7 +29,7 @@ public class admin {
 
     public void initialize(){
         System.out.println(Login);
-        if(link.getPhotoAlbum("stock") == null){
+        if(!Login.getStockDeleted() && link.getPhotoAlbum("stock") == null){
             Login.getList().add("stock");
             link.setUserAlbum("stock");
         }
@@ -49,7 +49,14 @@ public class admin {
     @FXML
     void deleteUser() {
         int index = userList.getSelectionModel().getSelectedIndex();
-        if(index > -1){
+        if(!Login.getStockDeleted() && index == 0){
+            Login.setStockDeleted(true);
+            Login.setcreatedPhotoAlbum(true);
+            Login.setcreatedUserPage(true);
+            link.removeUser(userList.getItems().get(index));
+            Login.getList().remove(index);
+        }
+        else if(index > -1){
             link.removeUser(userList.getItems().get(index));
             Login.getList().remove(index);
         }

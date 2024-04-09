@@ -17,6 +17,7 @@ public class login{
     private static login instance;
     private static boolean createdUserPage;
     private static boolean createdPhotoAlbum;
+    private static boolean stockDeleted;
 
     @FXML private Button LoginButton;
 
@@ -39,6 +40,13 @@ public class login{
         createdPhotoAlbum = data;
          instance = this;
     }
+    protected void setStockDeleted(boolean data){
+        stockDeleted = data;
+        instance = this;
+    }
+    protected boolean getStockDeleted(){
+        return stockDeleted;
+    }
 // -------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------
@@ -59,10 +67,10 @@ public class login{
         if(Username.getText().toLowerCase().equals("admin")){
             x.changeScene("/view/admin.fxml");
         } 
-        else if(Username.getText().toLowerCase().equals("stock")){
-            userLogined = "stock";
-            x.changeScene("/view/userPage.fxml");
-        }
+        // else if(Username.getText().toLowerCase().equals("stock")){
+        //     userLogined = "stock";
+        //     x.changeScene("/view/userPage.fxml");
+        // }
         else if (!Username.getText().toLowerCase().equals("admin")) {
             for(int i = 0; i < users.size(); i++){
                 if (Username.getText().toLowerCase().equals(users.get(i))){

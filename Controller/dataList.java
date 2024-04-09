@@ -23,14 +23,15 @@ public class dataList implements Serializable{
         private HashMap<photoAlbumList_serializable, listOfPhotos_serializable> imageList = new HashMap<>();
         private boolean stockUserPage = false; //stock user page
         private boolean stockUserAlbumn = false; //stock user albumn
+        private boolean stockDeleted = false; //stock deletion from admin
 
-        public ArrayList<String> getDataUser(){
+        protected ArrayList<String> getDataUser(){
             return users;
         }
-        public HashMap<String, photoAlbumList_serializable> getPA(){
+        protected HashMap<String, photoAlbumList_serializable> getPA(){
             return photoAlbum;
         }
-        public HashMap<photoAlbumList_serializable, listOfPhotos_serializable> getIL(){
+        protected HashMap<photoAlbumList_serializable, listOfPhotos_serializable> getIL(){
             return imageList;
         }
         
@@ -46,8 +47,14 @@ public class dataList implements Serializable{
         protected void setstockUserAlbumn(boolean data){
             stockUserAlbumn = data;
         }
+        protected void setStockDeleted(boolean data){
+            stockDeleted = data;
+        }
+        protected boolean getStockDeleted(){
+            return stockDeleted;
+        }
 
-        public HashMap<String, photoAlbumList> getphotoAlbum(){
+        protected HashMap<String, photoAlbumList> getphotoAlbum(){
             HashMap<String, photoAlbumList> returnAlbum = new HashMap<>();
             for(int i = 0; i < photoAlbum.size(); i++){
                 ObservableList<photoAlbumList> tmp = FXCollections.observableArrayList();
@@ -64,7 +71,7 @@ public class dataList implements Serializable{
             return returnAlbum;
         }
 
-        public HashMap<photoAlbumList, listOfPhotos> getimageList(HashMap<String, photoAlbumList> dataToCopy){
+        protected HashMap<photoAlbumList, listOfPhotos> getimageList(HashMap<String, photoAlbumList> dataToCopy){
             HashMap<photoAlbumList, listOfPhotos> returnList = new HashMap<>();
             //Loop for each user
             for(int i = 0; i< users.size(); i++){
@@ -123,11 +130,11 @@ public class dataList implements Serializable{
             return returnList;
         }
 
-        public void setDataUser(ObservableList<String> data){
+        protected void setDataUser(ObservableList<String> data){
             users.addAll(data);
         }
 
-        public void setPhotoAlbum(HashMap<String, photoAlbumList> data){
+        protected void setPhotoAlbum(HashMap<String, photoAlbumList> data){
             if(data != null){
                 for(int i = 0; i< users.size(); i++){
                     ArrayList<photoAlbumList_serializable> tmp = new ArrayList<>();
@@ -144,7 +151,7 @@ public class dataList implements Serializable{
             }
         }
 
-        public void setimageList(String users,int index ,photoAlbumList theAlbum, HashMap<photoAlbumList, listOfPhotos> map){
+        protected void setimageList(String users,int index ,photoAlbumList theAlbum, HashMap<photoAlbumList, listOfPhotos> map){
             photoAlbumList_serializable input = getAlbum(users).getAlbumList().get(index); //1 to 1 copy of theAlbum input
             //initalization of listofphotos
             ArrayList<imageAttributes_serializable> tmp = new ArrayList<>();
