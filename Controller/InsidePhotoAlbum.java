@@ -137,6 +137,8 @@ public class InsidePhotoAlbum{
                         }
                         System.out.println("GointoPhtoDetail: " + images.get(imageAttributeIndex).getURL());
                         track.setSelectedImage(newImage);
+                        System.out.println("selectImage: " + selectImage);
+                        System.out.println("images size: " + images.size());
                         break;
                     }
                 }
@@ -175,6 +177,7 @@ public class InsidePhotoAlbum{
                 link.addToImage(user.getAlbum(), track.getSaveCopyImage());
                 tilePane.getChildren().add(setImages(track.getSaveCopyImage()));
                 user.updateUserAlbum();
+                track.setSaveCopyImage(null);
 
             } 
         } catch (Exception e) {
@@ -194,6 +197,7 @@ public class InsidePhotoAlbum{
                 System.out.println("CopyPhoto: "+ track.getSelectedImage().getURL());
                 track.setSaveCopyImage(track.getSelectedImage());
                 selectedVBox.setStyle("-fx-border-color: red; -fx-background-color: LIGHTPINK;");
+                track.setSelectedImage(null);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -218,6 +222,7 @@ public class InsidePhotoAlbum{
             }
                 File file = chooser.showOpenDialog(new Stage());
                 if (file != null){
+                    System.out.println("Selected file: " + file.getAbsolutePath());
                 String path = file.getAbsolutePath();
                 InputStream stream = new FileInputStream(path);
                 Image image = new Image(stream);
@@ -283,6 +288,7 @@ public class InsidePhotoAlbum{
 
     // cahnge caption
     @FXML void edit(ActionEvent event) {
+        if (track.getSelectedImage() != null){
             try {
                 if (popupStage != null && popupStage.isShowing()) {
                     popupStage.toFront();
@@ -307,45 +313,51 @@ public class InsidePhotoAlbum{
             catch (Exception e) {
                 e.printStackTrace();
             }
+        }
     
     }
 
 // -------------------------------------------------------------------------------------
 
     @FXML void move() {
-        try {
-            if (popupStage != null && popupStage.isShowing()) {
-                popupStage.toFront();
-                return;
+        if (track.getSelectedImage() != null ){
+            System.out.println(track.getSelectedImage());
+            try {
+                if (popupStage != null && popupStage.isShowing()) {
+                    popupStage.toFront();
+                    return;
+                }
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/view/movingPhotos.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+
+                popupStage = new Stage();
+                popupStage.initModality(Modality.APPLICATION_MODAL); 
+                popupStage.setScene(scene);
+                popupStage.setResizable(false);
+
+                popupStage.setOnHidden(e -> {  
+                    if (track.move == true && selectedVBox != null){
+                    System.out.println(user.getAlbum().getPhotoNum());
+                    System.out.println(track.getSelectedImage());
+                    tilePane.getChildren().remove(selectedVBox);
+                    selectedVBox.setStyle("-fx-border-color: red; -fx-background-color: LIGHTPINK;");
+                    link.getImageList(user.getAlbum()).removeImage(selectImage);
+                    user.updateUserAlbum(); //update the album that the image was moved from
+                    user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
+                    track.setSelectedImage(null);
+                    
+                    }
+    
+                        
+                });
+                popupStage.showAndWait();;
+                        
             }
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/movingPhotos.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-
-            popupStage = new Stage();
-            popupStage.initModality(Modality.APPLICATION_MODAL); 
-            popupStage.setScene(scene);
-            popupStage.setResizable(false);
-
-            popupStage.setOnHidden(e -> {  
-                if (track.move == true && selectedVBox != null){
-                System.out.println(user.getAlbum().getPhotoNum());
-                System.out.println(track.getSelectedImage());
-                tilePane.getChildren().remove(selectedVBox);
-                selectedVBox = null;
-                link.getImageList(user.getAlbum()).removeImage(selectImage);
-                user.updateUserAlbum(); //update the album that the image was moved from
-                user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
-                } 
-                
-                    
-            });
-            popupStage.showAndWait();;
-                    
-        }
-        catch (Exception e) {
-            e.printStackTrace();
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -353,7 +365,9 @@ public class InsidePhotoAlbum{
 
     @FXML
     void SlideShow(ActionEvent event) {
-        photo.changeScene("/view/PhotoSlideshow.fxml");
+        if(link.getImageList(user.getAlbum()).getPhotos().size() > 0){
+            photo.changeScene("/view/PhotoSlideshow.fxml");
+        }
     }
 // -------------------------------------------------------------------------------------
 
@@ -380,6 +394,7 @@ public class InsidePhotoAlbum{
                     user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                     tilePane.getChildren().add(setImages(track.getStockImage()));
                     track.setStockImage(null);
+                    track.setSelectedImage(null);
                 }    
             });
             popupStage.showAndWait();;

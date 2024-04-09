@@ -24,7 +24,7 @@ public class Photo extends Application{
     public void start(Stage primStage) throws Exception{
         mainStage = primStage;
         try{
-            //data.loadData();
+            data.loadData();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/admin.fxml"));
             Parent root = loader.load();

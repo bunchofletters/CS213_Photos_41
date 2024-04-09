@@ -24,8 +24,8 @@ import javafx.stage.Stage;
 public class goIntoImageAndEdit {
     
     linkerClass link = linkerClass.getInstance();
-    private imageTracker track = imageTracker.getInstance();
     private userPage user = userPage.getInstance();
+    private imageTracker track = imageTracker.getInstance();
 
     @FXML private Label CaptionName;
     @FXML private Label DateLabel;
