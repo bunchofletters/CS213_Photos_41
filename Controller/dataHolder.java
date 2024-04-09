@@ -20,12 +20,14 @@ public class dataHolder implements Serializable{
      * Save all data that will be need for the next running of photo program
      */
     public void saveData() throws Exception{
-        File f = new File("saveData.ser");
+        File f = new File("./saveData.ser");
         FileOutputStream fos = new FileOutputStream(f);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         dataList list = new dataList();
         Login = login.getInstance();
         list.setDataUser(Login.getList());
+        list.setstockUserAlbumn(Login.getcreatedPhotoAlbum());
+        list.setstockUserPage(Login.getcreatedUserPage());
         link = linkerClass.getInstance();
         list.setPhotoAlbum(link.getDataPhotoAlbum());
         for(int i = 0; i<link.getDataPhotoAlbum().size(); i++){ //run up to the amount of user
@@ -63,6 +65,8 @@ public class dataHolder implements Serializable{
     public void loadUserList(dataList list){
         if(list.getDataUser() != null)
             Login.setUserList(list.getDataUser());
+        Login.setcreatedUserPage(list.getstockUserPage());
+        Login.setcreatedPhotoAlbum(list.getstockUserAlbumn());
     }
 
     public void loadHashMapUserToAlbum(dataList list){

@@ -62,14 +62,18 @@ public class InsidePhotoAlbum{
     @FXML private Label AlbumNameItsIn;
 
     static int x = 0;
-    static boolean created = false;
+
+    private static String lastUser = "";
 
 // -------------------------------------------------------------------------------------
-
 public void initialize() throws FileNotFoundException{
-    if(user.getUser().toLowerCase().equals("stock") && !created){
+    if(!lastUser.equals(user.getUser())){
+        track.clean();
+        lastUser = user.getUser();
+    }
+    if(user.getUser().toLowerCase().equals("stock") && !user.Login.getcreatedPhotoAlbum()){
         stockInit();
-        created = true;
+        user.Login.setcreatedPhotoAlbum(true);
     }
     reload(); 
 }
@@ -189,6 +193,7 @@ private void reload(){
      * when logout button is clicked changes scene back to login page
      */
     @FXML void logout() {
+        track.clean();
         photo.changeScene("/view/login.fxml");
     }
 

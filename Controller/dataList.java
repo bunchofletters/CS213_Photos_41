@@ -16,11 +16,13 @@ import javafx.scene.image.Image;
 
 public class dataList implements Serializable{
         // Obser ArrayList of Strings of Users
-        ArrayList<String> users = new ArrayList<>();
+        private ArrayList<String> users = new ArrayList<>();
         // HashMap<String, photoAlbumList> photoAlbum = new HashMap<>();
-        HashMap<String, photoAlbumList_serializable> photoAlbum = new HashMap<>();
+        private HashMap<String, photoAlbumList_serializable> photoAlbum = new HashMap<>();
         // HashMap<photoAlbumList, listOfPhotos> imageList = new HashMap<>();
-        HashMap<photoAlbumList_serializable, listOfPhotos_serializable> imageList = new HashMap<>();
+        private HashMap<photoAlbumList_serializable, listOfPhotos_serializable> imageList = new HashMap<>();
+        private boolean stockUserPage = false; //stock user page
+        private boolean stockUserAlbumn = false; //stock user albumn
 
         public ArrayList<String> getDataUser(){
             return users;
@@ -31,6 +33,20 @@ public class dataList implements Serializable{
         public HashMap<photoAlbumList_serializable, listOfPhotos_serializable> getIL(){
             return imageList;
         }
+        
+        protected boolean getstockUserPage(){
+            return stockUserPage;
+        }
+        protected void setstockUserPage(boolean data){
+            stockUserPage = data;
+        }
+        protected boolean getstockUserAlbumn(){
+            return stockUserAlbumn;
+        }
+        protected void setstockUserAlbumn(boolean data){
+            stockUserAlbumn = data;
+        }
+
         public HashMap<String, photoAlbumList> getphotoAlbum(){
             HashMap<String, photoAlbumList> returnAlbum = new HashMap<>();
             for(int i = 0; i < photoAlbum.size(); i++){
@@ -165,4 +181,6 @@ public class dataList implements Serializable{
         private photoAlbumList_serializable getAlbum(String user){
             return photoAlbum.get(user);
         }
+
+        
 }

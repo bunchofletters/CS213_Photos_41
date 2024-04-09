@@ -36,6 +36,7 @@ public class displayOwnImage {
 
     @FXML
     void logout(ActionEvent event) {
+        track.clean();
         photo.changeScene("/view/login.fxml");
     }
 
