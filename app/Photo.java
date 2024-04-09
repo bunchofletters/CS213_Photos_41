@@ -26,7 +26,7 @@ public class Photo extends Application{
         try{
             data.loadData();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/admin.fxml"));
+            loader.setLocation(getClass().getResource("/view/login.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
