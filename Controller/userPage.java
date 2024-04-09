@@ -45,7 +45,7 @@ public class userPage{
     private int item;
 
     private Photo x = Photo.getInstance();
-    private login Login = login.getInstance();
+    protected login Login = login.getInstance();
 
     public static userPage getInstance() {
     if (instance == null) {
@@ -55,8 +55,6 @@ public class userPage{
     }
     linkerClass link = linkerClass.getInstance();
     String user = Login.getUser();
-    private static boolean created = false;
-
 // -------------------------------------------------------------------------------------
 
     /**
@@ -145,13 +143,15 @@ public class userPage{
     }
 
     public void initialize() {
+        System.out.println(Login.getcreatedUserPage());
+        System.out.println(Login.getcreatedPhotoAlbum());
         //Creates a unique photoAlbumList per user
         if(link.getPhotoAlbum(user) == null){
             link.setUserAlbum(user);
         }
-        else if(user.equals("stock") && !created){
+        else if(user.equals("stock") && !Login.getcreatedUserPage()){
             stockInitalize();
-            created = true;
+            Login.setcreatedUserPage(true);
         }
 
         AlbumName.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getName()));

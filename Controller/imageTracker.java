@@ -21,6 +21,22 @@ public class imageTracker {
 
     private ObservableList<String> selectedTagsOnlyList = FXCollections.observableArrayList();
 
+    public void clean(){
+        stockImage = null;
+        selectedImage = null;
+        copyImage = null;
+        moveImage = null;
+        uplaodImage = null;
+        searchSelectImage = null;
+        check = false;
+        stockImageBoolean = false;
+        move = false;
+        tags = "";
+        closed = false;
+        lastSelectedIndex = 0;
+
+    }
+
   // -------------------------------------------------------------
    
     /**

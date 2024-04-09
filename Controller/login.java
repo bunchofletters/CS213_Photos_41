@@ -15,13 +15,30 @@ public class login{
     private Photo x = Photo.getInstance();
     private static String userLogined = "stock";
     private static login instance;
+    private static boolean createdUserPage;
+    private static boolean createdPhotoAlbum;
 
     @FXML private Button LoginButton;
 
     @FXML private TextField Username;
 
     @FXML private Label wrongPassword;
+    
 
+    protected boolean getcreatedUserPage(){
+        return createdUserPage;
+    }
+    protected void setcreatedUserPage(boolean data){
+        createdUserPage = data;
+        instance = this;
+    }
+    protected boolean getcreatedPhotoAlbum(){
+        return createdPhotoAlbum;
+    }
+    protected void setcreatedPhotoAlbum(boolean data){
+        createdPhotoAlbum = data;
+         instance = this;
+    }
 // -------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------
@@ -43,6 +60,7 @@ public class login{
             x.changeScene("/view/admin.fxml");
         } 
         else if(Username.getText().toLowerCase().equals("stock")){
+            userLogined = "stock";
             x.changeScene("/view/userPage.fxml");
         }
         else if (!Username.getText().toLowerCase().equals("admin")) {
