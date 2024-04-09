@@ -2,7 +2,6 @@ package Controller;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import app.Photo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

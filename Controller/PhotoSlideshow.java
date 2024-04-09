@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import app.Photo;
 
 public class PhotoSlideshow {
 

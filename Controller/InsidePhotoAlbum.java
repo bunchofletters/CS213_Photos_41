@@ -27,7 +27,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import app.Photo;
 
 public class InsidePhotoAlbum{
 

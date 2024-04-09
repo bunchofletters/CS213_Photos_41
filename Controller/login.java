@@ -8,8 +8,6 @@ import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
 
-import app.Photo;
-
 public class login{
     private static ObservableList<String> users = FXCollections.observableArrayList();
     private Photo x = Photo.getInstance();
