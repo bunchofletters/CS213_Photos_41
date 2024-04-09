@@ -1,7 +1,10 @@
 package Controller;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.io.InputStream;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,14 +62,49 @@ public class InsidePhotoAlbum{
     @FXML private Label AlbumNameItsIn;
 
     static int x = 0;
+    static boolean created = false;
 
 // -------------------------------------------------------------------------------------
 
-    public void initialize() {
+public void initialize() throws FileNotFoundException{
+    if(user.getUser().toLowerCase().equals("stock") && !created){
+        stockInit();
+        created = true;
+    }
+    reload(); 
+}
+
+private void stockInit() throws FileNotFoundException{
+    File dir = new File("./data");
+    File[] images;
+
+    images = dir.listFiles(new FilenameFilter() {
+        public boolean accept(File dir, String name){
+            if(name.toLowerCase().endsWith(".jpeg") || name.toLowerCase().endsWith(".png") || name.toLowerCase().endsWith(".bmp") || name.toLowerCase().endsWith(".gif")){
+                return true;
+            }
+        return false;
+        }
+    });
+
+    for(int i = 0; i< images.length; i++){
+        InputStream stream = new FileInputStream(images[i].getAbsolutePath());
+        Image image = new Image(stream);
+        imageAttributes attr = new imageAttributes(image);
+        attr.setURL(images[i].getAbsolutePath());
+        attr.setCaption(images[i].getName());
+        link.addToImage(user.getAlbum(), attr);
+    }
+
+
+}
+
+private void reload(){
+    tilePane.getChildren().clear();
     imageAttributeIndex = 0;
-        // SHOWS WHAT ALBUM YOURE IN, SHOWS THE NAME OF THE ALBUM IN THE MIDDLE
+    // SHOWS WHAT ALBUM YOURE IN, SHOWS THE NAME OF THE ALBUM IN THE MIDDLE
     AlbumNameItsIn.setText(user.getAlbum().getName());
-    
+
     images = link.getImageList(user.getAlbum()).getPhotos();
     user.getAlbum().setPhotoNum(images.size());
     for (imageAttributes img : images){
@@ -77,7 +115,6 @@ public class InsidePhotoAlbum{
         scrollPane.setContent(tilePane);
         scrollPane.setFitToWidth(true); // Fit content to width
     }
-    
 }
 // -------------------------------------------------------------------------------------
 
@@ -106,6 +143,7 @@ public class InsidePhotoAlbum{
     // When you click on a photo image
     private VBox selectedVBox = null;
     private Image selectImage;
+    private imageAttributes persistance;
 
     @FXML void goIntoPhotoDetails(MouseEvent event) {
         imageAttributeIndex = 0;
@@ -126,17 +164,15 @@ public class InsidePhotoAlbum{
                     if (child instanceof ImageView){
                         ImageView imageView = (ImageView) child;
                         selectImage = imageView.getImage();
-                        imageAttributes newImage = new imageAttributes(selectImage);
                         for(imageAttributeIndex = 0; imageAttributeIndex< images.size();imageAttributeIndex++){
                             if(imageView.getImage().equals(images.get(imageAttributeIndex).getImage())){
-                                newImage.setURL(images.get(imageAttributeIndex).getURL());
-                                newImage.setCaption(images.get(imageAttributeIndex).getCaption());
-                                newImage.setTag(images.get(imageAttributeIndex).getTags());
+                                track.setLastSelectedIndex(imageAttributeIndex);
+                                persistance = images.get(imageAttributeIndex);
                                 break;
                             }
                         }
                         System.out.println("GointoPhtoDetail: " + images.get(imageAttributeIndex).getURL());
-                        track.setSelectedImage(newImage);
+                        track.setSelectedImage(persistance);
                         System.out.println("selectImage: " + selectImage);
                         System.out.println("images size: " + images.size());
                         break;
@@ -305,7 +341,7 @@ public class InsidePhotoAlbum{
                 popupStage.setResizable(false);
     
                 popupStage.setOnHidden(e -> {
-                // do stuff
+                    reload();
                 });
                 popupStage.showAndWait();;
                         
@@ -348,9 +384,7 @@ public class InsidePhotoAlbum{
                     user.getAlbum().setPhotoNum(link.getImageList(user.getAlbum()).getPhotos().size());
                     track.setSelectedImage(null);
                     
-                    }
-    
-                        
+                    }   
                 });
                 popupStage.showAndWait();;
                         

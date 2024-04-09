@@ -107,7 +107,7 @@ public class previewImageUpload {
         Optional<String> result = td.showAndWait();
         if (result.isPresent()){
             if(result.get().equals("")){
-                CurrentCaptionLabel.setText("Untitled");
+                CurrentCaptionLabel.setText("Uncaption");
                 imgAttr.setCaption("Untitled");
             }
             else if(result.get().substring(0,1).equals(" ")){
@@ -201,7 +201,7 @@ public class previewImageUpload {
             td.setTitle("Tag Value");
             Optional<String> result = td.showAndWait();
             if(result.isPresent()){
-                if(!result.get().equals("") && !result.get().substring(0,1).equals(" ")){
+                if(!result.get().equals("") && !result.get().contains(" ")){
                     boolean run = false;
                     for(int i = 0; i<selectedTagsList.size(); i++){
                         if(selectedTagsList.get(i).getTag().equals(TagColum.getCellData(index))){
@@ -221,11 +221,18 @@ public class previewImageUpload {
                         Table.refresh();
                     }
                 }
-                else if(result.get().substring(0,1).equals(" ")){
-                    Alert alert = new Alert(AlertType.WARNING);
-                    alert.setTitle("Warning");
-                    alert.setHeaderText("An Warning has Occured");
-                    alert.setContentText("Attempting to set [value] with a value that starts with 'space'. Start with a number or letter instead");
+                else if(result.get().contains(" ")){
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("An Error has Occured When Attempting to Add Value to a Tag");
+                    alert.setContentText("Values can't have any spaces in them");
+                    alert.showAndWait();
+                }
+                else if(result.get().contains("=")){
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("An Error has Occured When Attempting to Add Value to a Tag");
+                    alert.setContentText("Values can't have any = in them");
                     alert.showAndWait();
                 }
             }

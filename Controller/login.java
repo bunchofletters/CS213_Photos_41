@@ -13,7 +13,7 @@ import app.Photo;
 public class login{
     private static ObservableList<String> users = FXCollections.observableArrayList();
     private Photo x = Photo.getInstance();
-    private static String userLogined = "";
+    private static String userLogined = "stock";
     private static login instance;
 
     @FXML private Button LoginButton;
@@ -21,6 +21,8 @@ public class login{
     @FXML private TextField Username;
 
     @FXML private Label wrongPassword;
+
+// -------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------
 
@@ -41,7 +43,7 @@ public class login{
             x.changeScene("/view/admin.fxml");
         } 
         else if(Username.getText().toLowerCase().equals("stock")){
-            x.changeScene("/view/stockImageUser.fxml");
+            x.changeScene("/view/userPage.fxml");
         }
         else if (!Username.getText().toLowerCase().equals("admin")) {
             for(int i = 0; i < users.size(); i++){

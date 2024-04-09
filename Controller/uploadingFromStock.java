@@ -86,10 +86,6 @@ public class uploadingFromStock {
     
             String filepath = images[0].getAbsolutePath();
             System.out.println(filepath);
-            // filepath = filepath.substring(1);
-            // if(filepath.contains("\\")){
-            //     filepath = filepath.replace("\\", "/");
-            // }
             InputStream stream = new FileInputStream(filepath);
             Image imageview = new Image(stream);
             ImageViewer.setImage(imageview);

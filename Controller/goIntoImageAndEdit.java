@@ -51,13 +51,20 @@ public class goIntoImageAndEdit {
 
     @FXML void changeValue(ActionEvent event) {
         int index = infoTable.getSelectionModel().getSelectedIndex();
-        if(index > -1){
+        if(index < 0){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Attempting to Add Value Without Selecting a Tag. Try Selecting a Tag and Clicking Add Value");
+            alert.setHeaderText("An Error Occured");
+            alert.showAndWait();
+        }
+        else{
             TextInputDialog td = new TextInputDialog();
             td.setContentText("Input Tag Value");
             td.setTitle("Tag Value");
             Optional<String> result = td.showAndWait();
             if(result.isPresent()){
-                if(!result.get().equals("") && !result.get().substring(0,1).equals(" ")){
+                if(!result.get().equals("") && !result.get().contains(" ")){
                     boolean run = false;
                     for(int i = 0; i<selectedTagsList.size(); i++){
                         if(selectedTagsList.get(i).getTag().equals(TagColumn.getCellData(index))){
@@ -77,21 +84,21 @@ public class goIntoImageAndEdit {
                         infoTable.refresh();
                     }
                 }
-                else if(result.get().substring(0,1).equals(" ")){
-                    Alert alert = new Alert(AlertType.WARNING);
-                    alert.setTitle("Warning");
-                    alert.setHeaderText("An Warning has Occured");
-                    alert.setContentText("Attempting to set [value] with a value that starts with 'space'. Start with a number or letter instead");
+                else if(result.get().contains(" ")){
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("An Error has Occured When Attempting to Add Value to a Tag");
+                    alert.setContentText("Values can't have any spaces in them");
+                    alert.showAndWait();
+                }
+                else if(result.get().contains("=")){
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("An Error has Occured When Attempting to Add Value to a Tag");
+                    alert.setContentText("Values can't have any = in them");
                     alert.showAndWait();
                 }
             }
-        }
-        else{
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Attempting to Add Value Without Selecting a Tag. Try Selecting a Tag and Clicking Add Value");
-            alert.setHeaderText("An Error Occured");
-            alert.showAndWait();
         }
     }
 
@@ -106,11 +113,16 @@ public class goIntoImageAndEdit {
 
     @FXML void delTag(ActionEvent event) {
         int index = infoTable.getSelectionModel().getSelectedIndex();
-        if(index > -1){
-            selectedTagsList.remove(index);
+        if(index < 0){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Attempting to Delete Without Selecting a Tag. Try Selecting a Tag and Clicking Delete");
+            alert.setHeaderText("An Error Occured");
+            alert.showAndWait();
         }
         else{
-            //alert
+            selectedTagsList.remove(index);
+            infoTable.refresh();
         }
     }
 
@@ -138,7 +150,7 @@ public class goIntoImageAndEdit {
                 attribute.addTag(selectedTagsList.get(i).getTag()+"="+selectedTagsList.get(i).getValue());
             }
             user.updateUserAlbum();
-            track.setUplaodImage(attribute);
+            track.setSelectedImage(attribute);
 
             Stage stage = (Stage) SaveButton.getScene().getWindow();
             stage.close();    
