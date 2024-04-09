@@ -43,6 +43,7 @@ public class login{
             x.changeScene("/view/admin.fxml");
         } 
         else if(Username.getText().toLowerCase().equals("stock")){
+            userLogined = "stock";
             x.changeScene("/view/userPage.fxml");
         }
         else if (!Username.getText().toLowerCase().equals("admin")) {
