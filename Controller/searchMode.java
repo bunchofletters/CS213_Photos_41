@@ -143,17 +143,63 @@ public class searchMode {
             int counter = 0;
             for(imageAttributes x : tmp.getPhotos()){
                 if(filterType == 0){ //single tag filter
+                    String tagPair = FilterInput.getText();
                     for(int m = 0; m < tmp.getPhotos().get(counter).getTags().size(); m++){
                         String check = tmp.getPhotos().get(counter).getTags().get(m);
-                        if((check).equals(FilterInput.getText()))
+                        if((check).equals(tagPair))
                             filterList.add(x);
                     }
                 }
                 else if(filterType == 1){ //double tag filter
-                    for(int m = 0; m <tmp.getPhotos().get(counter).getTags().size(); m++){
-                        String check = tmp.getPhotos().get(counter).getTags().get(m);
-                        if(FilterInput.getText().equals(check) || FilterInput.getText().equals(check))
-                            filterList.add(x);
+                    //determine if it's AND or OR
+                    boolean type = false;  //true = AND; false = OR
+                    boolean run = true;
+                    if(FilterInput.getText().contains(" AND ")){
+                        type = true;
+                    }
+                    else if(FilterInput.getText().contains(" OR ")){
+                        type = false;
+                    }
+                    else{
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setContentText("Attempting to Search on Two Tag-Value pairs Without Indicating AND or OR");
+                        alert.setHeaderText("An Error Has Occured When Attempting to Filtering");
+                        alert.setTitle("Error");
+                        run = false;
+                        
+                    }
+                    if(run){
+                        String tagPair1 = FilterInput.getText().substring(0,FilterInput.getText().indexOf(" "));
+                        String tagPair2 = FilterInput.getText().substring(FilterInput.getText().lastIndexOf(" ")+1);
+                        if(type){//AND filtering
+                            boolean filter1 = false;
+                            boolean filter2 = false;
+                            for(int m = 0; m <tmp.getPhotos().get(counter).getTags().size(); m++){
+                                String check = tmp.getPhotos().get(counter).getTags().get(m);
+                                if(filter1 && filter2){
+                                    break;
+                                }
+                                else if(tagPair1.equals(check)){
+                                    filter1 = true;
+                                }
+                                else if(tagPair2.equals(check)){
+                                    filter2 = true;
+                                }
+                            }
+                            if(filter1 && filter2){
+                                filterList.add(x);
+                            }
+                            
+                        }
+                        else{// OR filtering
+                            for(int m = 0; m <tmp.getPhotos().get(counter).getTags().size(); m++){
+                                String check = tmp.getPhotos().get(counter).getTags().get(m);
+                                if(tagPair1.equals(check) || tagPair2.equals(check)){
+                                    filterList.add(x);
+                                     break;
+                                }
+                            }
+                        }
                     }
                 }
                 else if (filterType == 2){

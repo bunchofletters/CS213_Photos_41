@@ -73,11 +73,10 @@ public class movingPhotos {
 
                             System.out.println(link.getPhotoAlbum(user).getAlbumList().get(item).getPhotoNum());
                             System.out.println("moving ouside track: " + track.getSelectedImage());
-                            // System.out.println("moving outside index: " + link.getImageList(album).getPhotos().get(i).getImage());
                                 
-                                System.out.println("moving index: " + link.getImageList(album).getPhotos().get(i).getImage());
-                                System.out.println("moving track: " + track.getSelectedImage().getImage());
-                                if (link.getImageList(album).getPhotos().get(i).getImage().equals(track.getSelectedImage().getImage())){
+                                System.out.println("moving index: " + link.getImageList(album).getPhotos().get(i).getURL());
+                                System.out.println("moving track: " + track.getSelectedImage().getURL());
+                                if (link.getImageList(album).getPhotos().get(i).getURL().equals(track.getSelectedImage().getURL())){
 
                                     System.out.println("moving index: " + link.getImageList(album).getPhotos().get(i).getImage());
                                     System.out.println("moving track: " + track.getSelectedImage().getImage());
@@ -86,8 +85,6 @@ public class movingPhotos {
                                     track.setSelectedImage(null);
                                     run = false;
                                     break;
-                                    // Stage stage = (Stage) MoveIntoButton.getScene().getWindow();
-                                    // stage.close();
                                 }   
                         }
                     if(run){

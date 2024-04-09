@@ -55,6 +55,7 @@ public class userPage{
     }
     linkerClass link = linkerClass.getInstance();
     String user = Login.getUser();
+    private static boolean created = false;
 
 // -------------------------------------------------------------------------------------
 
@@ -137,11 +138,20 @@ public class userPage{
     }
 
 // -------------------------------------------------------------------------------------
+    private void stockInitalize(){
+        photoAlbumList newAlbum = new photoAlbumList("Stock", 7,LocalDate.now().toString(), LocalDate.now().toString());
+        link.addToAlbum(user, newAlbum);
+        link.setAlbumImages(link.getPhotoAlbum(user).getAlbumList().get(link.getPhotoAlbum(user).getAlbumList().size()-1));
+    }
 
     public void initialize() {
         //Creates a unique photoAlbumList per user
         if(link.getPhotoAlbum(user) == null){
             link.setUserAlbum(user);
+        }
+        else if(user.equals("stock") && !created){
+            stockInitalize();
+            created = true;
         }
 
         AlbumName.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getName()));
